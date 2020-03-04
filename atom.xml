@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://XMTam.github.io</id>
-    <title>XMTam</title>
-    <updated>2020-03-04T03:37:06.541Z</updated>
+    <title>Alvin</title>
+    <updated>2020-03-04T03:37:52.032Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://XMTam.github.io"/>
     <link rel="self" href="https://XMTam.github.io/atom.xml"/>
     <subtitle>一万年太久，只争朝夕！</subtitle>
     <logo>https://XMTam.github.io/images/avatar.png</logo>
     <icon>https://XMTam.github.io/favicon.ico</icon>
-    <rights>All rights reserved 2020, XMTam</rights>
+    <rights>All rights reserved 2020, Alvin</rights>
     <entry>
         <title type="html"><![CDATA[26 删除排序数组中的重复项]]></title>
         <id>https://XMTam.github.io/post/26-shan-chu-pai-xu-shu-zu-zhong-de-chong-fu-xiang</id>
