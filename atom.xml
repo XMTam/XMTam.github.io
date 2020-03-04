@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://XMTam.github.io</id>
     <title>XMTam</title>
-    <updated>2020-03-04T03:26:44.561Z</updated>
+    <updated>2020-03-04T03:37:06.541Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://XMTam.github.io"/>
     <link rel="self" href="https://XMTam.github.io/atom.xml"/>
@@ -16,7 +16,15 @@
         <link href="https://XMTam.github.io/post/26-shan-chu-pai-xu-shu-zu-zhong-de-chong-fu-xiang">
         </link>
         <updated>2020-03-04T02:27:34.000Z</updated>
-        <content type="html"><![CDATA[<p>给定一个排序数组，你需要在原地删除重复出现的元素，使得每个元素只出现一次，返回移除后数组的新长度。</p>
+        <summary type="html"><![CDATA[<p>😄From here, I start my journal on <strong>LeetCode</strong>.<br>
+👉Let's practice programming together!<br>
+😇Hoping you could give some sugesstions.</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>😄From here, I start my journal on <strong>LeetCode</strong>.<br>
+👉Let's practice programming together!<br>
+😇Hoping you could give some sugesstions.</p>
+<!-- more -->
+<p>给定一个排序数组，你需要在原地删除重复出现的元素，使得每个元素只出现一次，返回移除后数组的新长度。</p>
 <p>不要使用额外的数组空间，你必须在原地修改输入数组并在使用 O(1) 额外空间的条件下完成。</p>
 <p>示例 1：<br>
 <code>给定数组nums = [1,1,2],</code><br>
