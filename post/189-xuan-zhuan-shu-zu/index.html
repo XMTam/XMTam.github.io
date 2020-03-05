@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Alvin</title>
 <meta name="description" content="A = X + Y + Z" />
-<link rel="shortcut icon" href="https://XMTam.github.io/favicon.ico?v=1583413312622">
+<link rel="shortcut icon" href="https://XMTam.github.io/favicon.ico?v=1583413620433">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
@@ -23,7 +23,7 @@
       <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
         <i class="ri-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
         <a href="https://XMTam.github.io">
-          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://XMTam.github.io/images/avatar.png?v=1583413312622" alt="">
+          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://XMTam.github.io/images/avatar.png?v=1583413620433" alt="">
         </a>
         <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">Alvin</h1>
       </div>
@@ -92,14 +92,15 @@
         <div class="post-content yue">
           <h1 id="一-题目">一、题目</h1>
 <p>给定一个数组，将数组中的元素向右移动 k 个位置，其中 k 是非负数。<br>
-示例 :<br>
-<code>输入</code>: [1,2,3,4,5,6,7] 和 k = 3<br>
-<code>输出</code>: [5,6,7,1,2,3,4]<br>
-<code>解释</code>:<br>
-向右旋转 1 步: [7,1,2,3,4,5,6]<br>
-向右旋转 2 步: [6,7,1,2,3,4,5]<br>
-向右旋转 3 步: [5,6,7,1,2,3,4]</p>
-<p><code>说明</code>:</p>
+<strong>示例 :</strong></p>
+<pre><code>输入: [1,2,3,4,5,6,7] 和 k = 3
+输出: [5,6,7,1,2,3,4]
+解释:
+向右旋转 1 步: [7,1,2,3,4,5,6]
+向右旋转 2 步: [6,7,1,2,3,4,5]
+向右旋转 3 步: [5,6,7,1,2,3,4]
+</code></pre>
+<p><strong>说明:</strong></p>
 <ul>
 <li>尽可能想出更多的解决方案，至少有三种不同的方法可以解决这个问题。</li>
 <li>要求使用空间复杂度为 O(1) 的 原地 算法。</li>
@@ -131,7 +132,7 @@
 <p><strong>方案二：使用额外数组</strong>——空间换取时间<br>
 使用一个额外的数组将每个元素放到正确的位置上。<br>
 也就是原本数组里下标为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span> 的我们将其放到<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mi>i</mi><mo>+</mo><mi>k</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">(i + k)%数组长度</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mclose">)</span></span></span></span>的位置。然后把新的数组拷贝到原数组中。<br>
-<code>代码如下</code>：</p>
+<strong>代码如下：</strong></p>
 <pre><code>void rotate(int* nums, int numsSize, int k) {
 
     int* a = (int*)malloc(numsSize * sizeof(int));
