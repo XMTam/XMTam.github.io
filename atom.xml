@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://XMTam.github.io</id>
     <title>Alvin</title>
-    <updated>2020-03-05T13:07:12.272Z</updated>
+    <updated>2020-03-05T23:46:55.628Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://XMTam.github.io"/>
     <link rel="self" href="https://XMTam.github.io/atom.xml"/>
@@ -10,6 +10,76 @@
     <logo>https://XMTam.github.io/images/avatar.png</logo>
     <icon>https://XMTam.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Alvin</rights>
+    <entry>
+        <title type="html"><![CDATA[136. 只出现一次的数字]]></title>
+        <id>https://XMTam.github.io/post/136-zhi-chu-xian-yi-ci-de-shu-zi</id>
+        <link href="https://XMTam.github.io/post/136-zhi-chu-xian-yi-ci-de-shu-zi">
+        </link>
+        <updated>2020-03-05T03:06:18.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="一-题目">一、题目</h1>
+<p>给定一个非空整数数组，除了某个元素只出现一次以外，其余每个元素均出现两次。找出那个只出现了一次的元素。<br>
+<code>说明</code>：算法应该具有线性时间复杂度。 并且不能使用额外空间来实现。</p>
+<p><strong>示例 1:</strong></p>
+<pre><code>输入: [2,2,1]
+输出: 1
+</code></pre>
+<p><strong>示例 2:</strong></p>
+<pre><code>输入: [4,1,2,1,2]
+输出: 4
+</code></pre>
+<p>我的实现：借鉴217题方法二的实现算法。先将数组排序，再进行下一步讨论。<br>
+<strong>代码如下：</strong></p>
+<pre><code>int cmpfuc(const void* a, const void* b)
+{
+    return (*(int*)a - *(int*)b);
+}
+
+int singleNumber(int* nums, int numsSize)
+{
+    if(numsSize == 1)   // 特殊情况判断，只有一个元素时直接返回
+        return nums[0];
+    
+    qsort(nums, numsSize, sizeof(int), cmpfuc);     // 先对数组排序
+
+    int res = 0;
+    for (int i = 0; i &lt;= numsSize - 1; i += 2)
+    {
+        if(i == numsSize - 1 || nums[i] != nums[i + 1])
+        {
+            res = nums[i];
+            break;
+        }
+    }
+    return res;
+}
+</code></pre>
+<hr>
+<h1 id="二-解决方案">二、解决方案</h1>
+<h2 id="方案一列表操作">方案一：列表操作</h2>
+<p><strong>算法</strong></p>
+<ol>
+<li>遍历 nums 中的每一个元素</li>
+<li>如果某个 nums 中的数字是新出现的，则将它添加到列表中</li>
+<li>如果某个数字已经在列表中，删除它</li>
+</ol>
+<h2 id="方案二哈希表">方案二：哈希表</h2>
+<p><strong>算法</strong><br>
+我们用哈希表避免每次查找元素是否存在需要的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span> 时间。</p>
+<ol>
+<li>遍历 nums 中的每一个元素</li>
+<li>查找 <em>hash_table</em> 中是否有当前元素的键</li>
+<li>如果没有，将当前元素作为键插入 <em>hash_table</em></li>
+<li>最后，*hash_table *中仅有一个元素，用 popitem 获得它</li>
+</ol>
+<p>注：上述方案一、二适合python语言实现，读者可以自行动手实现。</p>
+<hr>
+<h2 id="方案三数学">方案三：数学</h2>
+<p>概念<br>
+<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>2</mn><mo>∗</mo><mo>(</mo><mi>a</mi><mo>+</mo><mi>b</mi><mo>+</mo><mi>c</mi><mo>)</mo><mo>−</mo><mo>(</mo><mi>a</mi><mo>+</mo><mi>a</mi><mo>+</mo><mi>b</mi><mo>+</mo><mi>b</mi><mo>+</mo><mi>c</mi><mo>)</mo><mo>=</mo><mi>c</mi></mrow><annotation encoding="application/x-tex">2 * (a + b + c) - (a + a + b + b + c) = c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">a</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.77777em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">b</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">c</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">a</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">a</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.77777em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">b</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.77777em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">b</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">c</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">c</span></span></span></span></p>
+<hr>
+<h2 id="方案四">方案四</h2>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[217. 存在重复元素]]></title>
         <id>https://XMTam.github.io/post/217-cun-zai-chong-fu-yuan-su</id>
