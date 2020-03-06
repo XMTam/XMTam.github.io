@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Alvin</title>
 <meta name="description" content="A = X + Y + Z" />
-<link rel="shortcut icon" href="https://XMTam.github.io/favicon.ico?v=1583451993610">
+<link rel="shortcut icon" href="https://XMTam.github.io/favicon.ico?v=1583485358828">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
@@ -23,7 +23,7 @@
       <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
         <i class="ri-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
         <a href="https://XMTam.github.io">
-          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://XMTam.github.io/images/avatar.png?v=1583451993610" alt="">
+          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://XMTam.github.io/images/avatar.png?v=1583485358828" alt="">
         </a>
         <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">Alvin</h1>
       </div>
@@ -40,7 +40,7 @@
 <li><a href="#%E6%96%B9%E6%A1%88%E4%B8%80%E5%88%97%E8%A1%A8%E6%93%8D%E4%BD%9C">方案一：列表操作</a></li>
 <li><a href="#%E6%96%B9%E6%A1%88%E4%BA%8C%E5%93%88%E5%B8%8C%E8%A1%A8">方案二：哈希表</a></li>
 <li><a href="#%E6%96%B9%E6%A1%88%E4%B8%89%E6%95%B0%E5%AD%A6">方案三：数学</a></li>
-<li><a href="#%E6%96%B9%E6%A1%88%E5%9B%9B">方案四</a></li>
+<li><a href="#%E6%96%B9%E6%A1%88%E5%9B%9B%E4%BD%8D%E6%93%8D%E4%BD%9C">方案四：位操作</a></li>
 </ul>
 </li>
 </ul>
@@ -91,7 +91,7 @@
       <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
         <h1 class="text-3xl font-bold lg:mt-16">136. 只出现一次的数字</h1>
         <div class="text-sm text-gray-700 lg:my-8">
-          2020-03-05 / 2 min read
+          2020-03-05 / 4 min read
         </div>
         
           <img class="post-feature-image rounded-lg mx-auto my-4" src="https://XMTam.github.io/post-images/136-zhi-chu-xian-yi-ci-de-shu-zi.png" alt="">
@@ -157,8 +157,89 @@ int singleNumber(int* nums, int numsSize)
 <h2 id="方案三数学">方案三：数学</h2>
 <p>概念<br>
 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>2</mn><mo>∗</mo><mo>(</mo><mi>a</mi><mo>+</mo><mi>b</mi><mo>+</mo><mi>c</mi><mo>)</mo><mo>−</mo><mo>(</mo><mi>a</mi><mo>+</mo><mi>a</mi><mo>+</mo><mi>b</mi><mo>+</mo><mi>b</mi><mo>+</mo><mi>c</mi><mo>)</mo><mo>=</mo><mi>c</mi></mrow><annotation encoding="application/x-tex">2 * (a + b + c) - (a + a + b + b + c) = c</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">a</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.77777em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">b</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">c</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">a</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">a</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.77777em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">b</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.77777em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">b</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">c</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">c</span></span></span></span></p>
+<p><strong>C代码如下：</strong></p>
+<pre><code>int cmpfuc(const void* a, const void* b)
+{
+    return (*(int*)a - *(int*)b);
+}
+
+void arrElementDelete(int* nums, int length, int k)
+{
+    // delete the element, which's position is k
+    for (int i = k; i &lt; length - 1; i++)
+    {
+        nums[i] = nums[i + 1];
+    }
+}
+
+void removeDumplicates(int* nums, int length, int* cnt)
+{
+    // sort the array
+    qsort(nums, length, sizeof(int), cmpfuc);
+
+    // delete the same elements
+    for (int i = 0; i &lt; length - 1; i++)
+    {
+        if (nums[i] == nums[i + 1])
+        {
+            arrElementDelete(nums, length, i);
+            length -= 1;
+            *cnt += 1;
+        }           
+    }
+}
+
+int arrSum(int* nums, int length)
+{
+    int sum = 0;
+    for (int i = 0; i &lt; length; i++)
+    {
+        sum += nums[i];
+    }
+    return sum;
+}
+
+int singleNumber(int* nums, int numsSize) 
+{
+    int sum1 = arrSum(nums, numsSize);
+
+    int num = 0;
+    int* deleteNums = &amp;num;
+    removeDumplicates(nums, numsSize, deleteNums);
+    int length = numsSize - *deleteNums;
+    int sum2 = arrSum(nums, length);
+
+    int res = 2 * sum2 - sum1;
+    return res;
+}
+</code></pre>
 <hr>
-<h2 id="方案四">方案四</h2>
+<h2 id="方案四位操作">方案四：位操作</h2>
+<p><strong>相关概念</strong></p>
+<ul>
+<li>如果我们对 0 和二进制位做 XOR 运算，得到的仍然是这个二进制位<br>
+a <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>⊕</mo></mrow><annotation encoding="application/x-tex">\oplus</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">⊕</span></span></span></span> 0 = a</li>
+<li>如果我们对相同的二进制位做 XOR 运算，返回的结果是 0<br>
+a <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>⊕</mo></mrow><annotation encoding="application/x-tex">\oplus</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">⊕</span></span></span></span> a = 0</li>
+<li>XOR 满足交换律和结合律<br>
+a <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>⊕</mo></mrow><annotation encoding="application/x-tex">\oplus</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">⊕</span></span></span></span> b <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>⊕</mo></mrow><annotation encoding="application/x-tex">\oplus</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">⊕</span></span></span></span> a = (a <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>⊕</mo></mrow><annotation encoding="application/x-tex">\oplus</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">⊕</span></span></span></span> a) <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>⊕</mo></mrow><annotation encoding="application/x-tex">\oplus</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">⊕</span></span></span></span> b = 0 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>⊕</mo></mrow><annotation encoding="application/x-tex">\oplus</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">⊕</span></span></span></span> b = b<br>
+所以我们只需要将所有的数进行 XOR 操作，得到那个唯一的数字。</li>
+</ul>
+<p><strong>代码如下：</strong></p>
+<pre><code>int singleNumber(int* nums, int numsSize) {
+    int res = nums[0];
+    for (int i = 1; i &lt; numsSize; i++)
+    {
+        res ^= nums[i];
+    }
+    return res;
+}
+</code></pre>
+<p><strong>复杂度分析:</strong></p>
+<ul>
+<li>时间复杂度： <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span> 。我们只需要将 {nums} 中的元素遍历一遍，所以时间复杂度就是 {nums} 中的元素个数。</li>
+<li>空间复杂度：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span> 。</li>
+</ul>
 
         </div>
 
