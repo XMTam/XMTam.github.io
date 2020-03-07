@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://XMTam.github.io</id>
     <title>Alvin</title>
-    <updated>2020-03-07T08:54:40.081Z</updated>
+    <updated>2020-03-07T10:14:28.949Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://XMTam.github.io"/>
     <link rel="self" href="https://XMTam.github.io/atom.xml"/>
@@ -84,9 +84,56 @@
 </li>
 <li>返回数组 nums1 前 k 个元素。</li>
 </ul>
-<p><strong>代码如下：</strong></p>
-<pre><code>
+<p><strong>我的代码如下（通过）：</strong></p>
+<pre><code>int cmpfunc(const void* a, const void* b)
+{
+    if (*(int*)a &gt; *(int*)b) 
+        return 1;
+    else if (*(int*)a &lt; *(int*)b) 
+        return -1;
+    else if (*(int*)a == *(int*)b) 
+        return 0;
+    return 0;
+}
+
+int* intersect(int* nums1, int nums1Size, int* nums2, int nums2Size, int* returnSize) 
+{
+    // first: sort the two array
+    qsort(nums1, nums1Size, sizeof(nums1[0]), cmpfunc);
+    qsort(nums2, nums2Size, sizeof(nums2[0]), cmpfunc);
+ 
+    int len = 0;
+    for (int i = 0, j = 0; i &lt; nums1Size &amp;&amp; j &lt; nums2Size; )
+    {
+        if (nums1[i] &lt; nums2[j])
+            i++;
+        else if (nums1[i] &gt; nums2[j])
+            j++;
+        else
+        {
+            nums1[len++] = nums1[i++];
+            j++;
+        }
+    }
+    *returnSize = len;
+    int* arr = (int*)malloc(sizeof(int) * len);
+    if (!arr)
+    {
+        printf(&quot;fail to malloc!&quot;);
+        return NULL;
+    }
+    for (int i = 0; i &lt; len; i++)
+    {
+        arr[i] = nums1[i];
+    }
+    return arr;
+}
 </code></pre>
+<p><strong>复杂度分析：</strong></p>
+<ul>
+<li>时间复杂度：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">O</mi><mo>(</mo><mi>n</mi><mi>log</mi><mo>⁡</mo><mi>n</mi><mo>+</mo><mi>m</mi><mi>log</mi><mo>⁡</mo><mi>m</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\mathcal{O}(n\log{n} + m\log{m})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathcal" style="margin-right:0.02778em;">O</span></span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">n</span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">m</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">m</span></span><span class="mclose">)</span></span></span></span>。其中 n，m 分别代表了数组的大小。我们对数组进行了排序然后进行了线性扫描。</li>
+<li>空间复杂度：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span>，我们忽略存储答案所使用的空间，因为它对算法本身并不重要。</li>
+</ul>
 ]]></content>
     </entry>
     <entry>
