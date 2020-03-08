@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://XMTam.github.io</id>
     <title>Alvin</title>
-    <updated>2020-03-08T11:34:18.449Z</updated>
+    <updated>2020-03-08T11:37:52.912Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://XMTam.github.io"/>
     <link rel="self" href="https://XMTam.github.io/atom.xml"/>
@@ -22,7 +22,9 @@ Let's learn and use it!</p>
         <content type="html"><![CDATA[<p>A powerful learning method——<strong>Feynman Technique</strong><br>
 Let's learn and use it!</p>
 <!-- more -->
+<h2 id="description"><strong>Description</strong></h2>
 <p>Since the root of this technique involves <strong>explaining the concept</strong>, you could execute it in a number of ways – including literally grabbing a friend and explaining to them what you're learning.  However, you don't always have willing friends at hand, so here's the simpler method that just involves a sheet of paper.</p>
+<h2 id="steps"><strong>Steps</strong></h2>
 <ul>
 <li><strong>Step 1</strong>: Grab a sheet of paper and <strong>write the name of the concept</strong> at the top. You can use pretty much any concept or idea – even though the technique is named after Feynman, it's not limited solely to math and science.</li>
 <li><strong>Step 2</strong>: Explain the concept in your own words <strong>as if you were teaching it to someone else.</strong> Focus on using plain, simple language. Don't limit your explanation to a simple definition or a broad overview; challenge yourself to work through an example or two as well to ensure you can put the concept into action.</li>
@@ -30,8 +32,7 @@ Let's learn and use it!</p>
 <li><strong>Step 4</strong>: If there are any areas in your explanation where you've used lots of technical terms or complex language, challenge yourself to <strong>re-write these sections in simpler terms.</strong> Make sure your explanation could be understood by someone without the knowledge base you believe you already have.<br>
 That's it!</li>
 </ul>
-<hr>
-<h2 id="examplethe-css-box-model">Example：The CSS Box Model</h2>
+<h2 id="examplethe-css-box-model"><strong>Example：The CSS Box Model</strong></h2>
 <p>Here's an example of how the Feynman Technique can be used to review a non-mathematical concept.</p>
 <p>The CSS Box Model is a tool for representing the size of HTML elements (i.e. the code that makes up web pages just like the one you're reading right now), as well as the spacing around them. I chose it as an example because it's a concept that took me a long time to grasp back when I started learning how to build websites as a teenager.<br>
 <img src="https://XMTam.github.io/post-images/1583662051576.jpg" alt="" loading="lazy"><br>
