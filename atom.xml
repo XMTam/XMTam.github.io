@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://XMTam.github.io</id>
     <title>Alvin</title>
-    <updated>2020-03-08T11:40:20.311Z</updated>
+    <updated>2020-03-08T11:41:10.789Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://XMTam.github.io"/>
     <link rel="self" href="https://XMTam.github.io/atom.xml"/>
@@ -17,22 +17,22 @@
         </link>
         <updated>2020-03-08T10:42:59.000Z</updated>
         <summary type="html"><![CDATA[<p><strong>Outlines:</strong></p>
-<ol>
+<ul>
 <li>Memory Palaces</li>
 <li>Feynman Technique/Protein Effect(蛋白质效应)</li>
 <li>Practice Tests</li>
 <li>Zeigarnik Effect/Pomodoro Technique</li>
 <li>Distributed Learning (Spaced Repetition)</li>
-</ol>
+</ul>
 ]]></summary>
         <content type="html"><![CDATA[<p><strong>Outlines:</strong></p>
-<ol>
+<ul>
 <li>Memory Palaces</li>
 <li>Feynman Technique/Protein Effect(蛋白质效应)</li>
 <li>Practice Tests</li>
 <li>Zeigarnik Effect/Pomodoro Technique</li>
 <li>Distributed Learning (Spaced Repetition)</li>
-</ol>
+</ul>
 <!-- more -->
 <h2 id="1-creating-memory-palaces">1. Creating Memory Palaces</h2>
 <pre><code>1. Walk through the environment you choose (like your house)
