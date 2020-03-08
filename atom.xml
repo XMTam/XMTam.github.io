@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://XMTam.github.io</id>
     <title>Alvin</title>
-    <updated>2020-03-08T11:42:28.652Z</updated>
+    <updated>2020-03-08T11:57:42.812Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://XMTam.github.io"/>
     <link rel="self" href="https://XMTam.github.io/atom.xml"/>
@@ -35,10 +35,11 @@
 </ul>
 <!-- more -->
 <h2 id="1-creating-memory-palaces">1. Creating Memory Palaces</h2>
-<pre><code>1. Walk through the environment you choose (like your house)
-2. Place objects in specific places
-3. Match the objects with things that you want to learn
-</code></pre>
+<ol>
+<li>Walk through the environment you choose (like your house)</li>
+<li>Place objects in specific places</li>
+<li>Match the objects with things that you want to learn</li>
+</ol>
 <h2 id="2-the-protege-effect">2. The Protege Effect</h2>
 <p>According to a 2007 study;</p>
 <ul>
