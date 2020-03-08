@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://XMTam.github.io</id>
     <title>Alvin</title>
-    <updated>2020-03-07T12:30:47.838Z</updated>
+    <updated>2020-03-08T02:52:20.430Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://XMTam.github.io"/>
     <link rel="self" href="https://XMTam.github.io/atom.xml"/>
@@ -11,9 +11,50 @@
     <icon>https://XMTam.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Alvin</rights>
     <entry>
+        <title type="html"><![CDATA[283. 移动零]]></title>
+        <id>https://XMTam.github.io/post/283-yi-dong-ling/</id>
+        <link href="https://XMTam.github.io/post/283-yi-dong-ling/">
+        </link>
+        <updated>2020-03-08T02:40:42.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="一-题目">一、题目</h1>
+<p>给定一个数组 nums，编写一个函数将所有 0 移动到数组的末尾，同时保持非零元素的相对顺序。</p>
+<p><strong>示例:</strong></p>
+<pre><code>输入: [0,1,0,3,12]
+输出: [1,3,12,0,0]
+</code></pre>
+<p><strong>说明:</strong></p>
+<ul>
+<li>必须在原数组上操作，不能拷贝额外的数组。</li>
+<li>尽量减少操作次数。</li>
+</ul>
+<hr>
+<h1 id="二-解决方案">二、解决方案</h1>
+<p><strong>思路：</strong></p>
+<ul>
+<li>遍历数组，不为0的元素移动数组前方，并用 cnt 纪录不为零的元素个数</li>
+<li>遍历结束，对 cnt 值后的元素统一设为0</li>
+</ul>
+<p><strong>代码如下：</strong></p>
+<pre><code>void moveZeroes(int* nums, int numsSize)
+{
+    int cnt = 0;
+    for (int i = 0; i &lt; numsSize; i++)
+    {
+        if (nums[i] != 0)
+            nums[cnt++] = nums[i];
+    }
+    for (int i = cnt; i &lt; numsSize; i++)
+    {
+        nums[i] = 0;
+    }
+}
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[66. 加一]]></title>
-        <id>https://XMTam.github.io/post/66-jia-yi</id>
-        <link href="https://XMTam.github.io/post/66-jia-yi">
+        <id>https://XMTam.github.io/post/66-jia-yi/</id>
+        <link href="https://XMTam.github.io/post/66-jia-yi/">
         </link>
         <updated>2020-03-07T11:38:23.000Z</updated>
         <content type="html"><![CDATA[<h1 id="一-题目">一、题目</h1>
@@ -63,8 +104,8 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[350. *两个数组的交集 II]]></title>
-        <id>https://XMTam.github.io/post/350-liang-ge-shu-zu-de-jiao-ji-ii</id>
-        <link href="https://XMTam.github.io/post/350-liang-ge-shu-zu-de-jiao-ji-ii">
+        <id>https://XMTam.github.io/post/350-liang-ge-shu-zu-de-jiao-ji-ii/</id>
+        <link href="https://XMTam.github.io/post/350-liang-ge-shu-zu-de-jiao-ji-ii/">
         </link>
         <updated>2020-03-06T09:06:17.000Z</updated>
         <content type="html"><![CDATA[<h1 id="一-题目">一、题目</h1>
@@ -189,8 +230,8 @@ int* intersect(int* nums1, int nums1Size, int* nums2, int nums2Size, int* return
     </entry>
     <entry>
         <title type="html"><![CDATA[136. 只出现一次的数字]]></title>
-        <id>https://XMTam.github.io/post/136-zhi-chu-xian-yi-ci-de-shu-zi</id>
-        <link href="https://XMTam.github.io/post/136-zhi-chu-xian-yi-ci-de-shu-zi">
+        <id>https://XMTam.github.io/post/136-zhi-chu-xian-yi-ci-de-shu-zi/</id>
+        <link href="https://XMTam.github.io/post/136-zhi-chu-xian-yi-ci-de-shu-zi/">
         </link>
         <updated>2020-03-05T03:06:18.000Z</updated>
         <content type="html"><![CDATA[<h1 id="一-题目">一、题目</h1>
@@ -341,8 +382,8 @@ a <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>⊕<
     </entry>
     <entry>
         <title type="html"><![CDATA[217. 存在重复元素]]></title>
-        <id>https://XMTam.github.io/post/217-cun-zai-chong-fu-yuan-su</id>
-        <link href="https://XMTam.github.io/post/217-cun-zai-chong-fu-yuan-su">
+        <id>https://XMTam.github.io/post/217-cun-zai-chong-fu-yuan-su/</id>
+        <link href="https://XMTam.github.io/post/217-cun-zai-chong-fu-yuan-su/">
         </link>
         <updated>2020-03-05T00:43:38.000Z</updated>
         <content type="html"><![CDATA[<h1 id="一-题目">一、题目</h1>
@@ -440,8 +481,8 @@ bool containsDuplicate(int* nums, int numsSize)
     </entry>
     <entry>
         <title type="html"><![CDATA[189. 旋转数组]]></title>
-        <id>https://XMTam.github.io/post/189-xuan-zhuan-shu-zu</id>
-        <link href="https://XMTam.github.io/post/189-xuan-zhuan-shu-zu">
+        <id>https://XMTam.github.io/post/189-xuan-zhuan-shu-zu/</id>
+        <link href="https://XMTam.github.io/post/189-xuan-zhuan-shu-zu/">
         </link>
         <updated>2020-03-04T12:37:14.000Z</updated>
         <content type="html"><![CDATA[<h1 id="一-题目">一、题目</h1>
@@ -579,8 +620,8 @@ void rotate(int* nums, int numsSize, int k)
     </entry>
     <entry>
         <title type="html"><![CDATA[122. 买卖股票的最佳时机 II]]></title>
-        <id>https://XMTam.github.io/post/122-mai-mai-gu-piao-de-zui-jia-shi-ji-ii</id>
-        <link href="https://XMTam.github.io/post/122-mai-mai-gu-piao-de-zui-jia-shi-ji-ii">
+        <id>https://XMTam.github.io/post/122-mai-mai-gu-piao-de-zui-jia-shi-ji-ii/</id>
+        <link href="https://XMTam.github.io/post/122-mai-mai-gu-piao-de-zui-jia-shi-ji-ii/">
         </link>
         <updated>2020-03-04T08:22:20.000Z</updated>
         <content type="html"><![CDATA[<h1 id="一-题目">一、题目</h1>
@@ -714,8 +755,8 @@ int maxProfit(int* prices, int pricesSize)
     </entry>
     <entry>
         <title type="html"><![CDATA[26 删除排序数组中的重复项]]></title>
-        <id>https://XMTam.github.io/post/26-shan-chu-pai-xu-shu-zu-zhong-de-chong-fu-xiang</id>
-        <link href="https://XMTam.github.io/post/26-shan-chu-pai-xu-shu-zu-zhong-de-chong-fu-xiang">
+        <id>https://XMTam.github.io/post/26-shan-chu-pai-xu-shu-zu-zhong-de-chong-fu-xiang/</id>
+        <link href="https://XMTam.github.io/post/26-shan-chu-pai-xu-shu-zu-zhong-de-chong-fu-xiang/">
         </link>
         <updated>2020-03-04T02:27:34.000Z</updated>
         <summary type="html"><![CDATA[<p>😄From here, I start my journal on <strong>LeetCode</strong>.<br>
@@ -762,8 +803,8 @@ int maxProfit(int* prices, int pricesSize)
     </entry>
     <entry>
         <title type="html"><![CDATA[Hello Gridea]]></title>
-        <id>https://XMTam.github.io/post/hello-gridea</id>
-        <link href="https://XMTam.github.io/post/hello-gridea">
+        <id>https://XMTam.github.io/post/hello-gridea/</id>
+        <link href="https://XMTam.github.io/post/hello-gridea/">
         </link>
         <updated>2018-12-11T16:00:00.000Z</updated>
         <summary type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
