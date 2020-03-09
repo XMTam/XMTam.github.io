@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://XMTam.github.io</id>
     <title>Snoopy-thinker</title>
-    <updated>2020-03-09T08:57:13.850Z</updated>
+    <updated>2020-03-09T08:57:39.820Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://XMTam.github.io"/>
     <link rel="self" href="https://XMTam.github.io/atom.xml"/>
@@ -12,8 +12,8 @@
     <rights>All rights reserved 2020, Snoopy-thinker</rights>
     <entry>
         <title type="html"><![CDATA[48. 旋转图像]]></title>
-        <id>https://XMTam.github.io/post/48-xuan-zhuan-tu-xiang/</id>
-        <link href="https://XMTam.github.io/post/48-xuan-zhuan-tu-xiang/">
+        <id>https://XMTam.github.io/48-xuan-zhuan-tu-xiang/</id>
+        <link href="https://XMTam.github.io/48-xuan-zhuan-tu-xiang/">
         </link>
         <updated>2020-03-09T03:20:53.000Z</updated>
         <content type="html"><![CDATA[<h1 id="一-题目">一、题目</h1>
@@ -57,8 +57,8 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[36. *有效的数独]]></title>
-        <id>https://XMTam.github.io/post/36-you-xiao-de-shu-du/</id>
-        <link href="https://XMTam.github.io/post/36-you-xiao-de-shu-du/">
+        <id>https://XMTam.github.io/36-you-xiao-de-shu-du/</id>
+        <link href="https://XMTam.github.io/36-you-xiao-de-shu-du/">
         </link>
         <updated>2020-03-09T01:18:45.000Z</updated>
         <content type="html"><![CDATA[<h1 id="一-题目">一、题目</h1>
@@ -160,8 +160,8 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[5 Best Ways to Study Effectively | Scientifically Proven]]></title>
-        <id>https://XMTam.github.io/post/5-best-ways-to-wtudy-effectively-or-scientifically-proven/</id>
-        <link href="https://XMTam.github.io/post/5-best-ways-to-wtudy-effectively-or-scientifically-proven/">
+        <id>https://XMTam.github.io/5-best-ways-to-wtudy-effectively-or-scientifically-proven/</id>
+        <link href="https://XMTam.github.io/5-best-ways-to-wtudy-effectively-or-scientifically-proven/">
         </link>
         <updated>2020-03-08T10:42:59.000Z</updated>
         <summary type="html"><![CDATA[<p><strong>Outlines:</strong></p>
@@ -234,8 +234,8 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[How to Use the Feynman Technique]]></title>
-        <id>https://XMTam.github.io/post/how-to-use-the-feynman-technique/</id>
-        <link href="https://XMTam.github.io/post/how-to-use-the-feynman-technique/">
+        <id>https://XMTam.github.io/how-to-use-the-feynman-technique/</id>
+        <link href="https://XMTam.github.io/how-to-use-the-feynman-technique/">
         </link>
         <updated>2020-03-08T09:57:44.000Z</updated>
         <summary type="html"><![CDATA[<p>A powerful learning method——<strong>Feynman Technique</strong><br>
@@ -268,8 +268,8 @@ In addition to writing the code out, I thought it would be extra helpful to show
     </entry>
     <entry>
         <title type="html"><![CDATA[1. 两数之和*]]></title>
-        <id>https://XMTam.github.io/post/1-liang-shu-zhi-he/</id>
-        <link href="https://XMTam.github.io/post/1-liang-shu-zhi-he/">
+        <id>https://XMTam.github.io/1-liang-shu-zhi-he/</id>
+        <link href="https://XMTam.github.io/1-liang-shu-zhi-he/">
         </link>
         <updated>2020-03-08T03:05:00.000Z</updated>
         <content type="html"><![CDATA[<h1 id="一-题目">一、题目</h1>
@@ -336,8 +336,8 @@ int* twoSum(int* nums, int numsSize, int target, int* returnSize)
     </entry>
     <entry>
         <title type="html"><![CDATA[283. 移动零]]></title>
-        <id>https://XMTam.github.io/post/283-yi-dong-ling/</id>
-        <link href="https://XMTam.github.io/post/283-yi-dong-ling/">
+        <id>https://XMTam.github.io/283-yi-dong-ling/</id>
+        <link href="https://XMTam.github.io/283-yi-dong-ling/">
         </link>
         <updated>2020-03-08T02:40:42.000Z</updated>
         <content type="html"><![CDATA[<h1 id="一-题目">一、题目</h1>
@@ -377,8 +377,8 @@ int* twoSum(int* nums, int numsSize, int target, int* returnSize)
     </entry>
     <entry>
         <title type="html"><![CDATA[66. 加一]]></title>
-        <id>https://XMTam.github.io/post/66-jia-yi/</id>
-        <link href="https://XMTam.github.io/post/66-jia-yi/">
+        <id>https://XMTam.github.io/66-jia-yi/</id>
+        <link href="https://XMTam.github.io/66-jia-yi/">
         </link>
         <updated>2020-03-07T11:38:23.000Z</updated>
         <content type="html"><![CDATA[<h1 id="一-题目">一、题目</h1>
@@ -428,8 +428,8 @@ int* twoSum(int* nums, int numsSize, int target, int* returnSize)
     </entry>
     <entry>
         <title type="html"><![CDATA[350. *两个数组的交集 II]]></title>
-        <id>https://XMTam.github.io/post/350-liang-ge-shu-zu-de-jiao-ji-ii/</id>
-        <link href="https://XMTam.github.io/post/350-liang-ge-shu-zu-de-jiao-ji-ii/">
+        <id>https://XMTam.github.io/350-liang-ge-shu-zu-de-jiao-ji-ii/</id>
+        <link href="https://XMTam.github.io/350-liang-ge-shu-zu-de-jiao-ji-ii/">
         </link>
         <updated>2020-03-06T09:06:17.000Z</updated>
         <content type="html"><![CDATA[<h1 id="一-题目">一、题目</h1>
@@ -554,8 +554,8 @@ int* intersect(int* nums1, int nums1Size, int* nums2, int nums2Size, int* return
     </entry>
     <entry>
         <title type="html"><![CDATA[136. 只出现一次的数字]]></title>
-        <id>https://XMTam.github.io/post/136-zhi-chu-xian-yi-ci-de-shu-zi/</id>
-        <link href="https://XMTam.github.io/post/136-zhi-chu-xian-yi-ci-de-shu-zi/">
+        <id>https://XMTam.github.io/136-zhi-chu-xian-yi-ci-de-shu-zi/</id>
+        <link href="https://XMTam.github.io/136-zhi-chu-xian-yi-ci-de-shu-zi/">
         </link>
         <updated>2020-03-05T03:06:18.000Z</updated>
         <content type="html"><![CDATA[<h1 id="一-题目">一、题目</h1>
@@ -706,8 +706,8 @@ a <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>⊕<
     </entry>
     <entry>
         <title type="html"><![CDATA[217. 存在重复元素]]></title>
-        <id>https://XMTam.github.io/post/217-cun-zai-chong-fu-yuan-su/</id>
-        <link href="https://XMTam.github.io/post/217-cun-zai-chong-fu-yuan-su/">
+        <id>https://XMTam.github.io/217-cun-zai-chong-fu-yuan-su/</id>
+        <link href="https://XMTam.github.io/217-cun-zai-chong-fu-yuan-su/">
         </link>
         <updated>2020-03-05T00:43:38.000Z</updated>
         <content type="html"><![CDATA[<h1 id="一-题目">一、题目</h1>
