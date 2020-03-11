@@ -34,14 +34,7 @@
           </p>
           <div class="toc-container hidden lg:block">
             <ul class="markdownIt-TOC">
-<li>
-<ul>
-<li><a href="#%E5%85%B3%E4%BA%8E%E6%9C%AC%E7%AB%99">🏠 关于本站</a></li>
-<li><a href="#%E5%8D%9A%E4%B8%BB%E6%98%AF%E8%B0%81">👨‍💻 博主是谁</a></li>
-<li><a href="#%E5%85%B4%E8%B6%A3%E7%88%B1%E5%A5%BD">⛹ 兴趣爱好</a></li>
-<li><a href="#%E8%81%94%E7%B3%BB%E6%88%91%E5%91%80">📬 联系我呀</a></li>
-</ul>
-</li>
+<li><a href="#%E4%B8%80-%E9%A2%98%E7%9B%AE">一、题目</a></li>
 </ul>
 
           </div>
@@ -88,19 +81,50 @@
 <div class="mask" onclick="closeMenu()">
 </div>
       <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
-        <h1 class="text-3xl font-bold lg:mt-16">关于</h1>
+        <h1 class="text-3xl font-bold lg:mt-16">反转字符串</h1>
         <div class="text-sm text-gray-700 lg:my-8">
-          2019-01-25 / 1 min read
+          2020-03-11 / 2 min read
         </div>
         
         <div class="post-content yue">
-          <blockquote>
-<p>欢迎来到我的小站呀，很高兴遇见你！🤝</p>
-</blockquote>
-<h2 id="关于本站">🏠 关于本站</h2>
-<h2 id="博主是谁">👨‍💻 博主是谁</h2>
-<h2 id="兴趣爱好">⛹ 兴趣爱好</h2>
-<h2 id="联系我呀">📬 联系我呀</h2>
+          <h1 id="一-题目">一、题目</h1>
+<p>编写一个函数，其作用是将输入的字符串反转过来。输入字符串以字符数组 char[] 的形式给出。<br>
+不要给另外的数组分配额外的空间，你必须原地修改输入数组、使用 O(1) 的额外空间解决这一问题。<br>
+你可以假设数组中的所有字符都是 ASCII 码表中的可打印字符。<br>
+<strong>示例：</strong></p>
+<pre><code>输入：[&quot;h&quot;,&quot;e&quot;,&quot;l&quot;,&quot;l&quot;,&quot;o&quot;]
+输出：[&quot;o&quot;,&quot;l&quot;,&quot;l&quot;,&quot;e&quot;,&quot;h&quot;]
+</code></pre>
+<hr>
+<p>二、解决方案<br>
+<strong>思路</strong>：两个指针分别从字符串的头和尾开始扫描，如果两个指针所指向的内容不相等则交换之，若相等则头指针后移，尾指针前移，直到头指针与尾指针相遇或者头指针在尾指针后面。<br>
+<strong>代码如下（通过）</strong>：</p>
+<pre><code>void swap(char* a, char* b)
+{
+    char tmp;
+    tmp = *a;
+    *a = *b;
+    *b = tmp;
+}
+
+void reverseString(char* s, int sSize)
+{
+    char* phead = s;
+    char* ptail = s + sSize - 1;
+    while (phead &lt;= ptail)
+    {
+        if (*phead != *ptail)
+            swap(phead, ptail);
+        phead++;
+        ptail--;
+    }
+}
+</code></pre>
+<p><strong>复杂度分析</strong>：</p>
+<ul>
+<li>时间复杂度：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">O</mi><mo>(</mo><mi>N</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\mathcal{O}(N)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathcal" style="margin-right:0.02778em;">O</span></span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mclose">)</span></span></span></span>。执行了 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>N</mi><mi mathvariant="normal">/</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">N/2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mord">/</span><span class="mord">2</span></span></span></span> 次的交换。</li>
+<li>空间复杂度：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">O</mi><mo>(</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">\mathcal{O}(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathcal" style="margin-right:0.02778em;">O</span></span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span>，只使用了常数级空间。</li>
+</ul>
 
         </div>
 
@@ -110,6 +134,15 @@
         <div class="flex justify-between py-8">
           
 
+          
+            <div class="next-post">
+              <a href="https://XMTam.github.io/48-xuan-zhuan-tu-xiang/">
+                <h3 class="post-title">
+                  48. 旋转图像
+                  <i class="ri-arrow-right-line"></i>
+                </h3>
+              </a>
+            </div>
           
         </div>
 
