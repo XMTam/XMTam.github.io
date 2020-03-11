@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://XMTam.github.io</id>
     <title>Alvin</title>
-    <updated>2020-03-09T10:20:06.798Z</updated>
+    <updated>2020-03-11T07:03:14.454Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://XMTam.github.io"/>
     <link rel="self" href="https://XMTam.github.io/atom.xml"/>
@@ -53,6 +53,45 @@
 </code></pre>
 <hr>
 <h1 id="二-解决方法">二、解决方法</h1>
+<h2 id="方法一转置加-y-轴翻转">方法一：转置加 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>y</mi></mrow><annotation encoding="application/x-tex">y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span></span></span></span> 轴翻转</h2>
+<p>最直接的想法是先转置矩阵，然后翻转每一行。</p>
+<p><strong>代码如下（通过）：</strong></p>
+<pre><code>void swap(int* a, int* b)
+{
+    int tmp;
+    tmp = *a;
+    *a = *b;
+    *b = tmp;
+}
+
+void rotate(int** matrix, int matrixSize, int* matrixColSize) {
+    for (int i = 0; i &lt; matrixSize; i++)
+    {
+        for (int j = i; j &lt; matrixSize; j++)
+            swap(&amp;matrix[i][j], &amp;matrix[j][i]);
+    }
+
+    for (int i = 0; i &lt; matrixSize; i++)
+    {
+        for (int j = 0; j &lt; matrixSize / 2; j++)
+            swap(&amp;matrix[i][j], &amp;matrix[i][*matrixColSize - j - 1]);
+    }
+}
+</code></pre>
+<p><strong>复杂度分析：</strong></p>
+<ul>
+<li>时间复杂度：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><msup><mi>N</mi><mn>2</mn></msup><mo>)</mo></mrow><annotation encoding="application/x-tex">O(N^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>.</li>
+<li>空间复杂度：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span>，由于旋转操作是 <em>就地</em> 完成的。</li>
+</ul>
+<h2 id="方法二旋转四个矩形">方法二：旋转四个矩形</h2>
+<p><strong>直观想法</strong><br>
+方法 1 使用了两次矩阵操作，但是有只使用一次操作的方法完成旋转。为了实现这一点，我们来研究每个元素在旋转的过程中如何移动。<br>
+<img src="https://XMTam.github.io/post-images/1583909798637.png" alt="" loading="lazy"><br>
+这提供给我们了一个思路，将给定的矩阵分成四个矩形并且将原问题划归为旋转这些矩形的问题。<br>
+<img src="https://XMTam.github.io/post-images/1583909846640.png" alt="" loading="lazy"><br>
+现在的解法很直接 - 可以在第一个矩形中移动元素并且在 长度为 4 个元素的临时列表中移动它们。<br>
+<img src="https://XMTam.github.io/post-images/1583910157026.png" alt="" loading="lazy"></p>
+<h2 id="方法三">方法三：</h2>
 ]]></content>
     </entry>
     <entry>
