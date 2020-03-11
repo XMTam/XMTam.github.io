@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Alvin</title>
 <meta name="description" content="A = X + Y + Z" />
-<link rel="shortcut icon" href="https://XMTam.github.io/favicon.ico?v=1583910189917">
+<link rel="shortcut icon" href="https://XMTam.github.io/favicon.ico?v=1583910613589">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
@@ -23,7 +23,7 @@
       <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
         <i class="ri-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
         <a href="https://XMTam.github.io">
-          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://XMTam.github.io/images/avatar.png?v=1583910189917" alt="">
+          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://XMTam.github.io/images/avatar.png?v=1583910613589" alt="">
         </a>
         <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">Alvin</h1>
       </div>
@@ -35,13 +35,7 @@
           <div class="toc-container hidden lg:block">
             <ul class="markdownIt-TOC">
 <li><a href="#%E4%B8%80-%E9%A2%98%E7%9B%AE">一、题目</a></li>
-<li><a href="#%E4%BA%8C-%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95">二、解决方法</a>
-<ul>
-<li><a href="#%E6%96%B9%E6%B3%95%E4%B8%80%E8%BD%AC%E7%BD%AE%E5%8A%A0-y-%E8%BD%B4%E7%BF%BB%E8%BD%AC">方法一：转置加 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>y</mi></mrow><annotation encoding="application/x-tex">y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span></span></span></span> 轴翻转</a></li>
-<li><a href="#%E6%96%B9%E6%B3%95%E4%BA%8C%E6%97%8B%E8%BD%AC%E5%9B%9B%E4%B8%AA%E7%9F%A9%E5%BD%A2">方法二：旋转四个矩形</a></li>
-<li><a href="#%E6%96%B9%E6%B3%95%E4%B8%89">方法三：</a></li>
-</ul>
-</li>
+<li><a href="#%E4%BA%8C-%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95">二、解决方法</a></li>
 </ul>
 
           </div>
@@ -133,8 +127,8 @@
 </code></pre>
 <hr>
 <h1 id="二-解决方法">二、解决方法</h1>
-<h2 id="方法一转置加-y-轴翻转">方法一：转置加 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>y</mi></mrow><annotation encoding="application/x-tex">y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span></span></span></span> 轴翻转</h2>
-<p>最直接的想法是先转置矩阵，然后翻转每一行。</p>
+<p><strong>先转置再 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>y</mi></mrow><annotation encoding="application/x-tex">y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span></span></span></span> 轴翻转</strong><br>
+最直接的想法是先转置矩阵，然后翻转每一行。</p>
 <p><strong>代码如下（通过）：</strong></p>
 <pre><code>void swap(int* a, int* b)
 {
@@ -163,15 +157,6 @@ void rotate(int** matrix, int matrixSize, int* matrixColSize) {
 <li>时间复杂度：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><msup><mi>N</mi><mn>2</mn></msup><mo>)</mo></mrow><annotation encoding="application/x-tex">O(N^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>.</li>
 <li>空间复杂度：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span>，由于旋转操作是 <em>就地</em> 完成的。</li>
 </ul>
-<h2 id="方法二旋转四个矩形">方法二：旋转四个矩形</h2>
-<p><strong>直观想法</strong><br>
-方法 1 使用了两次矩阵操作，但是有只使用一次操作的方法完成旋转。为了实现这一点，我们来研究每个元素在旋转的过程中如何移动。<br>
-<img src="https://XMTam.github.io/post-images/1583909798637.png" alt="" loading="lazy"><br>
-这提供给我们了一个思路，将给定的矩阵分成四个矩形并且将原问题划归为旋转这些矩形的问题。<br>
-<img src="https://XMTam.github.io/post-images/1583909846640.png" alt="" loading="lazy"><br>
-现在的解法很直接 - 可以在第一个矩形中移动元素并且在 长度为 4 个元素的临时列表中移动它们。<br>
-<img src="https://XMTam.github.io/post-images/1583910157026.png" alt="" loading="lazy"></p>
-<h2 id="方法三">方法三：</h2>
 
         </div>
 
