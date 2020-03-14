@@ -35,7 +35,7 @@
           <div class="toc-container hidden lg:block">
             <ul class="markdownIt-TOC">
 <li><a href="#%E4%B8%80-%E9%A2%98%E7%9B%AE">一、题目</a></li>
-<li><a href="#%E4%BA%8C-%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88">二、解决方案</a></li>
+<li><a href="#%E4%BA%8C-%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95">二、解决方法</a></li>
 </ul>
 
           </div>
@@ -82,109 +82,25 @@
 <div class="mask" onclick="closeMenu()">
 </div>
       <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
-        <h1 class="text-3xl font-bold lg:mt-16">36. *有效的数独</h1>
+        <h1 class="text-3xl font-bold lg:mt-16">387. 字符串中的第一个唯一字符</h1>
         <div class="text-sm text-gray-700 lg:my-8">
-          2020-03-09 / 6 min read
+          2020-03-14 / 1 min read
         </div>
         
-          <img class="post-feature-image rounded-lg mx-auto my-4" src="https://XMTam.github.io/post-images/36-you-xiao-de-shu-du.png" alt="">
+          <img class="post-feature-image rounded-lg mx-auto my-4" src="https://XMTam.github.io/post-images/387-zi-fu-chuan-zhong-de-di-yi-ge-wei-yi-zi-fu.png" alt="">
         
         <div class="post-content yue">
           <h1 id="一-题目">一、题目</h1>
-<p>判断一个 9x9 的数独是否有效。只需要根据以下规则，验证已经填入的数字是否有效即可。</p>
-<ol>
-<li>数字 1-9 在每一行只能出现一次。</li>
-<li>数字 1-9 在每一列只能出现一次。</li>
-<li>数字 1-9 在每一个以粗实线分隔的 3x3 宫内只能出现一次。</li>
-</ol>
-<p><img src="https://XMTam.github.io/post-images/1583717105819.png" alt="" loading="lazy"><br>
-上图是一个部分填充的有效的数独。</p>
-<p>数独部分空格内已填入了数字，空白格用 '.' 表示。<br>
-<strong>示例 1:</strong></p>
-<pre><code>输入:
-[
-  [&quot;5&quot;,&quot;3&quot;,&quot;.&quot;,&quot;.&quot;,&quot;7&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;],
-  [&quot;6&quot;,&quot;.&quot;,&quot;.&quot;,&quot;1&quot;,&quot;9&quot;,&quot;5&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;],
-  [&quot;.&quot;,&quot;9&quot;,&quot;8&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;6&quot;,&quot;.&quot;],
-  [&quot;8&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;6&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;3&quot;],
-  [&quot;4&quot;,&quot;.&quot;,&quot;.&quot;,&quot;8&quot;,&quot;.&quot;,&quot;3&quot;,&quot;.&quot;,&quot;.&quot;,&quot;1&quot;],
-  [&quot;7&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;2&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;6&quot;],
-  [&quot;.&quot;,&quot;6&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;2&quot;,&quot;8&quot;,&quot;.&quot;],
-  [&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;4&quot;,&quot;1&quot;,&quot;9&quot;,&quot;.&quot;,&quot;.&quot;,&quot;5&quot;],
-  [&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;8&quot;,&quot;.&quot;,&quot;.&quot;,&quot;7&quot;,&quot;9&quot;]
-]
-输出: true
+<p>给定一个字符串，找到它的第一个不重复的字符，并返回它的索引。如果不存在，则返回 -1。</p>
+<p><strong>案例:</strong></p>
+<pre><code>s = &quot;leetcode&quot;
+返回 0.
+
+s = &quot;loveleetcode&quot;,
+返回 2.
 </code></pre>
-<p><strong>示例 2:</strong></p>
-<pre><code>输入:
-[
-  [&quot;8&quot;,&quot;3&quot;,&quot;.&quot;,&quot;.&quot;,&quot;7&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;],
-  [&quot;6&quot;,&quot;.&quot;,&quot;.&quot;,&quot;1&quot;,&quot;9&quot;,&quot;5&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;],
-  [&quot;.&quot;,&quot;9&quot;,&quot;8&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;6&quot;,&quot;.&quot;],
-  [&quot;8&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;6&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;3&quot;],
-  [&quot;4&quot;,&quot;.&quot;,&quot;.&quot;,&quot;8&quot;,&quot;.&quot;,&quot;3&quot;,&quot;.&quot;,&quot;.&quot;,&quot;1&quot;],
-  [&quot;7&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;2&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;6&quot;],
-  [&quot;.&quot;,&quot;6&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;2&quot;,&quot;8&quot;,&quot;.&quot;],
-  [&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;4&quot;,&quot;1&quot;,&quot;9&quot;,&quot;.&quot;,&quot;.&quot;,&quot;5&quot;],
-  [&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;8&quot;,&quot;.&quot;,&quot;.&quot;,&quot;7&quot;,&quot;9&quot;]
-]
-输出: false
-解释: 除了第一行的第一个数字从 5 改为 8 以外，空格内其他数字均与 示例1 相同。
-     但由于位于左上角的 3x3 宫内有两个 8 存在, 因此这个数独是无效的。
-</code></pre>
-<p><strong>说明:</strong></p>
-<ul>
-<li>一个有效的数独（部分已被填充）不一定是可解的。</li>
-<li>只需要根据以上规则，验证已经填入的数字是否有效即可。</li>
-<li>定数独序列只包含数字 1-9 和字符 '.' 。</li>
-<li>给定数独永远是 9x9 形式的。</li>
-</ul>
-<hr>
-<h1 id="二-解决方案">二、解决方案</h1>
-<p><strong>思路：</strong></p>
-<ol>
-<li>
-<p>由于board中的整数限定在1到9的范围内，因此可以分别建立哈希表来存储任一个数在相应维度上是否出现过。维度有3个：所在的行，所在的列，所在的box，注意box的下标也是从左往右、从上往下的。</p>
-</li>
-<li>
-<p>遍历到每个数的时候，例如boar[i][j]，我们判断其是否满足三个条件：</p>
-</li>
-</ol>
-<ul>
-<li>在第 i 个行中是否出现过</li>
-<li>在第 j 个列中是否出现过</li>
-<li>在第 **j/3 + (i/3)**3 个box中是否出现过。</li>
-</ul>
-<p><strong>C代码如下（通过）：</strong></p>
-<pre><code>bool isValidSudoku(char** board, int boardSize, int* boardColSize) {
-    int row[9][10] = { 0 }; // 哈希表存储每一行的每个数是否出现过，默认初始情况下，每一行每一个数都没有出现过
-    // 整个board有9行，第二维的维数10是为了让下标有9，和数独中的数字9对应。
-    int col[9][10] = { 0 };// 存储每一列的每个数是否出现过，默认初始情况下，每一列的每一个数都没有出现过
-    int box[9][10] = { 0 };// 存储每一个box的每个数是否出现过，默认初始情况下，在每个box中，每个数都没有出现过。整个board有9个box。
-    for (int i = 0; i &lt; boardSize; i++)
-    {
-        for (int j = 0; j &lt; *boardColSize; j++)
-        {
-            /*遍历到第i行第j列的那个数,我们要判断这个数在其所在的行有没有出现过，
-            同时判断这个数在其所在的列有没有出现过
-            同时判断这个数在其所在的box中有没有出现过*/
-            if (board[i][j] == '.')
-                continue;
-            int curNum = board[i][j] - '0';
-            if (row[i][curNum]) 
-                return false;
-            if (col[j][curNum]) 
-                return false;
-            if (box[(i/3)*3 + j/3][curNum]) 
-                return false;
-            row[i][curNum] = 1;// 之前都没出现过，现在出现了，就给它置为1，下次再遇见就能够直接返回false了。
-            col[j][curNum] = 1;
-            box[(i / 3) * 3 + j / 3][curNum] = 1;
-        }
-    }
-    return true;
-}
-</code></pre>
+<p><strong>注意事项</strong>：您可以假定该字符串只包含小写字母。</p>
+<h1 id="二-解决方法">二、解决方法</h1>
 
         </div>
 
@@ -201,21 +117,12 @@
 
         <div class="flex justify-between py-8">
           
-            <div class="prev-post">
-              <a href="https://XMTam.github.io/48-xuan-zhuan-tu-xiang/">
-                <h3 class="post-title">
-                  <i class="ri-arrow-left-line"></i>
-                  48. 旋转图像
-                </h3>
-              </a>
-            </div>
-          
 
           
             <div class="next-post">
-              <a href="https://XMTam.github.io/5-best-ways-to-wtudy-effectively-or-scientifically-proven/">
+              <a href="https://XMTam.github.io/zheng-shu-fan-zhuan/">
                 <h3 class="post-title">
-                  5 Best Ways to Study Effectively | Scientifically Proven
+                  7. 整数反转
                   <i class="ri-arrow-right-line"></i>
                 </h3>
               </a>
