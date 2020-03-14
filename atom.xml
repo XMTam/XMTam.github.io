@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://XMTam.github.io</id>
     <title>Alvin</title>
-    <updated>2020-03-14T00:08:17.116Z</updated>
+    <updated>2020-03-14T23:47:55.833Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://XMTam.github.io"/>
     <link rel="self" href="https://XMTam.github.io/atom.xml"/>
@@ -27,6 +27,74 @@ s = &quot;loveleetcode&quot;,
 </code></pre>
 <p><strong>注意事项</strong>：您可以假定该字符串只包含小写字母。</p>
 <h1 id="二-解决方法">二、解决方法</h1>
+<h2 id="方法一-我的笨方法">方法一、我的笨方法</h2>
+<p>首先将字符串转换为字符数组，然后通过两个for循环遍历查找解决。<br>
+<strong>代码如下（通过）</strong>：</p>
+<pre><code>int firstUniqChar(char* s) {
+    int len = strlen(s);
+    char* str = (int*)malloc(sizeof(char) * (len + 1));
+    for (int i = 0; i &lt; len; i++)
+    {
+        str[i] = *s;
+        s++;
+    }
+    
+    int cnt;
+    int pos = -1;
+    for (int i = 0; i &lt; len; i++)
+    {
+        cnt = 0;
+        for (int j = 0; j &lt;= len - 1; j++)
+        {
+            if (i == j)
+                j++;
+            if (str[i] == str[j])
+            {
+                cnt++;
+                break;
+            }                
+        }
+        if (cnt == 0)
+        {
+            pos = i;
+            break;
+        }               
+    }
+    if (pos == -1)
+        return -1;
+    else
+        return pos;
+}
+</code></pre>
+<p>之间遇到的问题：AddressSanitizer: heap- buffer- overflow……如下图所示。<br>
+<img src="https://XMTam.github.io/post-images/1584227414920.png" alt="" loading="lazy"><br>
+<strong>原因</strong>：leetcode使用AddressSanitizer检查内存是否存在非法访问。报此错，主要是访问了非法内容。<br>
+<strong>解决办法</strong>：排查代码，发现数组访问越越，导致此错，将申请的数组空间加大（这里只加1），问题解决。</p>
+<hr>
+<h2 id="方法二线性时间复杂度解法最优解法">方法二：线性时间复杂度解法（最优解法）</h2>
+<p>这道题最优的解法就是线性复杂度了，为了保证每个元素是唯一的，至少得把每个字符都遍历一遍。</p>
+<p>算法的思路就是遍历一遍字符串，然后把字符串中每个字符出现的次数保存在一个散列表中。这个过程的时间复杂度为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>N</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(N)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mclose">)</span></span></span></span>，其中 N 为字符串的长度。</p>
+<p>接下来需要再遍历一次字符串，这一次利用散列表来检查遍历的每个字符是不是唯一的。如果当前字符唯一，直接返回当前下标就可以了。第二次遍历的时间复杂度也是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>N</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(N)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mclose">)</span></span></span></span>。</p>
+<p><strong>伪hash实现代码如下</strong>：</p>
+<pre><code>int firstUniqChar(char* s)
+{   
+    int mark[26]; // 标记数组
+    memset(mark, 0, sizeof(mark));
+    int length = strlen(s);
+    for (int i = 0; i &lt; length; i++)
+        mark[s[i] - 'a']++; // 纪录每个字母个数
+    int pos = -1;
+    for (int i = 0; i &lt; length; i++)
+    {
+        if (mark[s[i] - 'a'] == 1)
+        {
+            pos = i;
+            break;
+        }
+    }
+    return pos;
+}
+</code></pre>
 ]]></content>
     </entry>
     <entry>
