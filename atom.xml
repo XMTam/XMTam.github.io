@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://XMTam.github.io</id>
     <title>Alvin</title>
-    <updated>2020-03-15T22:45:37.765Z</updated>
+    <updated>2020-03-16T04:46:19.833Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://XMTam.github.io"/>
     <link rel="self" href="https://XMTam.github.io/atom.xml"/>
@@ -58,7 +58,7 @@ s = &quot;loveleetcode&quot;,
 <strong>代码如下（通过）</strong>：</p>
 <pre><code>int firstUniqChar(char* s) {
     int len = strlen(s);
-    char* str = (int*)malloc(sizeof(char) * (len + 1));
+    char* str = (char*)malloc(sizeof(char) * (len + 1));
     for (int i = 0; i &lt; len; i++)
     {
         str[i] = *s;
