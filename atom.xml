@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://XMTam.github.io</id>
     <title>Alvin</title>
-    <updated>2020-03-16T04:46:30.907Z</updated>
+    <updated>2020-03-17T00:38:10.282Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://XMTam.github.io"/>
     <link rel="self" href="https://XMTam.github.io/atom.xml"/>
@@ -32,6 +32,48 @@
 <h2 id="方法一排序">方法一：排序</h2>
 <p><strong>算法</strong>：通过将 s 的字母重新排列成 t 来生成变位词。因此，如果 T 是 S 的变位词，对两个字符串进行排序将产生两个相同的字符串。此外，如果 s 和 t 的长度不同，t 不能是 s 的变位词，我们可以提前返回。<br>
 <strong>代码如下</strong>：</p>
+<pre><code>void swap(char* a, char* b)
+{
+    char tmp;
+    tmp = *a;
+    *a = *b;
+    *b = tmp;
+}
+
+void strSort(char* str)
+{
+    int len = strlen(str);
+    char* pf = str;
+
+    for (int i = 0; i &lt; len - 1; i++)
+    {
+        for (int j = 0; j &lt; len - i - 1; j++)
+        {
+            if (*(pf+j) &gt; *(pf+j+1))            
+                swap(pf + j, pf + j + 1);           
+        }        
+    }
+    puts(str);
+}
+
+bool isAnagram(char* s, char* t)
+{
+    int s_len = strlen(s);
+    int t_len = strlen(t);
+    if (s_len != t_len)
+        return false;
+    strSort(s);
+    strSort(t);
+    if (strcmp(s, t) == 0)
+        return true;
+    else
+        return false;
+}
+</code></pre>
+<p>上述代码是没有问题的，但是提交时却给出了“超出时间限制”错误提示，如下图所示。<br>
+<img src="https://XMTam.github.io/post-images/1584400829748.png" alt="" loading="lazy"><br>
+确实，上述算法本身没问题，出问题的应该是排序算法，由于使用的冒泡排序，使得时间复杂度达到<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><msup><mi>n</mi><mn>2</mn></msup><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>，因此考虑采用效率更高的归并排序。为什么选用归并而不是选择排序呢？因为归并排序的性能不受输入数据的影响，但表现却比选择排序好的多，因为归并始终都是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mi>l</mi><mi>o</mi><mi>g</mi><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(nlogn)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span> 的时间复杂度。而代价则是需要额外的内存空间。<br>
+采用归并排序后的代码如下：</p>
 <pre><code>
 </code></pre>
 ]]></content>
