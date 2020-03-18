@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://XMTam.github.io</id>
     <title>Alvin</title>
-    <updated>2020-03-17T23:59:00.215Z</updated>
+    <updated>2020-03-18T09:23:09.176Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://XMTam.github.io"/>
     <link rel="self" href="https://XMTam.github.io/atom.xml"/>
@@ -576,11 +576,11 @@ void rotate(int** matrix, int matrixSize, int* matrixColSize) {
 </ul>
 <!-- more -->
 <h2 id="1-creating-memory-palaces">1. Creating Memory Palaces</h2>
-<ol>
-<li>Walk through the environment you choose (like your house)</li>
-<li>Place objects in specific places</li>
-<li>Match the objects with things that you want to learn</li>
-</ol>
+<ul>
+<li>step1. Walk through the environment you choose (like your house)</li>
+<li>step2. Place objects in specific places</li>
+<li>step3. Match the objects with things that you want to learn</li>
+</ul>
 <h2 id="2-the-protege-effect">2. The Protege Effect</h2>
 <p>According to a 2007 study;</p>
 <ul>
@@ -588,7 +588,15 @@ void rotate(int** matrix, int matrixSize, int* matrixColSize) {
 <li>In order to be able to teach someone, you must understand the material more</li>
 <li>This phenomenon is known as <strong>Depth of Processing</strong></li>
 </ul>
-<h2 id="3-part-1-studying-effectively">3-PART 1---Studying Effectively</h2>
+<p><strong>Basically, teach other people what you want to learn</strong></p>
+<ul>
+<li>Step 1: Write the name of a concept on the top of a blank piece of paper</li>
+<li>Step 2: Write down the concept as if you're teaching it to someone</li>
+<li>Step 3: Identify what is missing, then go back and re-learn it</li>
+<li>Step 4: Review everything, and simplify as much as you can</li>
+</ul>
+<h2 id="3-studying-for-exams">3. Studying For Exams</h2>
+<h3 id="part-1-studying-effectively">PART 1---Studying Effectively</h3>
 <p>Scientifically proven to be <strong>low</strong> in effectiveness</p>
 <ul>
 <li>Reading again and again?</li>
@@ -600,14 +608,14 @@ void rotate(int** matrix, int matrixSize, int* matrixColSize) {
 <li>Practice tests</li>
 <li>Spacing out your learning</li>
 </ul>
-<h2 id="3-part-2-studying-for-exams">3-PART 2---Studying For Exams</h2>
+<h3 id="part-2-studying-for-exams">PART 2---Studying For Exams</h3>
 <p>Things That Didn't Help</p>
 <ul>
 <li>Starting to study early</li>
 <li>Reading your notes before and after class</li>
 <li>Listening to music</li>
 </ul>
-<p>Things That <strong>Did</strong> Help</p>
+<p>Things That <strong>Did Help</strong></p>
 <ul>
 <li>Putting in the hours</li>
 <li>Doing lots of practice exams</li>
@@ -618,11 +626,14 @@ void rotate(int** matrix, int matrixSize, int* matrixColSize) {
 <li>When we interupt the task, it creates <strong>Task Specific Tension</strong></li>
 <li>It can improve cognitive function</li>
 </ul>
+<p>How to do: Work 25 mins, rest 5 mins, work 25 mins, rest 5 mins...</p>
 <h2 id="5-distributed-learning">5. Distributed Learning</h2>
+<p>Space out your study sessions.</p>
 <p>Scientists looked at 254 studies involving more than 14,000 people</p>
 <ul>
 <li>Students remembered <strong>more</strong> after spaced study than cramming</li>
 </ul>
+<p>How to do: 1 hour on each day of a week is better than 7 hours crammed in the same day.</p>
 ]]></content>
     </entry>
     <entry>
