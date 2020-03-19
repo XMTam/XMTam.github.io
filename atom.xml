@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://XMTam.github.io</id>
     <title>Alvin</title>
-    <updated>2020-03-18T23:53:18.764Z</updated>
+    <updated>2020-03-19T14:10:39.196Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://XMTam.github.io"/>
     <link rel="self" href="https://XMTam.github.io/atom.xml"/>
@@ -10,6 +10,200 @@
     <logo>https://XMTam.github.io/images/avatar.png</logo>
     <icon>https://XMTam.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Alvin</rights>
+    <entry>
+        <title type="html"><![CDATA[The 20 rules of formulating knowledge in learning]]></title>
+        <id>https://XMTam.github.io/the-20-rules-of-formulating-knowledge-in-learning/</id>
+        <link href="https://XMTam.github.io/the-20-rules-of-formulating-knowledge-in-learning/">
+        </link>
+        <updated>2020-03-19T01:29:02.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="1-do-not-learn-if-you-do-not-understand"><strong>1. Do not learn if you do not understand</strong></h2>
+<p>Trying to learn things you do not understand may seem like an utmost nonsense.</p>
+<h2 id="2-learn-before-you-memorize"><strong>2. Learn before you memorize</strong></h2>
+<p>Before you proceed with memorizing individual facts and rules, you need to <strong>build an overall picture of the learned knowledge.</strong></p>
+<h2 id="3-build-upon-the-basics"><strong>3. Build upon the basics</strong></h2>
+<p>The picture of the learned whole (as discussed in Rule 2: Learn before you memorize) does not have to be complete to the last detail. Just the opposite, the simpler the picture the better. The shorter the initial chapter of your book the better. Simple models are easier to comprehend and encompass. You can always build upon them later on.</p>
+<h2 id="4-stick-to-the-minimum-information-principle"><strong>4. Stick to the minimum information principle</strong></h2>
+<p>The material you learn must be formulated in as simple way as it is</p>
+<ul>
+<li><strong>Simple is easy</strong></li>
+<li><strong>Repetitions of simple items are easier to schedule</strong></li>
+</ul>
+<p>Here is a striking example:</p>
+<pre><code>Ill-formulated knowledge - Complex and wordy
+Q: What are the characteristics of the Dead Sea?
+A: Salt lake located on the border between Israel and Jordan. Its shoreline is the lowest point on the Earth's surface, averaging 396 m below sea level. It is 74 km long. It is seven times as salty (30% by volume) as the ocean. Its density keeps swimmers afloat. Only simple organisms can live in its saline waters
+</code></pre>
+<pre><code>Well-formulated knowledge - Simple and specific
+Q: Where is the Dead Sea located?
+A: on the border between Israel and Jordan
+
+Q: What is the lowest point on the Earth's surface?
+A: The Dead Sea shoreline
+
+Q: What is the average level on which the Dead Sea is located?
+A: 400 meters (below sea level)
+
+Q: How long is the Dead Sea?
+A: 70 km
+
+Q: How much saltier is the Dead Sea than the oceans?
+A: 7 times
+
+Q: What is the volume content of salt in the Dead Sea?
+A: 30%
+
+Q: Why can the Dead Sea keep swimmers afloat?
+A: due to high salt content
+
+Q: Why is the Dead Sea called Dead?
+A: because only simple organisms can live in it
+
+Q: Why only simple organisms can live in the Dead Sea?
+A: because of high salt content
+</code></pre>
+<p>In the long perspective, <strong>the longer the time you need to remember knowledge, the more you benefit from simplifying your items!</strong></p>
+<p>Note in the example above how short the questions are. Note also that the answers are even shorter! We want a minimum amount of information to be retrieved from memory in a single repetition! <strong>We want answer to be as short as imaginably possible!</strong></p>
+<h2 id="5-cloze-deletion-is-easy-and-effective"><strong>5. Cloze deletion is easy and effective</strong></h2>
+<p>Cloze deletion is a sentence with its parts missing and replaced by three dots. Cloze deletion exercise is an exercise that uses cloze deletion to ask the student to fill in the gaps marked with the three dots. For example, Bill ...[name] was the second US president to go through impeachment.</p>
+<p>Ill-formulated knowledge - Complex and wordy</p>
+<pre><code>Q: What was the history of the Kaleida company?
+A: Kaleida, funded to the tune of $40 million by Apple Computer and IBM in 1991. Hyped as a red-hot startup, Kaleida's mission was to create a multimedia programming language It finally produced one, called Script X. But it took three years. Meanwhile, companies such as Macromedia and Asymetrix had snapped up all the business. Kaleida closed in 1995
+</code></pre>
+<pre><code>Well-formulated knowledge - Simple cloze deletion
+Q: Kaleida was funded to the tune of ...(amount) by Apple Computer and IBM in 1991
+A: $40 million
+
+Q: Kaleida was funded to the tune of $40 million by ...(companies) in 1991
+A: Apple and IBM
+
+Q: Kaleida was funded to the tune of $40 million by Apple Computer and IBM in ... (year)
+A: 1991
+
+Q: ...(company) mission was to create a multimedia programming language. It finally produced one, called Script X. But it took three years
+A: Kaleida's
+
+Q: Kaleida's mission was to create a ... It finally produced one, called Script X. But it took three years
+A: multimedia programming language
+
+Q: Kaleida's mission was to create a multimedia programming language. It finally produced one, called ... But it took three years
+A: Script X
+
+Q: Kaleida's mission was to create a multimedia programming language. It finally produced one, called Script X. But it took ...(time)
+A: three years
+
+Q: Kaleida's mission was to create a multimedia programming language: Script X. But it took three years. Meanwhile, companies such as ... had snapped up all the business
+A: Macromedia/Asymetrix
+
+Q: Kaleida's mission was to create Script X. But it took three years. Meanwhile, companies such as Macromedia and Asymetrix had snapped up all the business. Kaleida closed in ...(year)
+A: 1995
+</code></pre>
+<h2 id="6-use-imagery"><strong>6. Use imagery</strong></h2>
+<p>Visual cortex is that part of the brain in which visual stimuli are interpreted. It has been very well developed in the course of evolution and that is why we say one picture is worth a thousand words.</p>
+<h2 id="7-use-mnemonic-techniques助记符技术"><strong>7. Use mnemonic techniques</strong>(助记符技术)</h2>
+<p>Before you start believing that mastering such techniques will provide you with an eternal solution to the problem of forgetting, be warned that the true bottleneck towards long-lasting and useful memories is not in quickly memorizing knowledge! This is indeed the easier part. The bottleneck lies in retaining memories for months, years or for lifetime! To accomplish the latter you will need SuperMemo and the compliance with the 20 rules presented herein.</p>
+<p>There have been dozens of books written about mnemonic techniques. Probably those written by Tony Buzan are most popular and respected. You can search the web for keywords such as: mind maps, peg lists, mnemonic techniques, etc.</p>
+<h2 id="8-graphic-deletion-is-as-good-as-cloze-deletion"><strong>8. Graphic deletion is as good as cloze deletion</strong></h2>
+<h2 id="9-avoid-sets"><strong>9. Avoid sets</strong></h2>
+<p>A set is a collection of objects. For example, a set of fruits might be an apple, a pear and a peach. A classic example of an item that is difficult to learn is an item that asks for the list of the members of a set. For example: What countries belong to the European Union? You should avoid such items whenever possible due to the high cost of retaining memories based on sets. If sets are absolutely necessary, you should always try to convert them into <em>enumerations</em>. Enumerations are ordered lists of members (for example, the alphabetical list of the members of the EU). Enumerations are also hard to remember and should be avoided. However, the great advantage of enumerations over sets is that they are ordered and they force the brain to list them always in the same order. An ordered list of countries contains more information than the set of countries that can be listed in any order. Paradoxically, despite containing more information, enumerations are easier to remember. The reason for this has been discussed earlier in the context of the <em>minimum information principle</em>: <strong>you should always try to make sure your brain works in the exactly same way at each repetition.</strong> In the case of sets, listing members in varying order at each repetition has a disastrous effect on memory. It is nearly impossible to memorize sets containing more than five members without the use of mnemonic techniques, enumeration, grouping, etc. Despite this claim, you will often succeed due to subconsciously mastered techniques that help you go around this problem. Those techniques, however, will fail you all too often. For that reason: Avoid sets! If you need them badly, convert them into enumerations and use <em>techniques for dealing with enumerations</em></p>
+<p>Ill-formulated knowledge - Sets are unacceptable!</p>
+<pre><code>Q: What countries belong to the European Union (2002)?
+A: Austria, Belgium, Denmark, Finland, France, Germany, Greece, Ireland, Italy, Luxembourg, the Netherlands, Portugal, Spain, Sweden, and the United Kingdom
+</code></pre>
+<p>Well-formulated knowledge - Converting a set into a meaningful listing</p>
+<pre><code>Q: Which country hosted a meeting to consider the creation of a European Community of Defence in 1951?
+A: France 
+
+Q: Which countries apart from France joined the European Coal and Steel Community in 1952?
+A: Germany, Italy and the Benelux
+
+Q: What countries make up the Benelux?
+A: Belgium, Luxembourg, and the Netherlands
+
+Q: Whose membership did Charles de Gaulle oppose in the 1960s?
+A: that of UK
+
+Q: Which countries joined the EEC along the UK in 1973?
+A: Ireland and Denmark
+
+Q: Which country joined the EEC in 1981?
+A: Greece
+
+Q: Which countries joined the EEC in 1986?
+A: Spain and Portugal
+
+Q: Which countries joined the EU in 1995?
+A: Austria, Sweden and Finland
+
+Q: What was the historic course of expansion of the European Union membership?
+A: (1) France and (2) Germany, Italy and the Benelux, (3) UK and (4) Ireland and Denmark, (5) Greece, (6) Spain and Portugal and (7) Austria, Sweden and Finland
+</code></pre>
+<p>Note that in the example above, we converted a 15-member set into 9 items, five of which are 2-3 member sets, and one is a six member enumeration.</p>
+<h2 id="10-avoid-enumerations"><strong>10. Avoid enumerations</strong></h2>
+<p>Enumerations are also an example of classic items that are hard to learn. They are still far more acceptable than sets. Avoid enumerations wherever you can. If you cannot avoid them, deal with them using cloze deletions (overlapping cloze deletions if possible). Learning the alphabet can be a good example of an overlapping cloze deletion:<br>
+Hard to learn item</p>
+<pre><code>Q: What is the sequence of letters in the alphabet?
+A: abcdefghijklmnopqrstuvwxyz
+</code></pre>
+<p>Easy to learn items</p>
+<pre><code>Q: What three letters does the alphabet begin with?
+A: ABC
+
+Q: Fill out the missing letters of the alphabet A ... ... ... E
+A: B, C, D
+
+Q: Fill out the missing letters of the alphabet B ... ... ... F
+A: C, D, E
+
+Q: Fill out the missing letters of the alphabet C ... ... ... G
+A: D, E, F
+</code></pre>
+<p>The above items will make learning the alphabet much faster. The greatest advantage of the above approach is that is it easier for psychological reasons: the student does not have to stop repetitions to recite the whole sequence and can only focus on a small part of the learned material. Still it is recommended that he recite the whole alphabet after making the repetition. However, once all individual pieces are well remembered, reciting the whole should be a pleasant and speedy action that produces little frustration.</p>
+<h2 id="11-combat-interference"><strong>11. Combat interference</strong></h2>
+<p>If knowledge of one item makes it harder to remember another item, we have a case of **memory interference.**You can never be sure when it strikes, and the only hermetic procedure against it is to <strong>detect and eliminate.</strong><br>
+This will make your learning process less stressful and mentally bearable. Here are some tips:</p>
+<ul>
+<li>make items as unambiguous as possible</li>
+<li>stick to the <em>minimum information principle</em> (many of the remaining rules in this text are based on avoiding interference!)</li>
+<li>eliminate interference as soon as you spot it, i.e. before it becomes your obsession</li>
+</ul>
+<h2 id="12-optimize-wording"><strong>12. Optimize wording</strong></h2>
+<p>The wording of your items must be optimized to make sure that in minimum time the right bulb in your brain lights up. This will reduce error rates, increase specificity, reduce response time, and help your concentration.<br>
+Example：<br>
+Less optimum item: cloze deletion that is too wordy</p>
+<pre><code>Q: Aldus invented desktop publishing in 1985 with PageMaker. Aldus had little competition for years, and so failed to improve. Then Denver-based ... blew past. PageMaker, now owned by Adobe, remains No. 2
+A: Quark
+</code></pre>
+<p>Better item: fewer words will speed up learning</p>
+<pre><code>Q: Aldus invented desktop publishing in 1985 with PageMaker but failed to improve. Then ... blew past (PageMaker remains No. 2)
+A: Quark
+
+Or better:
+
+Q: Aldus invented desktop publishing with PageMaker but failed to improve. It was soon outdistanced by ...
+A: Quark
+
+Or better:
+
+Q: PageMaker failed to improve and was outdistanced by ...
+A: Quark
+
+Or better:
+
+Q: PageMaker lost ground to ...
+A: Quark
+</code></pre>
+<p>Note that the loss of information content in this item is inconsequential. During repetition you are only supposed to learn the name: Quark. You should not hope that the trailing messages on the ownership of PageMaker and the year of its development will somehow trickle to your memory as a side effect. You should decide if the other pieces of information are important to you and if so, store them in separate items (perhaps reusing the above text, employing cloze deletion again and optimizing the wording in a new way). Otherwise the redundant information will only slow down your learning process!</p>
+<h2 id="13-refer-to-other-memories"><strong>13. Refer to other memories</strong></h2>
+<p>Referring to other memories can place your item in a better context, simplify wording, and reduce interference.In the example below, using the words <em>humble</em> and <em>supplicant</em> helps the student focus on the word <em>shamelessly</em> and thus strengthen the correct semantics.Better focus helps eliminating interference. Secondly, the use of the words <em>humble</em> and <em>supplicant</em> makes it possible to avoid interference of <em>cringing</em> with these words themselves. Finally, the proposed wording is shorter and more specific. Naturally, the rules <em>basics-to-details</em> and <em>do not learn what you do not understand</em> require that the words <em>humble</em> and <em>supplicant</em> be learned beforehand (or at least at the same time)</p>
+<h2 id="14">**14. **</h2>
+<h2 id="15">**15.  **</h2>
+<h2 id="16">**16.  **</h2>
+<h2 id="17">**17. **</h2>
+<h2 id="18">**18.  **</h2>
+<h2 id="19">**19.  **</h2>
+<h2 id="20">**20. **</h2>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[C语言排序算法之归并排序]]></title>
         <id>https://XMTam.github.io/C-merge_sort/</id>
@@ -767,74 +961,6 @@ In addition to writing the code out, I thought it would be extra helpful to show
 <p>To a budding web developer, it might not be immediately obvious that, say, a padding value of **10px **actually increases the element's width by <strong>20px</strong> overall (because the 10px is applied to each side).</p>
 <hr>
 <p>This article is from: https://collegeinfogeek.com/feynman-technique/#how-to-use-the-feynman-technique. Click it to learn more.</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[1. 两数之和*]]></title>
-        <id>https://XMTam.github.io/1-liang-shu-zhi-he/</id>
-        <link href="https://XMTam.github.io/1-liang-shu-zhi-he/">
-        </link>
-        <updated>2020-03-08T03:05:00.000Z</updated>
-        <content type="html"><![CDATA[<h1 id="一-题目">一、题目</h1>
-<p>给定一个整数数组 nums 和一个目标值 target，请在该数组中找出和为目标值的那两个整数，并返回他们的数组下标。</p>
-<p>你可以假设每种输入只会对应一个答案。但是，你不能重复利用这个数组中同样的元素。</p>
-<p><strong>示例:</strong></p>
-<pre><code>给定 nums = [2, 7, 11, 15], target = 9
-因为 nums[0] + nums[1] = 2 + 7 = 9
-所以返回 [0, 1]
-</code></pre>
-<hr>
-<h1 id="二-解决方案">二、解决方案</h1>
-<h2 id="方法一暴力法">方法一：暴力法</h2>
-<p>暴力法很简单，遍历每个元素 xx，并查找是否存在一个值与 target - x 相等的目标元素。</p>
-<p><strong>代码如下：</strong></p>
-<pre><code>/**
- * Note: The returned array must be malloced, assume caller calls free().
- */
-int* twoSum(int* nums, int numsSize, int target, int* returnSize) 
-{
-    *returnSize = 2;
-    int* arr = (int*)malloc(sizeof(int) * (*returnSize));
-    for (int i = 0; i &lt; numsSize; i++)
-    {
-        for (int j = i + 1; j &lt; numsSize; j++)
-        {
-            if (nums[j] == target - nums[i])
-            {
-                arr[0] = i;
-                arr[1] = j;
-                return arr;
-            }
-        }
-    }
-    return NULL;
-}
-</code></pre>
-<p><strong>复杂度分析：</strong></p>
-<ul>
-<li>时间复杂度：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><msup><mi>n</mi><mn>2</mn></msup><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>。对于每个元素，我们试图通过遍历数组的其余部分来寻找它所对应的目标元素，这将耗费 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span> 的时间。因此时间复杂度为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><msup><mi>n</mi><mn>2</mn></msup><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>。</li>
-<li>空间复杂度：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span>。</li>
-</ul>
-<hr>
-<p><strong>方法二、三代码待实现。。。</strong></p>
-<hr>
-<h2 id="方法二两遍哈希表">方法二*：两遍哈希表</h2>
-<p>为了对运行时间复杂度进行优化，我们需要一种更有效的方法来检查数组中是否存在目标元素。如果存在，我们需要找出它的索引。保持数组中的每个元素与其索引相互对应的最好方法是什么？答案是<strong>哈希表</strong>。</p>
-<p>通过以空间换取速度的方式，我们可以将查找时间从 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span> 降低到 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span>。哈希表正是为此目的而构建的，它支持以 <em>近似</em> 恒定的时间进行快速查找。我用“近似”来描述，是因为一旦出现冲突，查找用时可能会退化到 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>。但只要仔细地挑选哈希函数，在哈希表中进行查找的用时应当被摊销为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span>。</p>
-<p>一个简单的实现使用了两次迭代。在第一次迭代中，我们将每个元素的值和它的索引添加到表中。然后，在第二次迭代中，我们将检查每个元素所对应的目标元素（target - nums[i]）是否存在于表中。注意，该目标元素不能是 nums[i] 本身！</p>
-<p><strong>复杂度分析：</strong></p>
-<ul>
-<li>时间复杂度：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>，我们把包含有 nn 个元素的列表遍历两次。由于哈希表将查找时间缩短到 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span>，所以时间复杂度为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>。</li>
-<li>空间复杂度：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>，所需的额外空间取决于哈希表中存储的元素数量，该表中存储了 n 个元素。</li>
-</ul>
-<hr>
-<h2 id="方法三一遍哈希表">方法三：一遍哈希表</h2>
-<p>事实证明，我们可以一次完成。在进行迭代并将元素插入到表中的同时，我们还会回过头来检查表中是否已经存在当前元素所对应的目标元素。如果它存在，那我们已经找到了对应解，并立即将其返回。</p>
-<p><strong>复杂度分析：</strong></p>
-<ul>
-<li>时间复杂度：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>，我们只遍历了包含有 n 个元素的列表一次。在表中进行的每次查找只花费 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span> 的时间。</li>
-<li>空间复杂度：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>，所需的额外空间取决于哈希表中存储的元素数量，该表最多需要存储 n 个元素。</li>
-</ul>
 ]]></content>
     </entry>
 </feed>
