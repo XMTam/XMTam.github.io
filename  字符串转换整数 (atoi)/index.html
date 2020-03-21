@@ -35,7 +35,7 @@
           <div class="toc-container hidden lg:block">
             <ul class="markdownIt-TOC">
 <li><a href="#%E4%B8%80-%E9%A2%98%E7%9B%AE">一、题目</a></li>
-<li><a href="#%E4%BA%8C-%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88">二、解决方案</a></li>
+<li><a href="#%E4%BA%8C-%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95">二、解决方法</a></li>
 </ul>
 
           </div>
@@ -82,107 +82,84 @@
 <div class="mask" onclick="closeMenu()">
 </div>
       <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
-        <h1 class="text-3xl font-bold lg:mt-16">36. *有效的数独</h1>
+        <h1 class="text-3xl font-bold lg:mt-16"> 字符串转换整数 (atoi)</h1>
         <div class="text-sm text-gray-700 lg:my-8">
-          2020-03-09 / 6 min read
+          2020-03-21 / 3 min read
         </div>
         
-          <img class="post-feature-image rounded-lg mx-auto my-4" src="https://XMTam.github.io/post-images/36-you-xiao-de-shu-du.png" alt="">
+          <img class="post-feature-image rounded-lg mx-auto my-4" src="https://XMTam.github.io/post-images/ 字符串转换整数 (atoi).png" alt="">
         
         <div class="post-content yue">
           <h1 id="一-题目">一、题目</h1>
-<p>判断一个 9x9 的数独是否有效。只需要根据以下规则，验证已经填入的数字是否有效即可。</p>
-<ol>
-<li>数字 1-9 在每一行只能出现一次。</li>
-<li>数字 1-9 在每一列只能出现一次。</li>
-<li>数字 1-9 在每一个以粗实线分隔的 3x3 宫内只能出现一次。</li>
-</ol>
-<p><img src="https://XMTam.github.io/post-images/1583717105819.png" alt="" loading="lazy"><br>
-上图是一个部分填充的有效的数独。</p>
-<p>数独部分空格内已填入了数字，空白格用 '.' 表示。<br>
-<strong>示例 1:</strong></p>
-<pre><code>输入:
-[
-  [&quot;5&quot;,&quot;3&quot;,&quot;.&quot;,&quot;.&quot;,&quot;7&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;],
-  [&quot;6&quot;,&quot;.&quot;,&quot;.&quot;,&quot;1&quot;,&quot;9&quot;,&quot;5&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;],
-  [&quot;.&quot;,&quot;9&quot;,&quot;8&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;6&quot;,&quot;.&quot;],
-  [&quot;8&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;6&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;3&quot;],
-  [&quot;4&quot;,&quot;.&quot;,&quot;.&quot;,&quot;8&quot;,&quot;.&quot;,&quot;3&quot;,&quot;.&quot;,&quot;.&quot;,&quot;1&quot;],
-  [&quot;7&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;2&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;6&quot;],
-  [&quot;.&quot;,&quot;6&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;2&quot;,&quot;8&quot;,&quot;.&quot;],
-  [&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;4&quot;,&quot;1&quot;,&quot;9&quot;,&quot;.&quot;,&quot;.&quot;,&quot;5&quot;],
-  [&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;8&quot;,&quot;.&quot;,&quot;.&quot;,&quot;7&quot;,&quot;9&quot;]
-]
-输出: true
+<p>请你来实现一个 atoi 函数，使其能将字符串转换成整数。<br>
+首先，该函数会根据需要丢弃无用的开头空格字符，直到寻找到第一个非空格的字符为止。<br>
+当我们寻找到的第一个非空字符为正或者负号时，则将该符号与之后面尽可能多的连续数字组合起来，作为该整数的正负号；假如第一个非空字符是数字，则直接将其与之后连续的数字字符组合起来，形成整数。<br>
+该字符串除了有效的整数部分之后也可能会存在多余的字符，这些字符可以被忽略，它们对于函数不应该造成影响。</p>
+<p><strong>注意</strong>：假如该字符串中的第一个非空格字符不是一个有效整数字符、字符串为空或字符串仅包含空白字符时，则你的函数不需要进行转换。</p>
+<p>在任何情况下，若函数不能进行有效的转换时，请返回 0。</p>
+<p><strong>说明</strong>：假设我们的环境只能存储 32 位大小的有符号整数，那么其数值范围为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>[</mo><mi mathvariant="normal">−</mi><msup><mn>2</mn><mn>31</mn></msup><mo separator="true">,</mo><msup><mn>2</mn><mn>31</mn></msup><mi mathvariant="normal">−</mi><mn>1</mn><mo>]</mo></mrow><annotation encoding="application/x-tex">[−2^{31},  2^{31} − 1]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">−</span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">3</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">3</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span><span class="mord">−</span><span class="mord">1</span><span class="mclose">]</span></span></span></span>。如果数值超过这个范围，请返回  INT_MAX <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><msup><mn>2</mn><mn>31</mn></msup><mi mathvariant="normal">−</mi><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">(2^{31} − 1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">3</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span><span class="mord">−</span><span class="mord">1</span><span class="mclose">)</span></span></span></span> 或 INT_MIN <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mi mathvariant="normal">−</mi><msup><mn>2</mn><mn>31</mn></msup><mo>)</mo></mrow><annotation encoding="application/x-tex">(−2^{31})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">−</span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">3</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>。</p>
+<p>示例 1:</p>
+<pre><code>输入: &quot;42&quot;
+输出: 42
 </code></pre>
-<p><strong>示例 2:</strong></p>
-<pre><code>输入:
-[
-  [&quot;8&quot;,&quot;3&quot;,&quot;.&quot;,&quot;.&quot;,&quot;7&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;],
-  [&quot;6&quot;,&quot;.&quot;,&quot;.&quot;,&quot;1&quot;,&quot;9&quot;,&quot;5&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;],
-  [&quot;.&quot;,&quot;9&quot;,&quot;8&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;6&quot;,&quot;.&quot;],
-  [&quot;8&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;6&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;3&quot;],
-  [&quot;4&quot;,&quot;.&quot;,&quot;.&quot;,&quot;8&quot;,&quot;.&quot;,&quot;3&quot;,&quot;.&quot;,&quot;.&quot;,&quot;1&quot;],
-  [&quot;7&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;2&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;6&quot;],
-  [&quot;.&quot;,&quot;6&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;2&quot;,&quot;8&quot;,&quot;.&quot;],
-  [&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;4&quot;,&quot;1&quot;,&quot;9&quot;,&quot;.&quot;,&quot;.&quot;,&quot;5&quot;],
-  [&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;8&quot;,&quot;.&quot;,&quot;.&quot;,&quot;7&quot;,&quot;9&quot;]
-]
-输出: false
-解释: 除了第一行的第一个数字从 5 改为 8 以外，空格内其他数字均与 示例1 相同。
-     但由于位于左上角的 3x3 宫内有两个 8 存在, 因此这个数独是无效的。
+<p>示例 2:</p>
+<pre><code>输入: &quot;   -42&quot;
+输出: -42
 </code></pre>
-<p><strong>说明:</strong></p>
-<ul>
-<li>一个有效的数独（部分已被填充）不一定是可解的。</li>
-<li>只需要根据以上规则，验证已经填入的数字是否有效即可。</li>
-<li>定数独序列只包含数字 1-9 和字符 '.' 。</li>
-<li>给定数独永远是 9x9 形式的。</li>
-</ul>
+<p><strong>解释</strong>: 第一个非空白字符为 '-', 它是一个负号。我们尽可能将负号与后面所有连续出现的数字组合起来，最后得到 -42 。</p>
+<p>示例 3:</p>
+<pre><code>输入: &quot;4193 with words&quot;
+输出: 4193
+</code></pre>
+<p><strong>解释</strong>: 转换截止于数字 '3' ，因为它的下一个字符不为数字。</p>
+<p>示例 4:</p>
+<pre><code>输入: &quot;words and 987&quot;
+输出: 0
+</code></pre>
+<p><strong>解释</strong>: 第一个非空字符是 'w', 但它不是数字或正、负号。因此无法执行有效的转换。</p>
+<p>示例 5:</p>
+<pre><code>输入: &quot;-91283472332&quot;
+输出: -2147483648
+</code></pre>
+<p><strong>解释</strong>: 数字 &quot;-91283472332&quot; 超过 32 位有符号整数范围。因此返回 INT_MIN (−231) 。</p>
 <hr>
-<h1 id="二-解决方案">二、解决方案</h1>
-<p><strong>思路：</strong></p>
-<ol>
-<li>
-<p>由于board中的整数限定在1到9的范围内，因此可以分别建立哈希表来存储任一个数在相应维度上是否出现过。维度有3个：所在的行，所在的列，所在的box，注意box的下标也是从左往右、从上往下的。</p>
-</li>
-<li>
-<p>遍历到每个数的时候，例如boar[i][j]，我们判断其是否满足三个条件：</p>
-</li>
-</ol>
-<ul>
-<li>在第 i 个行中是否出现过</li>
-<li>在第 j 个列中是否出现过</li>
-<li>在第 **j/3 + (i/3)**3 个box中是否出现过。</li>
-</ul>
-<p><strong>C代码如下（通过）：</strong></p>
-<pre><code>bool isValidSudoku(char** board, int boardSize, int* boardColSize) {
-    int row[9][10] = { 0 }; // 哈希表存储每一行的每个数是否出现过，默认初始情况下，每一行每一个数都没有出现过
-    // 整个board有9行，第二维的维数10是为了让下标有9，和数独中的数字9对应。
-    int col[9][10] = { 0 };// 存储每一列的每个数是否出现过，默认初始情况下，每一列的每一个数都没有出现过
-    int box[9][10] = { 0 };// 存储每一个box的每个数是否出现过，默认初始情况下，在每个box中，每个数都没有出现过。整个board有9个box。
-    for (int i = 0; i &lt; boardSize; i++)
+<h1 id="二-解决方法">二、解决方法</h1>
+<p>代码如下：</p>
+<pre><code>int myAtoi(char* str) {
+    int length = strlen(str); 
+    int ret = 0;
+    int index = 0;
+
+    while (*str != '\0') // delete the pre blanks
     {
-        for (int j = 0; j &lt; *boardColSize; j++)
-        {
-            /*遍历到第i行第j列的那个数,我们要判断这个数在其所在的行有没有出现过，
-            同时判断这个数在其所在的列有没有出现过
-            同时判断这个数在其所在的box中有没有出现过*/
-            if (board[i][j] == '.')
-                continue;
-            int curNum = board[i][j] - '0';
-            if (row[i][curNum]) 
-                return false;
-            if (col[j][curNum]) 
-                return false;
-            if (box[(i/3)*3 + j/3][curNum]) 
-                return false;
-            row[i][curNum] = 1;// 之前都没出现过，现在出现了，就给它置为1，下次再遇见就能够直接返回false了。
-            col[j][curNum] = 1;
-            box[(i / 3) * 3 + j / 3][curNum] = 1;
-        }
+        if (str[index] != ' ')
+            break;
+        index++;
     }
-    return true;
+    if (index == length)
+        return 0;
+
+    int sign = 1; // 1 represent a positive number and -1 otherwise
+    if (str[index] == '-')
+    {
+        sign = -1;
+        index++;
+    }             
+    else if (str[index] == '+')
+        index++;
+    while (index &lt; length)
+    {
+        int curNum = str[index] - '0';
+        if (curNum &lt; 0 || curNum &gt; 9)
+            break;
+        if (ret &gt; INT_MAX / 10 || (ret == INT_MAX / 10 &amp;&amp; (curNum &gt; INT_MAX % 10)))
+            return INT_MAX;
+        if (ret &lt; INT_MIN / 10 || (ret == INT_MIN / 10 &amp;&amp; (curNum &gt; -(INT_MIN % 10))))
+            return INT_MIN;
+        ret = ret * 10 + sign * curNum;
+        index++;
+    }
+    return ret;
 }
 </code></pre>
 
@@ -201,21 +178,12 @@
 
         <div class="flex justify-between py-8">
           
-            <div class="prev-post">
-              <a href="https://XMTam.github.io/48-xuan-zhuan-tu-xiang/">
-                <h3 class="post-title">
-                  <i class="ri-arrow-left-line"></i>
-                  48. 旋转图像
-                </h3>
-              </a>
-            </div>
-          
 
           
             <div class="next-post">
-              <a href="https://XMTam.github.io/5-best-ways-to-wtudy-effectively-or-scientifically-proven/">
+              <a href="https://XMTam.github.io/验证回文字符串/">
                 <h3 class="post-title">
-                  5 Best Ways to Study Effectively | Scientifically Proven
+                  125. 验证回文字符串
                   <i class="ri-arrow-right-line"></i>
                 </h3>
               </a>
