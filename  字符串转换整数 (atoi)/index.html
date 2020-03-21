@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Alvin</title>
 <meta name="description" content="A = X + Y + Z" />
-<link rel="shortcut icon" href="https://XMTam.github.io/favicon.ico?v=1584751357528">
+<link rel="shortcut icon" href="https://XMTam.github.io/favicon.ico?v=1584831413148">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
@@ -23,7 +23,7 @@
       <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
         <i class="ri-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
         <a href="https://XMTam.github.io">
-          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://XMTam.github.io/images/avatar.png?v=1584751357528" alt="">
+          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://XMTam.github.io/images/avatar.png?v=1584831413148" alt="">
         </a>
         <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">Alvin</h1>
       </div>
@@ -124,13 +124,14 @@
 <p><strong>解释</strong>: 数字 &quot;-91283472332&quot; 超过 32 位有符号整数范围。因此返回 INT_MIN (−231) 。</p>
 <hr>
 <h1 id="二-解决方法">二、解决方法</h1>
-<p>代码如下：</p>
+<p><strong>思路</strong>：借助变量index纪录当前遍历位置，一次遍历即可完成转换。<br>
+代码如下：</p>
 <pre><code>int myAtoi(char* str) {
     int length = strlen(str); 
     int ret = 0;
     int index = 0;
 
-    while (*str != '\0') // delete the pre blanks
+    while (*str != '\0') // delete the front blanks
     {
         if (str[index] != ' ')
             break;
@@ -149,7 +150,7 @@
         index++;
     while (index &lt; length)
     {
-        int curNum = str[index] - '0';
+        int curNum = str[index] - '0'; // change the current alph to num
         if (curNum &lt; 0 || curNum &gt; 9)
             break;
         if (ret &gt; INT_MAX / 10 || (ret == INT_MAX / 10 &amp;&amp; (curNum &gt; INT_MAX % 10)))
@@ -162,6 +163,11 @@
     return ret;
 }
 </code></pre>
+<p><strong>复杂度分析</strong>：</p>
+<ul>
+<li>时间复杂度：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>N</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(N)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mclose">)</span></span></span></span>，这里 N 为字符串的长度</li>
+<li>空间复杂度：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span>。</li>
+</ul>
 
         </div>
 
