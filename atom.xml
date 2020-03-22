@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://XMTam.github.io</id>
     <title>Alvin</title>
-    <updated>2020-03-21T22:56:57.168Z</updated>
+    <updated>2020-03-22T01:22:22.730Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://XMTam.github.io"/>
     <link rel="self" href="https://XMTam.github.io/atom.xml"/>
@@ -10,6 +10,108 @@
     <logo>https://XMTam.github.io/images/avatar.png</logo>
     <icon>https://XMTam.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Alvin</rights>
+    <entry>
+        <title type="html"><![CDATA[28. 实现 strStr()]]></title>
+        <id>https://XMTam.github.io/28-实现strstr()/</id>
+        <link href="https://XMTam.github.io/28-实现strstr()/">
+        </link>
+        <updated>2020-03-21T22:58:28.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="一-题目">一、题目</h1>
+<p>实现 strStr() 函数。<br>
+给定一个 haystack 字符串和一个 needle 字符串，在 haystack 字符串中找出 needle 字符串出现的第一个位置 (从0开始)。如果不存在，则返回  -1。</p>
+<p><strong>示例 1</strong>:</p>
+<pre><code>输入: haystack = &quot;hello&quot;, needle = &quot;ll&quot;
+输出: 2
+</code></pre>
+<p><strong>示例 2</strong>:</p>
+<pre><code>输入: haystack = &quot;aaaaa&quot;, needle = &quot;bba&quot;
+输出: -1
+</code></pre>
+<p><strong>说明</strong>: 当 needle 是空字符串时，我们应当返回什么值呢？这是一个在面试中很好的问题。<br>
+对于本题而言，当 needle 是空字符串时我们应当返回 0 。这与C语言的 strstr() 以及 Java的 indexOf() 定义相符。</p>
+<hr>
+<h1 id="二-解决方法">二、解决方法</h1>
+<p>废话不多说，先上代码。<br>
+最初的实现（通过）：</p>
+<pre><code>int strStr(char* haystack, char* needle) {
+    char* phk = haystack;
+    char* pne = needle;
+    int index = 0;  // 当前指针phk指向的元素的下标，与指针phk绑定（所谓绑定就是二者同增同减）
+    int cnt = 0;    // 纪录回溯时需要后退的间隔数，与指针pne绑定
+    
+    if (*pne == '\0')
+        return 0;
+    while (*phk != '\0')
+    {
+        if (*phk != *pne)
+        {
+            phk++;
+            index++;
+        }            
+        else // the cur two pointer's value is equal
+        {
+            phk++;
+            index++;
+            pne++;
+            cnt++;
+            if (*pne == '\0' &amp;&amp; *phk == '\0')
+                return 0;
+            while (*pne != '\0' &amp;&amp; *phk != '\0')
+            {
+                if (*pne != *phk)
+                {
+                    phk++;
+                    index++;                    
+                    phk -= cnt;                    
+                    index -= cnt;
+                    pne -= cnt;
+                    cnt -= cnt;
+                    break;
+                }                    
+                else
+                {
+                    pne++;
+                    cnt++;
+                    phk++;
+                    index++;
+                }
+                if (strlen(pne) &gt; strlen(phk))
+                    return -1;
+            } 
+            if (*pne == '\0')
+            {
+                if (*phk == '\0')
+                    return index - cnt;
+                else
+                    break;
+            }               
+        }
+    }
+    if (index == strlen(haystack))
+        return -1;
+    return index - cnt;
+}
+</code></pre>
+<p>执行用时图如下：<br>
+<img src="https://XMTam.github.io/post-images/1584838228441.png" alt="" loading="lazy"><br>
+<strong>思路</strong>：设置两个指针分别指向两个字符串头部，然后从字符串 haystack 头部往后遍历，去寻找其中与字符串 needle 相同的子串。这个遍历的过程中最要紧的是要<strong>注意回溯</strong>，例如对于字符串<br>
+haystack[] = &quot;aaaba&quot;，needle[] = &quot;aab&quot;，当两个指针都指到字符串中第三个字符时，此时字符a不等于字符b，这时我们不能把指向 haystack 的指针往后移，而是应该将指针回溯到第二个字符，再重新开始比较。由于 cnt 纪录了当前字符串 needle 已经匹配了的字符的个数，因此需将字符串 haystack 的指针 phk 后移 cnt 个间隔，这样便完成了回溯。<br>
+实现回溯的代码如下：</p>
+<pre><code>if (*pne != *phk)
+{
+    phk++;
+    index++;                    
+    phk -= cnt;                    
+    index -= cnt;
+    pne -= cnt;
+    cnt -= cnt;
+    break;
+}
+</code></pre>
+<hr>
+<p><strong>改进</strong>：</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[ 字符串转换整数 (atoi)]]></title>
         <id>https://XMTam.github.io/ 字符串转换整数 (atoi)/</id>
@@ -749,109 +851,6 @@ void rotate(int** matrix, int matrixSize, int* matrixColSize) {
 <li>时间复杂度：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><msup><mi>N</mi><mn>2</mn></msup><mo>)</mo></mrow><annotation encoding="application/x-tex">O(N^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>.</li>
 <li>空间复杂度：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span>，由于旋转操作是 <em>就地</em> 完成的。</li>
 </ul>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[36. *有效的数独]]></title>
-        <id>https://XMTam.github.io/36-you-xiao-de-shu-du/</id>
-        <link href="https://XMTam.github.io/36-you-xiao-de-shu-du/">
-        </link>
-        <updated>2020-03-09T01:18:45.000Z</updated>
-        <content type="html"><![CDATA[<h1 id="一-题目">一、题目</h1>
-<p>判断一个 9x9 的数独是否有效。只需要根据以下规则，验证已经填入的数字是否有效即可。</p>
-<ol>
-<li>数字 1-9 在每一行只能出现一次。</li>
-<li>数字 1-9 在每一列只能出现一次。</li>
-<li>数字 1-9 在每一个以粗实线分隔的 3x3 宫内只能出现一次。</li>
-</ol>
-<p><img src="https://XMTam.github.io/post-images/1583717105819.png" alt="" loading="lazy"><br>
-上图是一个部分填充的有效的数独。</p>
-<p>数独部分空格内已填入了数字，空白格用 '.' 表示。<br>
-<strong>示例 1:</strong></p>
-<pre><code>输入:
-[
-  [&quot;5&quot;,&quot;3&quot;,&quot;.&quot;,&quot;.&quot;,&quot;7&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;],
-  [&quot;6&quot;,&quot;.&quot;,&quot;.&quot;,&quot;1&quot;,&quot;9&quot;,&quot;5&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;],
-  [&quot;.&quot;,&quot;9&quot;,&quot;8&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;6&quot;,&quot;.&quot;],
-  [&quot;8&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;6&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;3&quot;],
-  [&quot;4&quot;,&quot;.&quot;,&quot;.&quot;,&quot;8&quot;,&quot;.&quot;,&quot;3&quot;,&quot;.&quot;,&quot;.&quot;,&quot;1&quot;],
-  [&quot;7&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;2&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;6&quot;],
-  [&quot;.&quot;,&quot;6&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;2&quot;,&quot;8&quot;,&quot;.&quot;],
-  [&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;4&quot;,&quot;1&quot;,&quot;9&quot;,&quot;.&quot;,&quot;.&quot;,&quot;5&quot;],
-  [&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;8&quot;,&quot;.&quot;,&quot;.&quot;,&quot;7&quot;,&quot;9&quot;]
-]
-输出: true
-</code></pre>
-<p><strong>示例 2:</strong></p>
-<pre><code>输入:
-[
-  [&quot;8&quot;,&quot;3&quot;,&quot;.&quot;,&quot;.&quot;,&quot;7&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;],
-  [&quot;6&quot;,&quot;.&quot;,&quot;.&quot;,&quot;1&quot;,&quot;9&quot;,&quot;5&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;],
-  [&quot;.&quot;,&quot;9&quot;,&quot;8&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;6&quot;,&quot;.&quot;],
-  [&quot;8&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;6&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;3&quot;],
-  [&quot;4&quot;,&quot;.&quot;,&quot;.&quot;,&quot;8&quot;,&quot;.&quot;,&quot;3&quot;,&quot;.&quot;,&quot;.&quot;,&quot;1&quot;],
-  [&quot;7&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;2&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;6&quot;],
-  [&quot;.&quot;,&quot;6&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;2&quot;,&quot;8&quot;,&quot;.&quot;],
-  [&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;4&quot;,&quot;1&quot;,&quot;9&quot;,&quot;.&quot;,&quot;.&quot;,&quot;5&quot;],
-  [&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;.&quot;,&quot;8&quot;,&quot;.&quot;,&quot;.&quot;,&quot;7&quot;,&quot;9&quot;]
-]
-输出: false
-解释: 除了第一行的第一个数字从 5 改为 8 以外，空格内其他数字均与 示例1 相同。
-     但由于位于左上角的 3x3 宫内有两个 8 存在, 因此这个数独是无效的。
-</code></pre>
-<p><strong>说明:</strong></p>
-<ul>
-<li>一个有效的数独（部分已被填充）不一定是可解的。</li>
-<li>只需要根据以上规则，验证已经填入的数字是否有效即可。</li>
-<li>定数独序列只包含数字 1-9 和字符 '.' 。</li>
-<li>给定数独永远是 9x9 形式的。</li>
-</ul>
-<hr>
-<h1 id="二-解决方案">二、解决方案</h1>
-<p><strong>思路：</strong></p>
-<ol>
-<li>
-<p>由于board中的整数限定在1到9的范围内，因此可以分别建立哈希表来存储任一个数在相应维度上是否出现过。维度有3个：所在的行，所在的列，所在的box，注意box的下标也是从左往右、从上往下的。</p>
-</li>
-<li>
-<p>遍历到每个数的时候，例如boar[i][j]，我们判断其是否满足三个条件：</p>
-</li>
-</ol>
-<ul>
-<li>在第 i 个行中是否出现过</li>
-<li>在第 j 个列中是否出现过</li>
-<li>在第 **j/3 + (i/3)**3 个box中是否出现过。</li>
-</ul>
-<p><strong>C代码如下（通过）：</strong></p>
-<pre><code>bool isValidSudoku(char** board, int boardSize, int* boardColSize) {
-    int row[9][10] = { 0 }; // 哈希表存储每一行的每个数是否出现过，默认初始情况下，每一行每一个数都没有出现过
-    // 整个board有9行，第二维的维数10是为了让下标有9，和数独中的数字9对应。
-    int col[9][10] = { 0 };// 存储每一列的每个数是否出现过，默认初始情况下，每一列的每一个数都没有出现过
-    int box[9][10] = { 0 };// 存储每一个box的每个数是否出现过，默认初始情况下，在每个box中，每个数都没有出现过。整个board有9个box。
-    for (int i = 0; i &lt; boardSize; i++)
-    {
-        for (int j = 0; j &lt; *boardColSize; j++)
-        {
-            /*遍历到第i行第j列的那个数,我们要判断这个数在其所在的行有没有出现过，
-            同时判断这个数在其所在的列有没有出现过
-            同时判断这个数在其所在的box中有没有出现过*/
-            if (board[i][j] == '.')
-                continue;
-            int curNum = board[i][j] - '0';
-            if (row[i][curNum]) 
-                return false;
-            if (col[j][curNum]) 
-                return false;
-            if (box[(i/3)*3 + j/3][curNum]) 
-                return false;
-            row[i][curNum] = 1;// 之前都没出现过，现在出现了，就给它置为1，下次再遇见就能够直接返回false了。
-            col[j][curNum] = 1;
-            box[(i / 3) * 3 + j / 3][curNum] = 1;
-        }
-    }
-    return true;
-}
-</code></pre>
 ]]></content>
     </entry>
 </feed>
