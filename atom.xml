@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://XMTam.github.io</id>
     <title>Alvin</title>
-    <updated>2020-03-22T01:25:38.361Z</updated>
+    <updated>2020-03-23T00:25:38.324Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://XMTam.github.io"/>
     <link rel="self" href="https://XMTam.github.io/atom.xml"/>
@@ -31,14 +31,15 @@
 对于本题而言，当 needle 是空字符串时我们应当返回 0 。这与C语言的 strstr() 以及 Java的 indexOf() 定义相符。</p>
 <hr>
 <h1 id="二-解决方法">二、解决方法</h1>
+<h2 id="方法一暴力搜索">方法一：暴力搜索</h2>
 <p>废话不多说，先上代码。<br>
 最初的实现（通过）：</p>
 <pre><code>int strStr(char* haystack, char* needle) {
     char* phk = haystack;
     char* pne = needle;
-    int index = 0;  // 当前指针phk指向的元素的下标，与指针phk绑定（所谓绑定就是二者同增同减）
-    int cnt = 0;    // 纪录回溯时需要后退的间隔数，与指针pne绑定
-    
+    int index = 0;
+    int offset = 0;
+
     if (*pne == '\0')
         return 0;
     while (*phk != '\0')
@@ -47,13 +48,13 @@
         {
             phk++;
             index++;
-        }            
+        }
         else // the cur two pointer's value is equal
         {
             phk++;
             index++;
             pne++;
-            cnt++;
+            offset++;
             if (*pne == '\0' &amp;&amp; *phk == '\0')
                 return 0;
             while (*pne != '\0' &amp;&amp; *phk != '\0')
@@ -61,55 +62,84 @@
                 if (*pne != *phk)
                 {
                     phk++;
-                    index++;                    
-                    phk -= cnt;                    
-                    index -= cnt;
-                    pne -= cnt;
-                    cnt -= cnt;
+                    index++;
+                    phk -= offset;
+                    index -= offset;
+                    pne -= offset;
+                    offset -= offset;
                     break;
-                }                    
+                }
                 else
                 {
                     pne++;
-                    cnt++;
+                    offset++;
                     phk++;
                     index++;
                 }
                 if (strlen(pne) &gt; strlen(phk))
                     return -1;
-            } 
+            }
             if (*pne == '\0')
             {
                 if (*phk == '\0')
-                    return index - cnt;
+                    return index - offset;
                 else
                     break;
-            }               
+            }
         }
     }
     if (index == strlen(haystack))
         return -1;
-    return index - cnt;
+    return index - offset;
 }
 </code></pre>
 <p>执行用时图如下：<br>
 <img src="https://XMTam.github.io/post-images/1584838228441.png" alt="" loading="lazy"><br>
 <strong>思路</strong>：设置两个指针分别指向两个字符串头部，然后从字符串 haystack 头部往后遍历，去寻找其中与字符串 needle 相同的子串。这个遍历的过程中最要紧的是要<strong>注意回溯</strong>，例如对于字符串<br>
-haystack[] = &quot;aaaba&quot;，needle[] = &quot;aab&quot;，当两个指针都指到字符串中第三个字符时，此时字符a不等于字符b，这时我们不能把指向 haystack 的指针往后移，而是应该将指针回溯到第二个字符，再重新开始比较。由于 cnt 纪录了当前字符串 needle 已经匹配了的字符的个数，因此需将字符串 haystack 的指针 phk 后移 cnt 个间隔，这样便完成了回溯。<br>
+haystack[] = &quot;aaaba&quot;，needle[] = &quot;aab&quot;，当两个指针都指到字符串中第三个字符时，此时字符a不等于字符b，这时我们不能把指向 haystack 的指针往后移，而是应该将指针回溯到第二个字符，再重新开始比较。由于 offset 纪录了当前字符串 needle 已经匹配了的字符的个数，即偏移量，因此需将字符串 haystack 的指针 phk 后移 offset 个间隔，这样便完成了回溯。<br>
 实现回溯的代码如下：</p>
 <pre><code>if (*pne != *phk)
 {
     phk++;
     index++;                    
-    phk -= cnt;                    
-    index -= cnt;
-    pne -= cnt;
-    cnt -= cnt;
+    phk -= offset;                    
+    index -= offset;
+    pne -= offset;
+    offset -= offset;
     break;
 }
 </code></pre>
 <hr>
-<p><strong>改进</strong>：</p>
+<p><strong>改进</strong>：逐个遍历字符串 haystack 前 strlen(haystack) - strlen(needle) 个字符，查找从当前字符开始长度为 strlen(needle) 的子串是否和字符串 needle 相同，如果相同，返回当前字符下标，反之则继续遍历，若没找到则返回 -1。<br>
+<strong>代码如下</strong>：</p>
+<pre><code>int strStr(char* haystack, char* needle) {
+    int M = strlen(haystack);
+    int N = strlen(needle);
+    for (int i = 0; i &lt;= M - N; i++)
+    {
+        int j;
+        for (j = 0; j &lt; N; j++)
+        {
+            if (needle[j] != haystack[i + j])
+                break;
+        }
+        if (j == N)
+            return i;
+    }
+    return -1;
+}
+</code></pre>
+<p>代码执行用时图如下所示：<br>
+<img src="https://XMTam.github.io/post-images/1584919483869.png" alt="" loading="lazy"><br>
+什么？0ms，已经战胜100%的c提交纪录！是的，你没看错，就是100%。一开始我是不相信的，因为这个方法它是暴力搜索呀，但是，我真的提交了好几次，结果都是100%（不信你可以自己试试）。改进后的方法其实本质上和前面是一样的，都是暴力搜索，但是它却比前面的方法暴力搜索的“更聪明”，为什么这么说呢？因为它没有回溯！是的，没有回溯。仅仅因为避免了回溯就将算法的效率提升了许多。其实按照生活常识我们也能理解，比如同样的一段路程，旅行者两次都采用步行的方式，但是第一次它因为迷路所以很多时候不得不重新回到原来走过的地方，而第二次他变聪明了，他直接打开手机的GPS导航，按照给定路线一次就走到终点。虽然都是步行，但是二次花费的时间显然第二次会比第一次少很多。</p>
+<p>改进后算法的时间复杂度分析：两个 <em>for</em> 循环，所以时间复杂度不难算出是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>M</mi><mi>N</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(MN)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mclose">)</span></span></span></span>。</p>
+<p>看到这里，大家可能以为就要结尾了……<br>
+不，离结尾还有很长一段距离，请大家耐心看下去。</p>
+<p>学过数据结构课程的同仁们可能没人会不知道赫赫有名的 KMP 算法了。是的，这是一道字符串匹配问题，我们当然不能忘记 KMP。可能有同学要问了，我们已经有了“战胜100%纪录”的方法，为什么还要管它喵的 KMP？难道 KMP 还能再提高？是的，KMP 它不可能再提高了，再高也还是100%，但是对于某些情况，KMP 算法仍然可以秒杀改进后的暴力搜索法。例如：对于字符串 haystack = &quot;aaaaaaab&quot;，needle = &quot;aaab&quot;，碰到这种字符串 haystack 中重复的字符比较多的情况，改进后的暴力搜索法就显得很笨。<br>
+<img src="https://XMTam.github.io/post-images/1584921512719.gif" alt="" loading="lazy">说明：图片转载自微信公众号labuladong<br>
+而 KMP 碰到这种情况是怎么处理的呢？请看下图：<br>
+<img src="https://XMTam.github.io/post-images/1584922441649.gif" alt="" loading="lazy"><br>
+仔细一看我们就会发现不一样。很明显，pat 中根本没有字符 c，根本没必要回退指针 i，暴力解法明显多做了很多不必要的操作。KMP 算法的不同之处在于，它会花费空间来记录一些信息，在上述情况中就会显得很聪明。举个栗子：前面改进的暴力搜索法虽然有手机GPS导航，但免不了旅行者还是会不停的看手机导航信息，以免走错，这就是所谓了“走一步看一步”，而有了KMP，你的大脑就像信鸽的脑子一样（虽然没有那么小，但同样有辨识方向的能力），可以毫不思索的直奔目的地。这就是KMP算法真的魅力所在。</p>
 ]]></content>
     </entry>
     <entry>
