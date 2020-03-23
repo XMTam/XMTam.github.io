@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Alvin</title>
 <meta name="description" content="A = X + Y + Z" />
-<link rel="shortcut icon" href="https://XMTam.github.io/favicon.ico?v=1584923134321">
+<link rel="shortcut icon" href="https://XMTam.github.io/favicon.ico?v=1584923355251">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
@@ -23,7 +23,7 @@
       <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
         <i class="ri-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
         <a href="https://XMTam.github.io">
-          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://XMTam.github.io/images/avatar.png?v=1584923134321" alt="">
+          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://XMTam.github.io/images/avatar.png?v=1584923355251" alt="">
         </a>
         <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">Alvin</h1>
       </div>
@@ -38,6 +38,12 @@
 <li><a href="#%E4%BA%8C-%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95">二、解决方法</a>
 <ul>
 <li><a href="#%E6%96%B9%E6%B3%95%E4%B8%80%E6%9A%B4%E5%8A%9B%E6%90%9C%E7%B4%A2">方法一：暴力搜索</a></li>
+<li><a href="#%E5%AD%A6%E8%BF%87%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E8%AF%BE%E7%A8%8B%E7%9A%84%E5%90%8C%E4%BB%81%E4%BB%AC%E5%8F%AF%E8%83%BD%E6%B2%A1%E4%BA%BA%E4%BC%9A%E4%B8%8D%E7%9F%A5%E9%81%93%E8%B5%AB%E8%B5%AB%E6%9C%89%E5%90%8D%E7%9A%84-kmp-%E7%AE%97%E6%B3%95%E4%BA%86-%E6%98%AF%E7%9A%84%E8%BF%99%E6%98%AF%E4%B8%80%E9%81%93%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D%E9%97%AE%E9%A2%98%E6%88%91%E4%BB%AC%E5%BD%93%E7%84%B6%E4%B8%8D%E8%83%BD%E5%BF%98%E8%AE%B0-kmp-%E5%8F%AF%E8%83%BD%E6%9C%89%E5%90%8C%E5%AD%A6%E8%A6%81%E9%97%AE%E4%BA%86%E6%88%91%E4%BB%AC%E5%B7%B2%E7%BB%8F%E6%9C%89%E4%BA%86%E6%88%98%E8%83%9C100%E7%BA%AA%E5%BD%95%E7%9A%84%E6%96%B9%E6%B3%95%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%98%E8%A6%81%E7%AE%A1%E5%AE%83%E5%96%B5%E7%9A%84-kmp%E9%9A%BE%E9%81%93-kmp-%E8%BF%98%E8%83%BD%E5%86%8D%E6%8F%90%E9%AB%98%E6%98%AF%E7%9A%84kmp-%E5%AE%83%E4%B8%8D%E5%8F%AF%E8%83%BD%E5%86%8D%E6%8F%90%E9%AB%98%E4%BA%86%E5%86%8D%E9%AB%98%E4%B9%9F%E8%BF%98%E6%98%AF100%E4%BD%86%E6%98%AF%E5%AF%B9%E4%BA%8E%E6%9F%90%E4%BA%9B%E6%83%85%E5%86%B5kmp-%E7%AE%97%E6%B3%95%E4%BB%8D%E7%84%B6%E5%8F%AF%E4%BB%A5%E7%A7%92%E6%9D%80%E6%94%B9%E8%BF%9B%E5%90%8E%E7%9A%84%E6%9A%B4%E5%8A%9B%E6%90%9C%E7%B4%A2%E6%B3%95-%E4%BE%8B%E5%A6%82%E5%AF%B9%E4%BA%8E%E5%AD%97%E7%AC%A6%E4%B8%B2-haystack-aaaaaaabneedle-aaab%E7%A2%B0%E5%88%B0%E8%BF%99%E7%A7%8D%E5%AD%97%E7%AC%A6%E4%B8%B2-haystack-%E4%B8%AD%E9%87%8D%E5%A4%8D%E7%9A%84%E5%AD%97%E7%AC%A6%E6%AF%94%E8%BE%83%E5%A4%9A%E7%9A%84%E6%83%85%E5%86%B5%E6%94%B9%E8%BF%9B%E5%90%8E%E7%9A%84%E6%9A%B4%E5%8A%9B%E6%90%9C%E7%B4%A2%E6%B3%95%E5%B0%B1%E6%98%BE%E5%BE%97%E5%BE%88%E7%AC%A8-%E8%AF%B4%E6%98%8E%E5%9B%BE%E7%89%87%E8%BD%AC%E8%BD%BD%E8%87%AA%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7labuladong%E8%80%8C-kmp-%E7%A2%B0%E5%88%B0%E8%BF%99%E7%A7%8D%E6%83%85%E5%86%B5%E6%98%AF%E6%80%8E%E4%B9%88%E5%A4%84%E7%90%86%E7%9A%84%E5%91%A2%E8%AF%B7%E7%9C%8B%E4%B8%8B%E5%9B%BE%E4%BB%94%E7%BB%86%E4%B8%80%E7%9C%8B%E6%88%91%E4%BB%AC%E5%B0%B1%E4%BC%9A%E5%8F%91%E7%8E%B0%E4%B8%8D%E4%B8%80%E6%A0%B7-%E5%BE%88%E6%98%8E%E6%98%BEpat-%E4%B8%AD%E6%A0%B9%E6%9C%AC%E6%B2%A1%E6%9C%89%E5%AD%97%E7%AC%A6-c%E6%A0%B9%E6%9C%AC%E6%B2%A1%E5%BF%85%E8%A6%81%E5%9B%9E%E9%80%80%E6%8C%87%E9%92%88-i%E6%9A%B4%E5%8A%9B%E8%A7%A3%E6%B3%95%E6%98%8E%E6%98%BE%E5%A4%9A%E5%81%9A%E4%BA%86%E5%BE%88%E5%A4%9A%E4%B8%8D%E5%BF%85%E8%A6%81%E7%9A%84%E6%93%8D%E4%BD%9C-kmp-%E7%AE%97%E6%B3%95%E7%9A%84%E4%B8%8D%E5%90%8C%E4%B9%8B%E5%A4%84%E5%9C%A8%E4%BA%8E%E5%AE%83%E4%BC%9A%E8%8A%B1%E8%B4%B9%E7%A9%BA%E9%97%B4%E6%9D%A5%E8%AE%B0%E5%BD%95%E4%B8%80%E4%BA%9B%E4%BF%A1%E6%81%AF%E5%9C%A8%E4%B8%8A%E8%BF%B0%E6%83%85%E5%86%B5%E4%B8%AD%E5%B0%B1%E4%BC%9A%E6%98%BE%E5%BE%97%E5%BE%88%E8%81%AA%E6%98%8E-%E4%B8%BE%E4%B8%AA%E6%A0%97%E5%AD%90%E5%89%8D%E9%9D%A2%E6%94%B9%E8%BF%9B%E7%9A%84%E6%9A%B4%E5%8A%9B%E6%90%9C%E7%B4%A2%E6%B3%95%E8%99%BD%E7%84%B6%E6%9C%89%E6%89%8B%E6%9C%BAgps%E5%AF%BC%E8%88%AA%E4%BD%86%E5%85%8D%E4%B8%8D%E4%BA%86%E6%97%85%E8%A1%8C%E8%80%85%E8%BF%98%E6%98%AF%E4%BC%9A%E4%B8%8D%E5%81%9C%E7%9A%84%E7%9C%8B%E6%89%8B%E6%9C%BA%E5%AF%BC%E8%88%AA%E4%BF%A1%E6%81%AF%E4%BB%A5%E5%85%8D%E8%B5%B0%E9%94%99%E8%BF%99%E5%B0%B1%E6%98%AF%E6%89%80%E8%B0%93%E4%BA%86%E8%B5%B0%E4%B8%80%E6%AD%A5%E7%9C%8B%E4%B8%80%E6%AD%A5%E8%80%8C%E6%9C%89%E4%BA%86kmp%E4%BD%A0%E7%9A%84%E5%A4%A7%E8%84%91%E5%B0%B1%E5%83%8F%E4%BF%A1%E9%B8%BD%E7%9A%84%E8%84%91%E5%AD%90%E4%B8%80%E6%A0%B7%E8%99%BD%E7%84%B6%E6%B2%A1%E6%9C%89%E9%82%A3%E4%B9%88%E5%B0%8F%E4%BD%86%E5%90%8C%E6%A0%B7%E6%9C%89%E8%BE%A8%E8%AF%86%E6%96%B9%E5%90%91%E7%9A%84%E8%83%BD%E5%8A%9B%E5%8F%AF%E4%BB%A5%E6%AF%AB%E4%B8%8D%E6%80%9D%E7%B4%A2%E7%9A%84%E7%9B%B4%E5%A5%94%E7%9B%AE%E7%9A%84%E5%9C%B0-%E8%BF%99%E5%B0%B1%E6%98%AFkmp%E7%AE%97%E6%B3%95%E7%9C%9F%E7%9A%84%E9%AD%85%E5%8A%9B%E6%89%80%E5%9C%A8">学过数据结构课程的同仁们可能没人会不知道赫赫有名的 KMP 算法了。是的，这是一道字符串匹配问题，我们当然不能忘记 KMP。可能有同学要问了，我们已经有了“战胜100%纪录”的方法，为什么还要管它喵的 KMP？难道 KMP 还能再提高？是的，KMP 它不可能再提高了，再高也还是100%，但是对于某些情况，KMP 算法仍然可以秒杀改进后的暴力搜索法。例如：对于字符串 haystack = &quot;aaaaaaab&quot;，needle = &quot;aaab&quot;，碰到这种字符串 haystack 中重复的字符比较多的情况，改进后的暴力搜索法就显得很笨。<br>
+!说明：图片转载自微信公众号labuladong<br>
+而 KMP 碰到这种情况是怎么处理的呢？请看下图：<br>
+!<br>
+仔细一看我们就会发现不一样。很明显，pat 中根本没有字符 c，根本没必要回退指针 i，暴力解法明显多做了很多不必要的操作。KMP 算法的不同之处在于，它会花费空间来记录一些信息，在上述情况中就会显得很聪明。举个栗子：前面改进的暴力搜索法虽然有手机GPS导航，但免不了旅行者还是会不停的看手机导航信息，以免走错，这就是所谓了“走一步看一步”，而有了KMP，你的大脑就像信鸽的脑子一样（虽然没有那么小，但同样有辨识方向的能力），可以毫不思索的直奔目的地。这就是KMP算法真的魅力所在。</a></li>
+<li><a href="#%E6%96%B9%E6%B3%95%E4%BA%8Ckmp%E7%AE%97%E6%B3%95">方法二：KMP算法</a></li>
 </ul>
 </li>
 </ul>
@@ -187,7 +193,6 @@ haystack[] = &quot;aaaba&quot;，needle[] = &quot;aab&quot;，当两个指针都
     break;
 }
 </code></pre>
-<hr>
 <p><strong>改进</strong>：逐个遍历字符串 haystack 前 strlen(haystack) - strlen(needle) 个字符，查找从当前字符开始长度为 strlen(needle) 的子串是否和字符串 needle 相同，如果相同，返回当前字符下标，反之则继续遍历，若没找到则返回 -1。<br>
 <strong>代码如下</strong>：</p>
 <pre><code>int strStr(char* haystack, char* needle) {
@@ -213,11 +218,12 @@ haystack[] = &quot;aaaba&quot;，needle[] = &quot;aab&quot;，当两个指针都
 <p>改进后算法的时间复杂度分析：两个 <em>for</em> 循环，所以时间复杂度不难算出是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>M</mi><mi>N</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(MN)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mclose">)</span></span></span></span>。</p>
 <p>看到这里，大家可能以为就要结尾了……<br>
 不，离结尾还有很长一段距离，请大家耐心看下去。</p>
-<p>学过数据结构课程的同仁们可能没人会不知道赫赫有名的 KMP 算法了。是的，这是一道字符串匹配问题，我们当然不能忘记 KMP。可能有同学要问了，我们已经有了“战胜100%纪录”的方法，为什么还要管它喵的 KMP？难道 KMP 还能再提高？是的，KMP 它不可能再提高了，再高也还是100%，但是对于某些情况，KMP 算法仍然可以秒杀改进后的暴力搜索法。例如：对于字符串 haystack = &quot;aaaaaaab&quot;，needle = &quot;aaab&quot;，碰到这种字符串 haystack 中重复的字符比较多的情况，改进后的暴力搜索法就显得很笨。<br>
+<h2 id="学过数据结构课程的同仁们可能没人会不知道赫赫有名的-kmp-算法了-是的这是一道字符串匹配问题我们当然不能忘记-kmp-可能有同学要问了我们已经有了战胜100纪录的方法为什么还要管它喵的-kmp难道-kmp-还能再提高是的kmp-它不可能再提高了再高也还是100但是对于某些情况kmp-算法仍然可以秒杀改进后的暴力搜索法-例如对于字符串-haystack-aaaaaaabneedle-aaab碰到这种字符串-haystack-中重复的字符比较多的情况改进后的暴力搜索法就显得很笨-说明图片转载自微信公众号labuladong而-kmp-碰到这种情况是怎么处理的呢请看下图仔细一看我们就会发现不一样-很明显pat-中根本没有字符-c根本没必要回退指针-i暴力解法明显多做了很多不必要的操作-kmp-算法的不同之处在于它会花费空间来记录一些信息在上述情况中就会显得很聪明-举个栗子前面改进的暴力搜索法虽然有手机gps导航但免不了旅行者还是会不停的看手机导航信息以免走错这就是所谓了走一步看一步而有了kmp你的大脑就像信鸽的脑子一样虽然没有那么小但同样有辨识方向的能力可以毫不思索的直奔目的地-这就是kmp算法真的魅力所在">学过数据结构课程的同仁们可能没人会不知道赫赫有名的 KMP 算法了。是的，这是一道字符串匹配问题，我们当然不能忘记 KMP。可能有同学要问了，我们已经有了“战胜100%纪录”的方法，为什么还要管它喵的 KMP？难道 KMP 还能再提高？是的，KMP 它不可能再提高了，再高也还是100%，但是对于某些情况，KMP 算法仍然可以秒杀改进后的暴力搜索法。例如：对于字符串 haystack = &quot;aaaaaaab&quot;，needle = &quot;aaab&quot;，碰到这种字符串 haystack 中重复的字符比较多的情况，改进后的暴力搜索法就显得很笨。<br>
 <img src="https://XMTam.github.io/post-images/1584921512719.gif" alt="" loading="lazy">说明：图片转载自微信公众号labuladong<br>
 而 KMP 碰到这种情况是怎么处理的呢？请看下图：<br>
 <img src="https://XMTam.github.io/post-images/1584922441649.gif" alt="" loading="lazy"><br>
-仔细一看我们就会发现不一样。很明显，pat 中根本没有字符 c，根本没必要回退指针 i，暴力解法明显多做了很多不必要的操作。KMP 算法的不同之处在于，它会花费空间来记录一些信息，在上述情况中就会显得很聪明。举个栗子：前面改进的暴力搜索法虽然有手机GPS导航，但免不了旅行者还是会不停的看手机导航信息，以免走错，这就是所谓了“走一步看一步”，而有了KMP，你的大脑就像信鸽的脑子一样（虽然没有那么小，但同样有辨识方向的能力），可以毫不思索的直奔目的地。这就是KMP算法真的魅力所在。</p>
+仔细一看我们就会发现不一样。很明显，pat 中根本没有字符 c，根本没必要回退指针 i，暴力解法明显多做了很多不必要的操作。KMP 算法的不同之处在于，它会花费空间来记录一些信息，在上述情况中就会显得很聪明。举个栗子：前面改进的暴力搜索法虽然有手机GPS导航，但免不了旅行者还是会不停的看手机导航信息，以免走错，这就是所谓了“走一步看一步”，而有了KMP，你的大脑就像信鸽的脑子一样（虽然没有那么小，但同样有辨识方向的能力），可以毫不思索的直奔目的地。这就是KMP算法真的魅力所在。</h2>
+<h2 id="方法二kmp算法">方法二：KMP算法</h2>
 
         </div>
 
