@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://XMTam.github.io</id>
     <title>Alvin</title>
-    <updated>2020-03-24T00:02:27.801Z</updated>
+    <updated>2020-03-24T00:05:55.496Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://XMTam.github.io"/>
     <link rel="self" href="https://XMTam.github.io/atom.xml"/>
@@ -134,7 +134,7 @@ haystack[] = &quot;aaaba&quot;，needle[] = &quot;aab&quot;，当两个指针都
 <p>改进后算法的时间复杂度分析：两个 <em>for</em> 循环，所以时间复杂度不难算出是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>M</mi><mi>N</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(MN)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mclose">)</span></span></span></span>。</p>
 <p>看到这里，大家可能以为就要结尾了……<br>
 不，离结尾还有很长一段距离，请大家耐心看下去。</p>
-<p>学过数据结构课程的同仁们可能没人会不知道赫赫有名的 KMP 算法了。是的，这是一道字符串匹配问题，我们当然不能忘记 KMP。可能有同学要问了，我们已经有了“战胜100%纪录”的方法，为什么还要管它喵的 KMP？难道 KMP 还能再提高？是的，KMP 它不可能再提高了，再高也还是100%，但是对于某些情况，KMP 算法仍然可以秒杀改进后的暴力搜索法。例如：对于字符串 txt = &quot;aaaaaaab&quot;，pat = &quot;aaab&quot;，碰到这种字符串 haystack 中重复的字符比较多的情况，改进后的暴力搜索法就显得很笨。<br>
+<p>学过数据结构的同仁们可能没人会不知道赫赫有名的 KMP 算法了。是的，这是一道字符串匹配问题，我们当然不能忘记 KMP。可能有同学要问了，我们已经有了“战胜100%纪录”的方法，为什么还要管它喵的 KMP？难道 KMP 还能再提高？是的，KMP 它不可能再提高了，再高也还是100%，但是对于某些情况，KMP 算法仍然可以秒杀改进后的暴力搜索法。例如：对于字符串 txt = &quot;aaaaaaab&quot;，pat = &quot;aaab&quot;，碰到这种字符串 haystack 中重复的字符比较多的情况，改进后的暴力搜索法就显得很笨。<br>
 <img src="https://XMTam.github.io/post-images/1584921512719.gif" alt="" loading="lazy">说明：此图片以及接下来的两张图片均转载自微信公众号labuladong<br>
 而 KMP 碰到这种情况是怎么处理的呢？请看下图：<br>
 <img src="https://XMTam.github.io/post-images/1584922441649.gif" alt="" loading="lazy"><br>
