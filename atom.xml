@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://XMTam.github.io</id>
     <title>Alvin</title>
-    <updated>2020-03-23T00:29:18.791Z</updated>
+    <updated>2020-03-24T00:02:27.801Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://XMTam.github.io"/>
     <link rel="self" href="https://XMTam.github.io/atom.xml"/>
@@ -134,12 +134,91 @@ haystack[] = &quot;aaaba&quot;，needle[] = &quot;aab&quot;，当两个指针都
 <p>改进后算法的时间复杂度分析：两个 <em>for</em> 循环，所以时间复杂度不难算出是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>M</mi><mi>N</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(MN)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mclose">)</span></span></span></span>。</p>
 <p>看到这里，大家可能以为就要结尾了……<br>
 不，离结尾还有很长一段距离，请大家耐心看下去。</p>
-<h2 id="学过数据结构课程的同仁们可能没人会不知道赫赫有名的-kmp-算法了-是的这是一道字符串匹配问题我们当然不能忘记-kmp-可能有同学要问了我们已经有了战胜100纪录的方法为什么还要管它喵的-kmp难道-kmp-还能再提高是的kmp-它不可能再提高了再高也还是100但是对于某些情况kmp-算法仍然可以秒杀改进后的暴力搜索法-例如对于字符串-haystack-aaaaaaabneedle-aaab碰到这种字符串-haystack-中重复的字符比较多的情况改进后的暴力搜索法就显得很笨-说明图片转载自微信公众号labuladong而-kmp-碰到这种情况是怎么处理的呢请看下图仔细一看我们就会发现不一样-很明显pat-中根本没有字符-c根本没必要回退指针-i暴力解法明显多做了很多不必要的操作-kmp-算法的不同之处在于它会花费空间来记录一些信息在上述情况中就会显得很聪明-举个栗子前面改进的暴力搜索法虽然有手机gps导航但免不了旅行者还是会不停的看手机导航信息以免走错这就是所谓了走一步看一步而有了kmp你的大脑就像信鸽的脑子一样虽然没有那么小但同样有辨识方向的能力可以毫不思索的直奔目的地-这就是kmp算法真的魅力所在">学过数据结构课程的同仁们可能没人会不知道赫赫有名的 KMP 算法了。是的，这是一道字符串匹配问题，我们当然不能忘记 KMP。可能有同学要问了，我们已经有了“战胜100%纪录”的方法，为什么还要管它喵的 KMP？难道 KMP 还能再提高？是的，KMP 它不可能再提高了，再高也还是100%，但是对于某些情况，KMP 算法仍然可以秒杀改进后的暴力搜索法。例如：对于字符串 haystack = &quot;aaaaaaab&quot;，needle = &quot;aaab&quot;，碰到这种字符串 haystack 中重复的字符比较多的情况，改进后的暴力搜索法就显得很笨。<br>
-<img src="https://XMTam.github.io/post-images/1584921512719.gif" alt="" loading="lazy">说明：图片转载自微信公众号labuladong<br>
+<p>学过数据结构课程的同仁们可能没人会不知道赫赫有名的 KMP 算法了。是的，这是一道字符串匹配问题，我们当然不能忘记 KMP。可能有同学要问了，我们已经有了“战胜100%纪录”的方法，为什么还要管它喵的 KMP？难道 KMP 还能再提高？是的，KMP 它不可能再提高了，再高也还是100%，但是对于某些情况，KMP 算法仍然可以秒杀改进后的暴力搜索法。例如：对于字符串 txt = &quot;aaaaaaab&quot;，pat = &quot;aaab&quot;，碰到这种字符串 haystack 中重复的字符比较多的情况，改进后的暴力搜索法就显得很笨。<br>
+<img src="https://XMTam.github.io/post-images/1584921512719.gif" alt="" loading="lazy">说明：此图片以及接下来的两张图片均转载自微信公众号labuladong<br>
 而 KMP 碰到这种情况是怎么处理的呢？请看下图：<br>
 <img src="https://XMTam.github.io/post-images/1584922441649.gif" alt="" loading="lazy"><br>
-仔细一看我们就会发现不一样。很明显，pat 中根本没有字符 c，根本没必要回退指针 i，暴力解法明显多做了很多不必要的操作。KMP 算法的不同之处在于，它会花费空间来记录一些信息，在上述情况中就会显得很聪明。举个栗子：前面改进的暴力搜索法虽然有手机GPS导航，但免不了旅行者还是会不停的看手机导航信息，以免走错，这就是所谓了“走一步看一步”，而有了KMP，你的大脑就像信鸽的脑子一样（虽然没有那么小，但同样有辨识方向的能力），可以毫不思索的直奔目的地。这就是KMP算法真的魅力所在。</h2>
+仔细一看我们就会发现不一样。很明显，pat 中根本没有字符 c，根本没必要回退指针 i，暴力解法明显多做了很多不必要的操作。KMP 算法的不同之处在于，它会花费空间来记录一些信息，在上述情况中就会显得很聪明。再比如类似的 txt = &quot;aaaaaaab&quot; pat = &quot;aaab&quot;，暴力解法还会和上面那个例子一样蠢蠢地回退指针 i，而 KMP 算法又会耍聪明：<br>
+<img src="https://XMTam.github.io/post-images/1585004121171.gif" alt="" loading="lazy"><br>
+因为 KMP 算法知道字符 b 之前的字符 a 都是匹配的，所以每次只需要比较字符 b 是否被匹配就行了。这就是KMP算法真的魅力所在，KMP绝对不存在回溯的可能。<br>
+打个比方：前面改进的暴力搜索法虽然有手机GPS导航，但旅行者还是免不了会不停的看手机导航信息，以免走错，这就是所谓了“走一步看一步”，而有了KMP，你的大脑就像信鸽的脑子一样（虽然没有那么小，但同样有辨识方向的能力），可以毫不思索的直奔目的地。</p>
+<h2 id="这样说暴力搜索法并不是最优的方法但是其执行用时却是0ms这引起了我的注意于是我想有没有可能是leetcode的代码测试器的问题呢于是我故意隔了一段时间后又重新提交了解答代码原封不动结果得到执行用时图对了嘛这用时像上面图中显示的才合理-于是我积极投入到采用-kmp-来解决此问题的行动中让我们一起来看看-kmp-算法的效率吧">这样说，暴力搜索法并不是最优的方法，但是其执行用时却是0ms，这引起了我的注意，于是我想有没有可能是LeetCode的代码测试器的问题呢？于是我故意隔了一段时间后又重新提交了解答（代码原封不动），结果得到执行用时图：<br>
+<img src="https://XMTam.github.io/post-images/1585005446255.png" alt="" loading="lazy"><br>
+对了嘛，这用时像上面图中显示的才合理。于是我积极投入到采用 KMP 来解决此问题的行动中，让我们一起来看看 KMP 算法的效率吧！</h2>
 <h2 id="方法二kmp算法">方法二：KMP算法</h2>
+<p>代码实现：</p>
+<pre><code>void getNextVal(char* p, int* next)
+{
+    int pLen = strlen(p);
+    next[0] = -1;
+    int k = -1;
+    int j = 0;
+    while (j &lt; pLen - 1)
+    {
+        // p[k]表示前缀，p[j]表示后缀
+        if (k == -1 || p[j] == p[k])
+        {
+            ++j;
+            ++k;
+            // 较之前next数组求法，改动在下面4行
+            if (p[j] != p[k])
+            {
+                next[j] = k;
+            }
+            else
+            {
+                next[j] = next[k];
+            }
+        }
+        else
+        {
+            k = next[k];
+        }
+    }
+}
+
+int kmpSearch(char* s, char* p)
+{
+    int i = 0;
+    int j = 0;
+    int sLen = strlen(s);
+    int pLen = strlen(p);
+    int* next = (int*)malloc(sizeof(int) * (pLen + 1));
+    getNextVal(p, next);
+    while (i &lt; sLen &amp;&amp; j &lt; pLen)
+    {
+        // ①如果j = -1，或者当前字符匹配成功（即S[i] == P[j]），都令i++，j++
+        if (j == -1 || s[i] == p[j])
+        {
+            i++;
+            j++;
+        }
+        else
+        {
+            // ②如果j != -1，且当前字符匹配失败（即S[i] != P[j]），则令 i 不变，j = next[j]
+            // next[j]即为j所对应的next值
+            j = next[j];
+        }
+    }
+    if (j == pLen)
+    {
+        free(next);
+        return i - j;
+    }
+    else
+    {
+        free(next);
+        return -1;
+    }
+}
+int strStr(char* haystack, char* needle) {
+    if (needle == NULL)
+        return 0;
+    return kmpSearch(haystack, needle);
+}
+</code></pre>
+<p>代码执行用时图如下，0ms妥妥的：<br>
+<img src="https://XMTam.github.io/post-images/1585008139698.png" alt="" loading="lazy"></p>
 ]]></content>
     </entry>
     <entry>
