@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://XMTam.github.io</id>
     <title>Alvin</title>
-    <updated>2020-03-24T00:07:26.147Z</updated>
+    <updated>2020-03-24T00:20:59.424Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://XMTam.github.io"/>
     <link rel="self" href="https://XMTam.github.io/atom.xml"/>
@@ -32,6 +32,7 @@
 <hr>
 <h1 id="二-解决方法">二、解决方法</h1>
 <h2 id="方法一暴力搜索">方法一：暴力搜索</h2>
+<h3 id="1代码">1.代码</h3>
 <p>废话不多说，先上代码。<br>
 最初的实现（通过）：</p>
 <pre><code>int strStr(char* haystack, char* needle) {
@@ -94,8 +95,9 @@
 }
 </code></pre>
 <p>执行用时图如下：<br>
-<img src="https://XMTam.github.io/post-images/1584838228441.png" alt="" loading="lazy"><br>
-<strong>思路</strong>：设置两个指针分别指向两个字符串头部，然后从字符串 haystack 头部往后遍历，去寻找其中与字符串 needle 相同的子串。这个遍历的过程中最要紧的是要<strong>注意回溯</strong>，例如对于字符串<br>
+<img src="https://XMTam.github.io/post-images/1584838228441.png" alt="" loading="lazy"></p>
+<h3 id="2-思路">2. 思路</h3>
+<p>设置两个指针分别指向两个字符串头部，然后从字符串 haystack 头部往后遍历，去寻找其中与字符串 needle 相同的子串。这个遍历的过程中最要紧的是要<strong>注意回溯</strong>，例如对于字符串<br>
 haystack[] = &quot;aaaba&quot;，needle[] = &quot;aab&quot;，当两个指针都指到字符串中第三个字符时，此时字符a不等于字符b，这时我们不能把指向 haystack 的指针往后移，而是应该将指针回溯到第二个字符，再重新开始比较。由于 offset 纪录了当前字符串 needle 已经匹配了的字符的个数，即偏移量，因此需将字符串 haystack 的指针 phk 后移 offset 个间隔，这样便完成了回溯。<br>
 实现回溯的代码如下：</p>
 <pre><code>if (*pne != *phk)
@@ -109,7 +111,8 @@ haystack[] = &quot;aaaba&quot;，needle[] = &quot;aab&quot;，当两个指针都
     break;
 }
 </code></pre>
-<p><strong>改进</strong>：逐个遍历字符串 haystack 前 strlen(haystack) - strlen(needle) 个字符，查找从当前字符开始长度为 strlen(needle) 的子串是否和字符串 needle 相同，如果相同，返回当前字符下标，反之则继续遍历，若没找到则返回 -1。<br>
+<h3 id="3-改进">3. 改进</h3>
+<p>逐个遍历字符串 haystack 前 strlen(haystack) - strlen(needle) 个字符，查找从当前字符开始长度为 strlen(needle) 的子串是否和字符串 needle 相同，如果相同，返回当前字符下标，反之则继续遍历，若没找到则返回 -1。<br>
 <strong>代码如下</strong>：</p>
 <pre><code>int strStr(char* haystack, char* needle) {
     int M = strlen(haystack);
@@ -141,10 +144,11 @@ haystack[] = &quot;aaaba&quot;，needle[] = &quot;aab&quot;，当两个指针都
 仔细一看我们就会发现不一样。很明显，pat 中根本没有字符 c，根本没必要回退指针 i，暴力解法明显多做了很多不必要的操作。KMP 算法的不同之处在于，它会花费空间来记录一些信息，在上述情况中就会显得很聪明。再比如类似的 txt = &quot;aaaaaaab&quot; pat = &quot;aaab&quot;，暴力解法还会和上面那个例子一样蠢蠢地回退指针 i，而 KMP 算法又会耍聪明：<br>
 <img src="https://XMTam.github.io/post-images/1585004121171.gif" alt="" loading="lazy"><br>
 因为 KMP 算法知道字符 b 之前的字符 a 都是匹配的，所以每次只需要比较字符 b 是否被匹配就行了。这就是KMP算法真的魅力所在，KMP绝对不存在回溯的可能。<br>
-打个比方：前面改进的暴力搜索法虽然有手机GPS导航，但旅行者还是免不了会不停的看手机导航信息，以免走错，这就是所谓了“走一步看一步”，而有了KMP，你的大脑就像信鸽的脑子一样（虽然没有那么小，但同样有辨识方向的能力），可以毫不思索的直奔目的地。</p>
-<h2 id="这样说暴力搜索法并不是最优的方法但是其执行用时却是0ms这引起了我的注意于是我想有没有可能是leetcode的代码测试器的问题呢于是我尝试隔了一段时间后再次重新提交了解答代码原封不动结果得到执行用时图对了嘛这用时像上面图中显示的才合理-于是我积极投入到采用-kmp-来解决此问题的行动中让我们一起来看看-kmp-算法的效率吧">这样说，暴力搜索法并不是最优的方法，但是其执行用时却是0ms，这引起了我的注意，于是我想有没有可能是LeetCode的代码测试器的问题呢？于是我尝试隔了一段时间后再次重新提交了解答（代码原封不动），结果得到执行用时图：<br>
-<img src="https://XMTam.github.io/post-images/1585005446255.png" alt="" loading="lazy"><br>
-对了嘛，这用时像上面图中显示的才合理。于是我积极投入到采用 KMP 来解决此问题的行动中，让我们一起来看看 KMP 算法的效率吧！</h2>
+打个比方：前面改进的暴力搜索法虽然有手机GPS导航，但旅行者还是免不了会不停的看手机导航信息，以免走错，这就是所谓了“走一步看一步”，而有了KMP，你的大脑就像信鸽的脑子一样（虽然没有那么小，但同样有辨识方向的能力），可以毫不思索的直奔目的地。<br>
+PS：这样说，暴力搜索法并不是最优的方法，但是其执行用时却是0ms，这引起了我的注意，于是我想有没有可能是LeetCode的代码测试器的问题呢？于是我尝试隔了一段时间后再次重新提交了解答（代码原封不动），结果得到执行用时图：<br>
+<img src="https://XMTam.github.io/post-images/1585009236639.png" alt="" loading="lazy"><br>
+对了嘛，这执行用时才算合理。于是我积极投入到采用 KMP 来解决此问题的行动中，让我们一起来看看 KMP 算法的效率吧！</p>
+<hr>
 <h2 id="方法二kmp算法">方法二：KMP算法</h2>
 <p>代码实现：</p>
 <pre><code>void getNextVal(char* p, int* next)
