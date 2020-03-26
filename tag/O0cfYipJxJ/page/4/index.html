@@ -30,13 +30,30 @@
       
         <div class="animated fadeInLeft" style="animation-delay: 0.4s">
           <p class="my-4 text-gray-600 font-light hidden lg:block">
-            文章目录
+            A = X + Y + Z
           </p>
-          <div class="toc-container hidden lg:block">
-            <ul class="markdownIt-TOC">
-<li><a href="#%E4%B8%80-%E9%A2%98%E7%9B%AE">一、题目</a></li>
-</ul>
-
+          <div class="animated fadeInLeft social-container hidden lg:block" style="animation-delay: 0.6s">
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
           </div>
         </div>
       
@@ -80,118 +97,38 @@
 </div>
 <div class="mask" onclick="closeMenu()">
 </div>
-      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
-        <h1 class="text-3xl font-bold lg:mt-16">344. 反转字符串</h1>
-        <div class="text-sm text-gray-700 lg:my-8">
-          2020-03-11 / 2 min read
+      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4">
+        <h2 class="text-lg text-gray-700 mb-8">
+          <i class="ri-bookmark-line"></i> LeetCode
+        </h2>
+        
+  <section class="post-item md:flex pb-12 animated fadeIn" :style="{ 'animation-delay': `${0 * 0.2}s` }">
+    
+      <a href="https://XMTam.github.io/26-shan-chu-pai-xu-shu-zu-zhong-de-chong-fu-xiang/" class="feature-image-wrapper bg-gray-100 rounded-lg flex-shrink-0 mr-8 w-full h-56 h-32 md:w-56 md:h-40">
+        <div class="post-feature-image lazy w-full h-56 h-32 md:w-56 md:h-40" data-bg="'https://XMTam.github.io/post-images/26-shan-chu-pai-xu-shu-zu-zhong-de-chong-fu-xiang.png'">
         </div>
-        
-          <img class="post-feature-image rounded-lg mx-auto my-4" src="https://XMTam.github.io/post-images/fan-zhuan-zi-fu-chuan.png" alt="">
-        
-        <div class="post-content yue">
-          <h1 id="一-题目">一、题目</h1>
-<p>编写一个函数，其作用是将输入的字符串反转过来。输入字符串以字符数组 char[] 的形式给出。<br>
-不要给另外的数组分配额外的空间，你必须原地修改输入数组、使用 O(1) 的额外空间解决这一问题。<br>
-你可以假设数组中的所有字符都是 ASCII 码表中的可打印字符。<br>
-<strong>示例：</strong></p>
-<pre><code>输入：[&quot;h&quot;,&quot;e&quot;,&quot;l&quot;,&quot;l&quot;,&quot;o&quot;]
-输出：[&quot;o&quot;,&quot;l&quot;,&quot;l&quot;,&quot;e&quot;,&quot;h&quot;]
-</code></pre>
-<hr>
-<p>二、解决方案<br>
-<strong>思路</strong>：两个指针分别从字符串的头和尾开始扫描，如果两个指针所指向的内容不相等则交换之，若相等则头指针后移，尾指针前移，直到头指针与尾指针相遇或者头指针在尾指针后面。<br>
-<strong>代码如下（通过）</strong>：</p>
-<pre><code>void swap(char* a, char* b)
-{
-    char tmp;
-    tmp = *a;
-    *a = *b;
-    *b = tmp;
-}
+      </a>
+    
+    <div class="content">
+      <a href="https://XMTam.github.io/26-shan-chu-pai-xu-shu-zu-zhong-de-chong-fu-xiang/">
+        <h2 class="post-title text-xl font-extrabold mt-5 md:mt-0">26 删除排序数组中的重复项</h2>
+      </a>
+      <div class="post-abstract text-gray-700 font-light my-4">
+        <p>😄From here, I start my journal on <strong>LeetCode</strong>.<br>
+👉Let's practice programming together!<br>
+😇Hoping you could give some sugesstions.</p>
 
-void reverseString(char* s, int sSize)
-{
-    char* phead = s;
-    char* ptail = s + sSize - 1;
-    while (phead &lt;= ptail)
-    {
-        if (*phead != *ptail)
-            swap(phead, ptail);
-        phead++;
-        ptail--;
-    }
-}
-</code></pre>
-<p><strong>复杂度分析</strong>：</p>
-<ul>
-<li>时间复杂度：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">O</mi><mo>(</mo><mi>N</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\mathcal{O}(N)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathcal" style="margin-right:0.02778em;">O</span></span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mclose">)</span></span></span></span>。执行了 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>N</mi><mi mathvariant="normal">/</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">N/2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mord">/</span><span class="mord">2</span></span></span></span> 次的交换。</li>
-<li>空间复杂度：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">O</mi><mo>(</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">\mathcal{O}(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathcal" style="margin-right:0.02778em;">O</span></span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span>，只使用了常数级空间。</li>
-</ul>
+      </div>
+      <div class="text-gray-400 text-sm font-light">2020-03-04 / 2 min read</div>
+    </div>
+  </section>
 
-        </div>
-
-        
-          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://XMTam.github.io/tag/ncWERnWw-/">
-            <span class="flex-auto">C</span>
-          </a>
-        
-          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://XMTam.github.io/tag/O0cfYipJxJ/">
-            <span class="flex-auto">LeetCode</span>
-          </a>
-        
-
-
-        <div class="flex justify-between py-8">
-          
-            <div class="prev-post">
-              <a href="https://XMTam.github.io/zheng-shu-fan-zhuan/">
-                <h3 class="post-title">
-                  <i class="ri-arrow-left-line"></i>
-                  7. 整数反转
-                </h3>
-              </a>
-            </div>
-          
-
-          
-            <div class="next-post">
-              <a href="https://XMTam.github.io/48-xuan-zhuan-tu-xiang/">
-                <h3 class="post-title">
-                  48. 旋转图像
-                  <i class="ri-arrow-right-line"></i>
-                </h3>
-              </a>
-            </div>
-          
-        </div>
-
-        
-          
-            <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
-<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-
-<div id="gitalk-container"></div>
-
-<script>
-
-  var gitalk = new Gitalk({
-    clientID: 'b3d959b44c66103ef289',
-    clientSecret: '510446b8a79cc1b1d29e9fb60522c7148ee83542',
-    repo: 'XMTam.github.io',
-    owner: 'XMTam',
-    admin: ['XMTam'],
-    id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
-    distractionFreeMode: false  // Facebook-like distraction free mode
-  })
-
-  gitalk.render('gitalk-container')
-
-</script>
-
-          
-
-          
-        
+        <div class="pagination-container animated fadeIn">
+  
+    <a href="https://XMTam.github.io/tag/O0cfYipJxJ/page/3/" class="page-btn"><i class="ri-arrow-left-line"></i> 上一页</a>
+  
+  
+</div>
 
       </div>
     </div>

@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Alvin</title>
 <meta name="description" content="A = X + Y + Z" />
-<link rel="shortcut icon" href="https://XMTam.github.io/favicon.ico?v=1585098371130">
+<link rel="shortcut icon" href="https://XMTam.github.io/favicon.ico?v=1585183662457">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
@@ -23,7 +23,7 @@
       <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
         <i class="ri-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
         <a href="https://XMTam.github.io">
-          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://XMTam.github.io/images/avatar.png?v=1585098371130" alt="">
+          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://XMTam.github.io/images/avatar.png?v=1585183662457" alt="">
         </a>
         <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">Alvin</h1>
       </div>
@@ -87,6 +87,8 @@
           2020-03-25 / 2 min read
         </div>
         
+          <img class="post-feature-image rounded-lg mx-auto my-4" src="https://XMTam.github.io/post-images/38-wai-guan-shu-lie.png" alt="">
+        
         <div class="post-content yue">
           <h1 id="一-题目">一、题目</h1>
 <p>「外观数列」是一个整数序列，从数字 1 开始，序列中的每一项都是对前一项的描述。前五项如下：</p>
@@ -113,9 +115,55 @@
 </code></pre>
 <hr>
 <h1 id="二-解决方法">二、解决方法</h1>
+<p>废话不多说，先上代码：</p>
+<pre><code>char* countAndSay(int n) {
+    char* rest = (char*)malloc(sizeof(char) * 5000);
+    char* temp = (char*)malloc(sizeof(char) * 5000);
+    rest[0] = '1';
+    rest[1] = '\0'; // the end symbol of the string
+    char key;
+    char* p;
+    int i, j, cnt;
+    for (i = 1; i &lt; n; i++) // times of the iteration
+    {
+        j = 0;
+        key = rest[0];
+        p = rest;
+        cnt = 0;
+        while (*p)
+        {
+            if (*p == key) // count the same char's number
+                cnt++;
+            else
+            {
+                temp[j++] = cnt + '0';  // save the counter first
+                cnt = 1;
+                temp[j++] = key;    // and then save the key char 
+                key = *p;
+            }
+            p++;
+        }
+        temp[j++] = cnt + '0';  // save the counter first
+        temp[j++] = key;    // and then save the key char 
+        temp[j] = '\0';
+        strcpy(rest, temp);
+    }
+    return rest;
+}
+</code></pre>
+<p>执行用时图如下：<br>
+<img src="https://XMTam.github.io/post-images/1585182293749.png" alt="" loading="lazy"></p>
 
         </div>
 
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://XMTam.github.io/tag/ncWERnWw-/">
+            <span class="flex-auto">C</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://XMTam.github.io/tag/O0cfYipJxJ/">
+            <span class="flex-auto">LeetCode</span>
+          </a>
         
 
 

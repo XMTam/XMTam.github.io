@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://XMTam.github.io</id>
     <title>Alvin</title>
-    <updated>2020-03-25T01:06:14.443Z</updated>
+    <updated>2020-03-26T00:47:47.778Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://XMTam.github.io"/>
     <link rel="self" href="https://XMTam.github.io/atom.xml"/>
@@ -41,6 +41,44 @@
 </code></pre>
 <hr>
 <h1 id="二-解决方法">二、解决方法</h1>
+<p>废话不多说，先上代码：</p>
+<pre><code>char* countAndSay(int n) {
+    char* rest = (char*)malloc(sizeof(char) * 5000);
+    char* temp = (char*)malloc(sizeof(char) * 5000);
+    rest[0] = '1';
+    rest[1] = '\0'; // the end symbol of the string
+    char key;
+    char* p;
+    int i, j, cnt;
+    for (i = 1; i &lt; n; i++) // times of the iteration
+    {
+        j = 0;
+        key = rest[0];
+        p = rest;
+        cnt = 0;
+        while (*p)
+        {
+            if (*p == key) // count the same char's number
+                cnt++;
+            else
+            {
+                temp[j++] = cnt + '0';  // save the counter first
+                cnt = 1;
+                temp[j++] = key;    // and then save the key char 
+                key = *p;
+            }
+            p++;
+        }
+        temp[j++] = cnt + '0';  // save the counter first
+        temp[j++] = key;    // and then save the key char 
+        temp[j] = '\0';
+        strcpy(rest, temp);
+    }
+    return rest;
+}
+</code></pre>
+<p>执行用时图如下：<br>
+<img src="https://XMTam.github.io/post-images/1585182293749.png" alt="" loading="lazy"></p>
 ]]></content>
     </entry>
     <entry>
