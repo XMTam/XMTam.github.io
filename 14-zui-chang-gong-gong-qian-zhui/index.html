@@ -35,6 +35,12 @@
           <div class="toc-container hidden lg:block">
             <ul class="markdownIt-TOC">
 <li><a href="#%E4%B8%80-%E9%A2%98%E7%9B%AE">一、题目</a></li>
+<li><a href="#%E4%BA%8C-%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95">二、解决方法</a>
+<ul>
+<li><a href="#%E6%96%B9%E6%B3%95%E4%B8%80%E6%B0%B4%E5%B9%B3%E6%89%AB%E6%8F%8F%E9%80%90%E4%B8%AA%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BF%9B%E8%A1%8C%E6%AF%94%E8%BE%83">方法一：水平扫描（逐个字符串进行比较）</a></li>
+<li><a href="#%E6%96%B9%E6%B3%95%E4%BA%8C%E6%B0%B4%E5%B9%B3%E6%89%AB%E6%8F%8F%E5%AF%B9%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E7%9A%84%E6%AF%8F%E4%B8%80%E5%88%97%E5%AD%97%E7%AC%A6%E8%BF%9B%E8%A1%8C%E6%AF%94%E8%BE%83">方法二：水平扫描（对字符串中的每一列字符进行比较）</a></li>
+</ul>
+</li>
 </ul>
 
           </div>
@@ -81,52 +87,75 @@
 <div class="mask" onclick="closeMenu()">
 </div>
       <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
-        <h1 class="text-3xl font-bold lg:mt-16">344. 反转字符串</h1>
+        <h1 class="text-3xl font-bold lg:mt-16">14. 最长公共前缀*</h1>
         <div class="text-sm text-gray-700 lg:my-8">
-          2020-03-11 / 2 min read
+          2020-03-27 / 2 min read
         </div>
         
-          <img class="post-feature-image rounded-lg mx-auto my-4" src="https://XMTam.github.io/post-images/fan-zhuan-zi-fu-chuan.png" alt="">
+          <img class="post-feature-image rounded-lg mx-auto my-4" src="https://XMTam.github.io/post-images/14-zui-chang-gong-gong-qian-zhui.png" alt="">
         
         <div class="post-content yue">
           <h1 id="一-题目">一、题目</h1>
-<p>编写一个函数，其作用是将输入的字符串反转过来。输入字符串以字符数组 char[] 的形式给出。<br>
-不要给另外的数组分配额外的空间，你必须原地修改输入数组、使用 O(1) 的额外空间解决这一问题。<br>
-你可以假设数组中的所有字符都是 ASCII 码表中的可打印字符。<br>
-<strong>示例：</strong></p>
-<pre><code>输入：[&quot;h&quot;,&quot;e&quot;,&quot;l&quot;,&quot;l&quot;,&quot;o&quot;]
-输出：[&quot;o&quot;,&quot;l&quot;,&quot;l&quot;,&quot;e&quot;,&quot;h&quot;]
+<p>编写一个函数来查找字符串数组中的最长公共前缀。如果不存在公共前缀，返回空字符串 &quot;&quot;。</p>
+<p><strong>示例 1:</strong></p>
+<pre><code>输入: [&quot;flower&quot;,&quot;flow&quot;,&quot;flight&quot;]
+输出: &quot;fl&quot;
 </code></pre>
+<p><strong>示例 2:</strong></p>
+<pre><code>输入: [&quot;dog&quot;,&quot;racecar&quot;,&quot;car&quot;]
+输出: &quot;&quot;
+解释: 输入不存在公共前缀。
+</code></pre>
+<p>说明: 所有输入只包含小写字母 a-z 。</p>
 <hr>
-<p>二、解决方案<br>
-<strong>思路</strong>：两个指针分别从字符串的头和尾开始扫描，如果两个指针所指向的内容不相等则交换之，若相等则头指针后移，尾指针前移，直到头指针与尾指针相遇或者头指针在尾指针后面。<br>
-<strong>代码如下（通过）</strong>：</p>
-<pre><code>void swap(char* a, char* b)
+<h1 id="二-解决方法">二、解决方法</h1>
+<h2 id="方法一水平扫描逐个字符串进行比较">方法一：水平扫描（逐个字符串进行比较）</h2>
+<p><strong>思路</strong>：首先将第一个字符串作为ans，然后依次与后面的每一个字符串比较并更新ans，若某一趟途中ans为空，即没有公共前缀，直接返回。这样，最后得到的ans即为所求。<br>
+<strong>代码如下</strong>：</p>
+<pre><code>char* longestCommonPrefix(char** strs, int strsSize) 
 {
-    char tmp;
-    tmp = *a;
-    *a = *b;
-    *b = tmp;
-}
-
-void reverseString(char* s, int sSize)
-{
-    char* phead = s;
-    char* ptail = s + sSize - 1;
-    while (phead &lt;= ptail)
+    if (strsSize == 0)
+        return &quot;&quot;;
+    char* ans = strs[0];
+    int i, j;
+    for (i = 1; i &lt; strsSize; i++)
     {
-        if (*phead != *ptail)
-            swap(phead, ptail);
-        phead++;
-        ptail--;
+        j = 0;
+        for ( ; ans[j] != '\0' &amp;&amp; strs[i][j] != '\0'; j++)
+        {
+            if (ans[j] != strs[i][j])
+                break;
+        }
+        ans[j] = '\0';
+        if (ans == NULL)
+        {
+            return &quot;&quot;;
+        }
     }
+    return ans;
 }
 </code></pre>
-<p><strong>复杂度分析</strong>：</p>
-<ul>
-<li>时间复杂度：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">O</mi><mo>(</mo><mi>N</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\mathcal{O}(N)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathcal" style="margin-right:0.02778em;">O</span></span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mclose">)</span></span></span></span>。执行了 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>N</mi><mi mathvariant="normal">/</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">N/2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mord">/</span><span class="mord">2</span></span></span></span> 次的交换。</li>
-<li>空间复杂度：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">O</mi><mo>(</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">\mathcal{O}(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathcal" style="margin-right:0.02778em;">O</span></span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span>，只使用了常数级空间。</li>
-</ul>
+<h2 id="方法二水平扫描对字符串中的每一列字符进行比较">方法二：水平扫描（对字符串中的每一列字符进行比较）</h2>
+<p><strong>思路</strong>：以第一个字符串为基准，分别将后面每一个字符串中的每一列与第一个字符串对应列位置的字符进行比较，如果都相等，则对后面对应列的字符进行比较；反之，设置第一个字符串该列所在位置字符为结束字符并退出循环返回第一个字符串。<br>
+<strong>代码如下</strong>：</p>
+<pre><code>char* longestCommonPrefix(char** strs, int strsSize) 
+{
+    if (strsSize == 0)
+        return &quot;&quot;;
+    for (int i = 0; i &lt; strlen(strs[0]); i++)
+    {
+        for (int j = 0; j &lt; strsSize; j++)
+        {
+            if (strs[0][i] != strs[j][i])
+            {
+                strs[0][i] = '\0';
+                break;
+            }
+        }
+    }
+    return strs[0];
+}
+</code></pre>
 
         </div>
 
@@ -143,21 +172,12 @@ void reverseString(char* s, int sSize)
 
         <div class="flex justify-between py-8">
           
-            <div class="prev-post">
-              <a href="https://XMTam.github.io/zheng-shu-fan-zhuan/">
-                <h3 class="post-title">
-                  <i class="ri-arrow-left-line"></i>
-                  7. 整数反转
-                </h3>
-              </a>
-            </div>
-          
 
           
             <div class="next-post">
-              <a href="https://XMTam.github.io/48-xuan-zhuan-tu-xiang/">
+              <a href="https://XMTam.github.io/38-wai-guan-shu-lie/">
                 <h3 class="post-title">
-                  48. 旋转图像
+                  38. 外观数列
                   <i class="ri-arrow-right-line"></i>
                 </h3>
               </a>
