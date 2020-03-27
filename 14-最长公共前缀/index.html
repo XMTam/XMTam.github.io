@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Alvin</title>
 <meta name="description" content="A = X + Y + Z" />
-<link rel="shortcut icon" href="https://XMTam.github.io/favicon.ico?v=1585269864790">
+<link rel="shortcut icon" href="https://XMTam.github.io/favicon.ico?v=1585269959206">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
@@ -23,7 +23,7 @@
       <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
         <i class="ri-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
         <a href="https://XMTam.github.io">
-          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://XMTam.github.io/images/avatar.png?v=1585269864790" alt="">
+          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://XMTam.github.io/images/avatar.png?v=1585269959206" alt="">
         </a>
         <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">Alvin</h1>
       </div>
@@ -111,7 +111,7 @@
 <h1 id="二-解决方法">二、解决方法</h1>
 <h2 id="方法一水平扫描逐个字符串进行比较">方法一：水平扫描（逐个字符串进行比较）</h2>
 <p><strong>思路</strong>：首先将第一个字符串作为ans，然后依次与后面的每一个字符串比较并更新ans，若某一趟途中ans为空，即没有公共前缀，直接返回。这样，最后得到的ans即为所求。<br>
-代码如下：</p>
+<strong>代码如下</strong>：</p>
 <pre><code>char* longestCommonPrefix(char** strs, int strsSize) 
 {
     if (strsSize == 0)
@@ -137,7 +137,7 @@
 </code></pre>
 <h2 id="方法二水平扫描对字符串中的每一列字符进行比较">方法二：水平扫描（对字符串中的每一列字符进行比较）</h2>
 <p><strong>思路</strong>：以第一个字符串为基准，分别将后面每一个字符串中的每一列与第一个字符串对应列位置的字符进行比较，如果都相等，则对后面对应列的字符进行比较；反之，设置第一个字符串该列所在位置字符为结束字符并退出循环返回第一个字符串。<br>
-代码如下：</p>
+<strong>代码如下</strong>：</p>
 <pre><code>char* longestCommonPrefix(char** strs, int strsSize) 
 {
     if (strsSize == 0)
