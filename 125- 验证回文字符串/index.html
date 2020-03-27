@@ -34,11 +34,10 @@
           </p>
           <div class="toc-container hidden lg:block">
             <ul class="markdownIt-TOC">
-<li><a href="#%E4%B8%80-%E9%A2%98%E7%9B%AE">一、题目</a></li>
+<li><a href="#%E4%B8%80-%E9%A2%98%E7%9B%AE">一、 题目</a></li>
 <li><a href="#%E4%BA%8C-%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95">二、解决方法</a>
 <ul>
-<li><a href="#%E6%96%B9%E6%B3%95%E4%B8%80%E6%B0%B4%E5%B9%B3%E6%89%AB%E6%8F%8F%E9%80%90%E4%B8%AA%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BF%9B%E8%A1%8C%E6%AF%94%E8%BE%83">方法一：水平扫描（逐个字符串进行比较）</a></li>
-<li><a href="#%E6%96%B9%E6%B3%95%E4%BA%8C%E6%B0%B4%E5%B9%B3%E6%89%AB%E6%8F%8F%E5%AF%B9%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E7%9A%84%E6%AF%8F%E4%B8%80%E5%88%97%E5%AD%97%E7%AC%A6%E8%BF%9B%E8%A1%8C%E6%AF%94%E8%BE%83">方法二：水平扫描（对字符串中的每一列字符进行比较）</a></li>
+<li><a href="#%E5%8F%8C%E6%8C%87%E9%92%88%E6%B3%95">双指针法</a></li>
 </ul>
 </li>
 </ul>
@@ -87,75 +86,94 @@
 <div class="mask" onclick="closeMenu()">
 </div>
       <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
-        <h1 class="text-3xl font-bold lg:mt-16">14. 最长公共前缀*</h1>
+        <h1 class="text-3xl font-bold lg:mt-16">125. 验证回文字符串</h1>
         <div class="text-sm text-gray-700 lg:my-8">
-          2020-03-27 / 2 min read
+          2020-03-20 / 2 min read
         </div>
         
-          <img class="post-feature-image rounded-lg mx-auto my-4" src="https://XMTam.github.io/post-images/14-最长公共前缀.png" alt="">
+          <img class="post-feature-image rounded-lg mx-auto my-4" src="https://XMTam.github.io/post-images/125- 验证回文字符串.png" alt="">
         
         <div class="post-content yue">
-          <h1 id="一-题目">一、题目</h1>
-<p>编写一个函数来查找字符串数组中的最长公共前缀。如果不存在公共前缀，返回空字符串 &quot;&quot;。</p>
-<p><strong>示例 1:</strong></p>
-<pre><code>输入: [&quot;flower&quot;,&quot;flow&quot;,&quot;flight&quot;]
-输出: &quot;fl&quot;
+          <h1 id="一-题目">一、 题目</h1>
+<p>给定一个字符串，验证它是否是回文串，只考虑字母和数字字符，可以忽略字母的大小写。</p>
+<p>说明：本题中，我们将空字符串定义为有效的回文串。</p>
+<p>示例 1:</p>
+<pre><code>输入: &quot;A man, a plan, a canal: Panama&quot;
+输出: true
 </code></pre>
-<p><strong>示例 2:</strong></p>
-<pre><code>输入: [&quot;dog&quot;,&quot;racecar&quot;,&quot;car&quot;]
-输出: &quot;&quot;
-解释: 输入不存在公共前缀。
+<p>示例 2:</p>
+<pre><code>输入: &quot;race a car&quot;
+输出: false
 </code></pre>
-<p>说明: 所有输入只包含小写字母 a-z 。</p>
 <hr>
 <h1 id="二-解决方法">二、解决方法</h1>
-<h2 id="方法一水平扫描逐个字符串进行比较">方法一：水平扫描（逐个字符串进行比较）</h2>
-<p><strong>思路</strong>：首先将第一个字符串作为ans，然后依次与后面的每一个字符串比较并更新ans，若某一趟途中ans为空，即没有公共前缀，直接返回。这样，最后得到的ans即为所求。<br>
-<strong>代码如下</strong>：</p>
-<pre><code>char* longestCommonPrefix(char** strs, int strsSize) 
+<h2 id="双指针法">双指针法</h2>
+<p><strong>思路</strong>：</p>
+<ol>
+<li>先将字符串中的大写字母全部转换为小写字母；</li>
+<li>设置头尾双指针，两个指针分别从字符串头部和尾部开始遍历字符串；
+<ul>
+<li>若当前指针所指元素不是字母或者数字，则该指针后移（头指针）或者前移（尾指针）</li>
+<li>如果当前两个指针所指元素相等，则头指针后移并且尾指针前移；如果不相等，则直接退出循环并返回false</li>
+<li>当头指针大于尾指针时退出循环</li>
+</ul>
+</li>
+</ol>
+<p>代码如下（0ms通过）：</p>
+<pre><code>void alphToLower(char* s)
 {
-    if (strsSize == 0)
-        return &quot;&quot;;
-    char* ans = strs[0];
-    int i, j;
-    for (i = 1; i &lt; strsSize; i++)
+    int len = strlen(s);
+    for (int i = 0; i &lt; len; i++)
     {
-        j = 0;
-        for ( ; ans[j] != '\0' &amp;&amp; strs[i][j] != '\0'; j++)
-        {
-            if (ans[j] != strs[i][j])
-                break;
-        }
-        ans[j] = '\0';
-        if (ans == NULL)
-        {
-            return &quot;&quot;;
-        }
+        if ('A' &lt;= s[i] &lt;= 'Z')
+            s[i] = tolower(s[i]);
     }
-    return ans;
 }
-</code></pre>
-<h2 id="方法二水平扫描对字符串中的每一列字符进行比较">方法二：水平扫描（对字符串中的每一列字符进行比较）</h2>
-<p><strong>思路</strong>：以第一个字符串为基准，分别将后面每一个字符串中的每一列与第一个字符串对应列位置的字符进行比较，如果都相等，则对后面对应列的字符进行比较；反之，设置第一个字符串该列所在位置字符为结束字符并退出循环返回第一个字符串。<br>
-<strong>代码如下</strong>：</p>
-<pre><code>char* longestCommonPrefix(char** strs, int strsSize) 
-{
-    if (strsSize == 0)
-        return &quot;&quot;;
-    for (int i = 0; i &lt; strlen(strs[0]); i++)
+
+bool isPalindrome(char* s) {
+    int len = strlen(s);
+    // set a front pointer which point at the beginning of the string
+    char* pf = s;
+    // set a tail pointer
+    char* pt = s + len - 1;
+    bool ret = true;
+    alphToLower(s);
+    puts(s);
+    while (pf &lt; pt)
     {
-        for (int j = 0; j &lt; strsSize; j++)
+        if (('a' &lt;= *pf &amp;&amp; *pf &lt;= 'z') || ('0' &lt;= *pf &amp;&amp; *pf &lt;= '9'))
         {
-            if (strs[0][i] != strs[j][i])
+            if (('a' &lt;= *pt &amp;&amp; *pt &lt;= 'z') || ('0' &lt;= *pt &amp;&amp; *pt &lt;= '9'))
             {
-                strs[0][i] = '\0';
-                break;
+                if (*pf == *pt)
+                {
+                    pf++;
+                    pt--;
+                    continue;
+                }
+                else
+                {
+                    ret = false;
+                    break;
+                }
+            }
+            else
+            {
+                pt--;
+                continue;
             }
         }
+        else
+            pf++;
     }
-    return strs[0];
+    return ret;
 }
 </code></pre>
+<p><strong>复杂度分析</strong>：</p>
+<ul>
+<li>时间复杂度：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>N</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(N)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mclose">)</span></span></span></span>。因为只遍历字符串一次。</li>
+<li>空间复杂度：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span>。没有额外空间申请。</li>
+</ul>
 
         </div>
 
@@ -172,12 +190,21 @@
 
         <div class="flex justify-between py-8">
           
+            <div class="prev-post">
+              <a href="https://XMTam.github.io/ 8-字符串转换整数 (atoi)/">
+                <h3 class="post-title">
+                  <i class="ri-arrow-left-line"></i>
+                   8. 字符串转换整数 (atoi)
+                </h3>
+              </a>
+            </div>
+          
 
           
             <div class="next-post">
-              <a href="https://XMTam.github.io/38-外观数列/">
+              <a href="https://XMTam.github.io/the-20-rules-of-formulating-knowledge-in-learning/">
                 <h3 class="post-title">
-                  38. 外观数列
+                  The 20 rules of formulating knowledge in learning
                   <i class="ri-arrow-right-line"></i>
                 </h3>
               </a>
