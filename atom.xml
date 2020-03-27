@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://XMTam.github.io</id>
     <title>Alvin</title>
-    <updated>2020-03-26T01:19:44.714Z</updated>
+    <updated>2020-03-27T00:41:34.441Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://XMTam.github.io"/>
     <link rel="self" href="https://XMTam.github.io/atom.xml"/>
@@ -10,6 +10,144 @@
     <logo>https://XMTam.github.io/images/avatar.png</logo>
     <icon>https://XMTam.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Alvin</rights>
+    <entry>
+        <title type="html"><![CDATA[14. 最长公共前缀*]]></title>
+        <id>https://XMTam.github.io/14-最长公共前缀/</id>
+        <link href="https://XMTam.github.io/14-最长公共前缀/">
+        </link>
+        <updated>2020-03-26T22:38:53.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="一-题目">一、题目</h1>
+<p>编写一个函数来查找字符串数组中的最长公共前缀。如果不存在公共前缀，返回空字符串 &quot;&quot;。</p>
+<p><strong>示例 1:</strong></p>
+<pre><code>输入: [&quot;flower&quot;,&quot;flow&quot;,&quot;flight&quot;]
+输出: &quot;fl&quot;
+</code></pre>
+<p><strong>示例 2:</strong></p>
+<pre><code>输入: [&quot;dog&quot;,&quot;racecar&quot;,&quot;car&quot;]
+输出: &quot;&quot;
+解释: 输入不存在公共前缀。
+</code></pre>
+<p>说明: 所有输入只包含小写字母 a-z 。</p>
+<hr>
+<h1 id="二-解决方法">二、解决方法</h1>
+<h2 id="方法一水平扫描逐个字符串进行比较">方法一：水平扫描（逐个字符串进行比较）</h2>
+<p><strong>思路</strong>：首先将第一个字符串作为ans，然后依次与后面的每一个字符串比较并更新ans，若某一趟途中ans为空，即没有公共前缀，直接返回。这样，最后得到的ans即为所求。<br>
+代码如下：</p>
+<pre><code>char* longestCommonPrefix(char** strs, int strsSize) 
+{
+    if (strsSize == 0)
+        return &quot;&quot;;
+    char* ans = strs[0];
+    int i, j;
+    for (i = 1; i &lt; strsSize; i++)
+    {
+        j = 0;
+        for ( ; ans[j] != '\0' &amp;&amp; strs[i][j] != '\0'; j++)
+        {
+            if (ans[j] != strs[i][j])
+                break;
+        }
+        ans[j] = '\0';
+        if (ans == NULL)
+        {
+            return &quot;&quot;;
+        }
+    }
+    return ans;
+}
+</code></pre>
+<h2 id="方法二水平扫描对字符串中的每一列字符进行比较">方法二：水平扫描（对字符串中的每一列字符进行比较）</h2>
+<p><strong>思路</strong>：以第一个字符串为基准，分别将后面每一个字符串中的每一列与第一个字符串对应列位置的字符进行比较，如果都相等，则对后面对应列的字符进行比较；反之，设置第一个字符串该列所在位置字符为结束字符并退出循环返回第一个字符串。<br>
+代码如下：</p>
+<pre><code>char* longestCommonPrefix(char** strs, int strsSize) 
+{
+    if (strsSize == 0)
+        return &quot;&quot;;
+    for (int i = 0; i &lt; strlen(strs[0]); i++)
+    {
+        for (int j = 0; j &lt; strsSize; j++)
+        {
+            if (strs[0][i] != strs[j][i])
+            {
+                strs[0][i] = '\0';
+                break;
+            }
+        }
+    }
+    return strs[0];
+}
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[最长公共前缀*]]></title>
+        <id>https://XMTam.github.io/zui-chang-gong-gong-qian-zhui/</id>
+        <link href="https://XMTam.github.io/zui-chang-gong-gong-qian-zhui/">
+        </link>
+        <updated>2020-03-26T22:38:53.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="一-题目">一、题目</h1>
+<p>编写一个函数来查找字符串数组中的最长公共前缀。如果不存在公共前缀，返回空字符串 &quot;&quot;。</p>
+<p><strong>示例 1:</strong></p>
+<pre><code>输入: [&quot;flower&quot;,&quot;flow&quot;,&quot;flight&quot;]
+输出: &quot;fl&quot;
+</code></pre>
+<p><strong>示例 2:</strong></p>
+<pre><code>输入: [&quot;dog&quot;,&quot;racecar&quot;,&quot;car&quot;]
+输出: &quot;&quot;
+解释: 输入不存在公共前缀。
+</code></pre>
+<p>说明: 所有输入只包含小写字母 a-z 。</p>
+<hr>
+<h1 id="二-解决方法">二、解决方法</h1>
+<h2 id="方法一水平扫描逐个字符串进行比较">方法一：水平扫描（逐个字符串进行比较）</h2>
+<p><strong>思路</strong>：首先将第一个字符串作为ans，然后依次与后面的每一个字符串比较并更新ans，若某一趟途中ans为空，即没有公共前缀，直接返回。这样，最后得到的ans即为所求。<br>
+代码如下：</p>
+<pre><code>char* longestCommonPrefix(char** strs, int strsSize) 
+{
+    if (strsSize == 0)
+        return &quot;&quot;;
+    char* ans = strs[0];
+    int i, j;
+    for (i = 1; i &lt; strsSize; i++)
+    {
+        j = 0;
+        for ( ; ans[j] != '\0' &amp;&amp; strs[i][j] != '\0'; j++)
+        {
+            if (ans[j] != strs[i][j])
+                break;
+        }
+        ans[j] = '\0';
+        if (ans == NULL)
+        {
+            return &quot;&quot;;
+        }
+    }
+    return ans;
+}
+</code></pre>
+<h2 id="方法二水平扫描对字符串中的每一列字符进行比较">方法二：水平扫描（对字符串中的每一列字符进行比较）</h2>
+<p><strong>思路</strong>：以第一个字符串为基准，分别将后面每一个字符串中的每一列与第一个字符串对应列位置的字符进行比较，如果都相等，则对后面对应列的字符进行比较；反之，设置第一个字符串该列所在位置字符为结束字符并退出循环返回第一个字符串。<br>
+代码如下：</p>
+<pre><code>char* longestCommonPrefix(char** strs, int strsSize) 
+{
+    if (strsSize == 0)
+        return &quot;&quot;;
+    for (int i = 0; i &lt; strlen(strs[0]); i++)
+    {
+        for (int j = 0; j &lt; strsSize; j++)
+        {
+            if (strs[0][i] != strs[j][i])
+            {
+                strs[0][i] = '\0';
+                break;
+            }
+        }
+    }
+    return strs[0];
+}
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[38. 外观数列]]></title>
         <id>https://XMTam.github.io/38-wai-guan-shu-lie/</id>
@@ -848,118 +986,6 @@ s = &quot;loveleetcode&quot;,
     return pos;
 }
 </code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[7. 整数反转]]></title>
-        <id>https://XMTam.github.io/zheng-shu-fan-zhuan/</id>
-        <link href="https://XMTam.github.io/zheng-shu-fan-zhuan/">
-        </link>
-        <updated>2020-03-12T14:36:18.000Z</updated>
-        <content type="html"><![CDATA[<h1 id="一-题目">一、题目</h1>
-<p>给出一个 32 位的有符号整数，你需要将这个整数中每位上的数字进行反转。</p>
-<p><strong>示例 1:</strong></p>
-<pre><code>输入: 123
-输出: 321
-</code></pre>
-<p><strong>示例 2:</strong></p>
-<pre><code>输入: -123
-输出: -321
-</code></pre>
-<p><strong>示例 3:</strong></p>
-<pre><code>输入: 120
-输出: 21
-</code></pre>
-<p>**注意:**假设我们的环境只能存储得下 32 位的有符号整数，则其数值范围为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>[</mo><mi mathvariant="normal">−</mi><msup><mn>2</mn><mn>31</mn></msup><mo separator="true">,</mo><msup><mn>2</mn><mn>31</mn></msup><mi mathvariant="normal">−</mi><mn>1</mn><mo>]</mo></mrow><annotation encoding="application/x-tex">[−2^{31},  2^{31} − 1]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">−</span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">3</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">3</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span><span class="mord">−</span><span class="mord">1</span><span class="mclose">]</span></span></span></span>。请根据这个假设，如果反转后整数溢出那么就返回 0。</p>
-<hr>
-<h1 id="二-解决方案">二、解决方案</h1>
-<p><strong>方法</strong>：弹出和推入数字 &amp; 溢出前进行检查</p>
-<p><strong>思路</strong>：可以一次构建反转整数的一位数字。在这样做的时候，我们可以预先检查向原整数附加另一位数字是否会导致溢出。</p>
-<p><strong>算法</strong>：反转整数的方法可以与反转字符串进行类比。我们想重复“弹出”<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span> 的最后一位数字，并将它“推入”到 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtext>rev</mtext></mrow><annotation encoding="application/x-tex">\text{rev}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord text"><span class="mord">rev</span></span></span></span></span> 的后面。最后，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtext>rev</mtext></mrow><annotation encoding="application/x-tex">\text{rev}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord text"><span class="mord">rev</span></span></span></span></span> 将与 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span> 相反。要在没有辅助堆栈 / 数组的帮助下 “弹出” 和 “推入” 数字，我们可以使用数学方法。</p>
-<pre><code>//pop operation:
-pop = x % 10;
-x /= 10;
-
-//push operation:
-temp = rev * 10 + pop;
-rev = temp;
-</code></pre>
-<p>但是，这种方法很危险，因为当 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtext>temp</mtext><mo>=</mo><mtext>rev</mtext><mo>⋅</mo><mn>10</mn><mo>+</mo><mtext>pop</mtext></mrow><annotation encoding="application/x-tex">\text{temp} = \text{rev} \cdot 10 + \text{pop}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.80952em;vertical-align:-0.19444em;"></span><span class="mord text"><span class="mord">temp</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.44445em;vertical-align:0em;"></span><span class="mord text"><span class="mord">rev</span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord text"><span class="mord">pop</span></span></span></span></span> 时会导致溢出。幸运的是，事先检查这个语句是否会导致溢出很容易。<br>
-为了便于解释，我们假设 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtext>rev</mtext></mrow><annotation encoding="application/x-tex">\text{rev}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord text"><span class="mord">rev</span></span></span></span></span> 是正数。</p>
-<ol>
-<li>如果 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>t</mi><mi>e</mi><mi>m</mi><mi>p</mi><mo>=</mo><mtext>rev</mtext><mo>⋅</mo><mn>10</mn><mo>+</mo><mtext>pop</mtext></mrow><annotation encoding="application/x-tex">temp = \text{rev} \cdot 10 + \text{pop}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.80952em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">t</span><span class="mord mathdefault">e</span><span class="mord mathdefault">m</span><span class="mord mathdefault">p</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.44445em;vertical-align:0em;"></span><span class="mord text"><span class="mord">rev</span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord text"><span class="mord">pop</span></span></span></span></span> 导致溢出，那么一定有 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtext>rev</mtext><mo>≥</mo><mfrac><mrow><mi>I</mi><mi>N</mi><mi>T</mi><mi>M</mi><mi>A</mi><mi>X</mi></mrow><mn>10</mn></mfrac></mrow><annotation encoding="application/x-tex">\text{rev} \geq \frac{INTMAX}{10}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719400000000001em;vertical-align:-0.13597em;"></span><span class="mord text"><span class="mord">rev</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.217331em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.872331em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">0</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.07847em;">I</span><span class="mord mathdefault mtight" style="margin-right:0.10903em;">N</span><span class="mord mathdefault mtight" style="margin-right:0.13889em;">T</span><span class="mord mathdefault mtight" style="margin-right:0.10903em;">M</span><span class="mord mathdefault mtight">A</span><span class="mord mathdefault mtight" style="margin-right:0.07847em;">X</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span>。</li>
-<li>如果 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtext>rev</mtext><mo>&gt;</mo><mfrac><mrow><mi>I</mi><mi>N</mi><mi>T</mi><mi>M</mi><mi>A</mi><mi>X</mi></mrow><mn>10</mn></mfrac></mrow><annotation encoding="application/x-tex">\text{rev} &gt; \frac{INTMAX}{10}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mord text"><span class="mord">rev</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.217331em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.872331em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">0</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.07847em;">I</span><span class="mord mathdefault mtight" style="margin-right:0.10903em;">N</span><span class="mord mathdefault mtight" style="margin-right:0.13889em;">T</span><span class="mord mathdefault mtight" style="margin-right:0.10903em;">M</span><span class="mord mathdefault mtight">A</span><span class="mord mathdefault mtight" style="margin-right:0.07847em;">X</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span>，那么 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>t</mi><mi>e</mi><mi>m</mi><mi>p</mi><mo>=</mo><mtext>rev</mtext><mo>⋅</mo><mn>10</mn><mo>+</mo><mtext>pop</mtext></mrow><annotation encoding="application/x-tex">temp = \text{rev} \cdot 10 + \text{pop}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.80952em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">t</span><span class="mord mathdefault">e</span><span class="mord mathdefault">m</span><span class="mord mathdefault">p</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.44445em;vertical-align:0em;"></span><span class="mord text"><span class="mord">rev</span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord text"><span class="mord">pop</span></span></span></span></span> 一定会溢出。</li>
-<li>如果 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtext>rev</mtext><mo>=</mo><mo>=</mo><mfrac><mrow><mi>I</mi><mi>N</mi><mi>T</mi><mi>M</mi><mi>A</mi><mi>X</mi></mrow><mn>10</mn></mfrac></mrow><annotation encoding="application/x-tex">\text{rev} == \frac{INTMAX}{10}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord text"><span class="mord">rev</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span></span><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.217331em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.872331em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">0</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.07847em;">I</span><span class="mord mathdefault mtight" style="margin-right:0.10903em;">N</span><span class="mord mathdefault mtight" style="margin-right:0.13889em;">T</span><span class="mord mathdefault mtight" style="margin-right:0.10903em;">M</span><span class="mord mathdefault mtight">A</span><span class="mord mathdefault mtight" style="margin-right:0.07847em;">X</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span>，那么只要 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtext>pop</mtext><mo>&gt;</mo><mn>7</mn></mrow><annotation encoding="application/x-tex">\text{pop} &gt; 7</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7335400000000001em;vertical-align:-0.19444em;"></span><span class="mord text"><span class="mord">pop</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">7</span></span></span></span>，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>t</mi><mi>e</mi><mi>m</mi><mi>p</mi><mo>=</mo><mtext>rev</mtext><mo>⋅</mo><mn>10</mn><mo>+</mo><mtext>pop</mtext></mrow><annotation encoding="application/x-tex">temp = \text{rev} \cdot 10 + \text{pop}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.80952em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">t</span><span class="mord mathdefault">e</span><span class="mord mathdefault">m</span><span class="mord mathdefault">p</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.44445em;vertical-align:0em;"></span><span class="mord text"><span class="mord">rev</span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord text"><span class="mord">pop</span></span></span></span></span> 就会溢出。<br>
-当 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtext>rev</mtext><mi>r</mi><mi>e</mi><mi>v</mi></mrow><annotation encoding="application/x-tex">\text{rev}rev</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord text"><span class="mord">rev</span></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">e</span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span></span></span></span> 为负时可以应用类似的逻辑。</li>
-</ol>
-<p><strong>代码如下（通过）</strong>：</p>
-<pre><code>int reverse(int x)
-{
-    int rev = 0;
-    while (x != 0)
-    {
-        int pop = x % 10;
-        x /= 10;
-        if (rev &gt; INT_MAX / 10 || (rev == INT_MAX / 10 &amp;&amp; pop &gt; 7))
-            return 0;
-        if (rev &lt; INT_MIN / 10 || (rev == INT_MIN / 10 &amp;&amp; pop &lt; -8))
-            return 0;
-        rev = rev * 10 + pop;
-    }
-    return rev;
-}
-</code></pre>
-<p><strong>复杂度分析：</strong></p>
-<ul>
-<li>时间复杂度：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>log</mi><mo>⁡</mo><mo>(</mo><mi>x</mi><mo>)</mo><mo>)</mo></mrow><annotation encoding="application/x-tex">O(\log(x))</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span><span class="mclose">)</span></span></span></span>，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span> 中大约有 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>log</mi><mo>⁡</mo><mn>10</mn></msub><mo>(</mo><mi>x</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\log_{10}(x)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop"><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.20696799999999996em;"><span style="top:-2.4558600000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">0</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.24414em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span></span></span></span> 位数字。</li>
-<li>空间复杂度：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span>。</li>
-</ul>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[344. 反转字符串]]></title>
-        <id>https://XMTam.github.io/fan-zhuan-zi-fu-chuan/</id>
-        <link href="https://XMTam.github.io/fan-zhuan-zi-fu-chuan/">
-        </link>
-        <updated>2020-03-11T07:12:00.000Z</updated>
-        <content type="html"><![CDATA[<h1 id="一-题目">一、题目</h1>
-<p>编写一个函数，其作用是将输入的字符串反转过来。输入字符串以字符数组 char[] 的形式给出。<br>
-不要给另外的数组分配额外的空间，你必须原地修改输入数组、使用 O(1) 的额外空间解决这一问题。<br>
-你可以假设数组中的所有字符都是 ASCII 码表中的可打印字符。<br>
-<strong>示例：</strong></p>
-<pre><code>输入：[&quot;h&quot;,&quot;e&quot;,&quot;l&quot;,&quot;l&quot;,&quot;o&quot;]
-输出：[&quot;o&quot;,&quot;l&quot;,&quot;l&quot;,&quot;e&quot;,&quot;h&quot;]
-</code></pre>
-<hr>
-<p>二、解决方案<br>
-<strong>思路</strong>：两个指针分别从字符串的头和尾开始扫描，如果两个指针所指向的内容不相等则交换之，若相等则头指针后移，尾指针前移，直到头指针与尾指针相遇或者头指针在尾指针后面。<br>
-<strong>代码如下（通过）</strong>：</p>
-<pre><code>void swap(char* a, char* b)
-{
-    char tmp;
-    tmp = *a;
-    *a = *b;
-    *b = tmp;
-}
-
-void reverseString(char* s, int sSize)
-{
-    char* phead = s;
-    char* ptail = s + sSize - 1;
-    while (phead &lt;= ptail)
-    {
-        if (*phead != *ptail)
-            swap(phead, ptail);
-        phead++;
-        ptail--;
-    }
-}
-</code></pre>
-<p><strong>复杂度分析</strong>：</p>
-<ul>
-<li>时间复杂度：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">O</mi><mo>(</mo><mi>N</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">\mathcal{O}(N)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathcal" style="margin-right:0.02778em;">O</span></span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mclose">)</span></span></span></span>。执行了 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>N</mi><mi mathvariant="normal">/</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">N/2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mord">/</span><span class="mord">2</span></span></span></span> 次的交换。</li>
-<li>空间复杂度：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">O</mi><mo>(</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">\mathcal{O}(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathcal" style="margin-right:0.02778em;">O</span></span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span>，只使用了常数级空间。</li>
-</ul>
 ]]></content>
     </entry>
 </feed>
