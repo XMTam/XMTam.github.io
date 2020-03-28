@@ -33,11 +33,7 @@
             文章目录
           </p>
           <div class="toc-container hidden lg:block">
-            <ul class="markdownIt-TOC">
-<li><a href="#%E4%B8%80-%E9%A2%98%E7%9B%AE">一、题目</a></li>
-<li><a href="#%E4%BA%8C-%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88">二、解决方案</a></li>
-</ul>
-
+            
           </div>
         </div>
       
@@ -82,50 +78,64 @@
 <div class="mask" onclick="closeMenu()">
 </div>
       <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
-        <h1 class="text-3xl font-bold lg:mt-16">26. 删除排序数组中的重复项</h1>
+        <h1 class="text-3xl font-bold lg:mt-16">Create a Linked-List in C</h1>
         <div class="text-sm text-gray-700 lg:my-8">
-          2020-03-04 / 2 min read
+          2020-03-29 / 2 min read
         </div>
         
-          <img class="post-feature-image rounded-lg mx-auto my-4" src="https://XMTam.github.io/post-images/26-shan-chu-pai-xu-shu-zu-zhong-de-chong-fu-xiang.png" alt="">
-        
         <div class="post-content yue">
-          <p>😄From here, I start my journal on <strong>LeetCode</strong>.<br>
-👉Let's practice programming together!<br>
-😇Hoping you could give some sugesstions.</p>
-<!-- more -->
-<h1 id="一-题目">一、题目</h1>
-<p>给定一个排序数组，你需要在原地删除重复出现的元素，使得每个元素只出现一次，返回移除后数组的新长度。</p>
-<p>不要使用额外的数组空间，你必须在原地修改输入数组并在使用 O(1) 额外空间的条件下完成。</p>
-<p><strong>示例 1：</strong></p>
-<pre><code>给定数组nums = [1,1,2], 
-函数应该返回新的长度 2, 并且原数组 nums 的前两个元素被修改为 1, 2。
-你不需要考虑数组中超出新长度后面的元素。
-</code></pre>
-<p><strong>示例2：</strong></p>
-<pre><code> 给定 nums = [0,0,1,1,1,2,2,3,3,4],
-函数应该返回新的长度 5, 并且原数组 nums 的前五个元素被修改为 0, 1, 2, 3, 4。
-你不需要考虑数组中超出新长度后面的元素。
-</code></pre>
-<hr>
-<h1 id="二-解决方案">二、解决方案</h1>
-<p><strong>代码：</strong></p>
-<pre><code>int removeDuplicates(int* nums, int numsSize)
+          <p>Code as following:</p>
+<pre><code>#include&lt;stdio.h&gt;
+#include&lt;stdlib.h&gt;
+#include&lt;malloc.h&gt;
+typedef struct LNode{
+    int          data;
+    struct LNode *next;
+}LNode,*LinkList;
+ 
+LinkList CreateList(int n);
+void print(LinkList h);
+int main()
 {
-    // 数组只有一个元素或者为空，直接返回原长度
-    if (numsSize &lt;= 1)
+    LinkList Head=NULL;
+    int n;
+    
+    scanf(&quot;%d&quot;,&amp;n);
+    Head=CreateList(n);
+    
+    printf(&quot;刚刚建立的各个链表元素的值为：\n&quot;);
+    print(Head);
+    
+    printf(&quot;\n\n&quot;);
+    system(&quot;pause&quot;);
+    return 0;
+}
+LinkList CreateList(int n)
+{
+    LinkList L,p,q;
+    int i;
+    L=(LNode*)malloc(sizeof(LNode));
+    if(!L)return 0;
+    L-&gt;next=NULL;
+    q=L;
+    for(i=1;i&lt;=n;i++)
     {
-        return numsSize;
+        p=(LinkList)malloc(sizeof(LNode));
+        printf(&quot;请输入第%d个元素的值:&quot;,i);
+        scanf(&quot;%d&quot;,&amp;(p-&gt;data));
+        p-&gt;next=NULL;
+        q-&gt;next=p;
+        q=p;
     }
-    int length = 0;     // 初始化最终数组长度
-    for (int i = 1; i &lt; numsSize; i++)  // 从第二个元素所在位置开始遍历数组
-    {
-        if (nums[i] != nums[length])    // 如果当前元素与length所在位置元素不相等
-        {
-            nums[++length] = nums[i];   // 当前元素的值赋给length所在位置的后一个元素
-        }
+    return L;
+}
+void print(LinkList h)
+{
+    LinkList p=h-&gt;next;
+    while(p!=NULL){
+        printf(&quot;%d &quot;,p-&gt;data);
+        p=p-&gt;next;
     }
-    return length + 1;
 }
 </code></pre>
 
@@ -136,29 +146,16 @@
             <span class="flex-auto">C</span>
           </a>
         
-          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://XMTam.github.io/tag/O0cfYipJxJ/">
-            <span class="flex-auto">LeetCode</span>
-          </a>
-        
 
 
         <div class="flex justify-between py-8">
           
-            <div class="prev-post">
-              <a href="https://XMTam.github.io/122-mai-mai-gu-piao-de-zui-jia-shi-ji-ii/">
-                <h3 class="post-title">
-                  <i class="ri-arrow-left-line"></i>
-                  122. 买卖股票的最佳时机 II
-                </h3>
-              </a>
-            </div>
-          
 
           
             <div class="next-post">
-              <a href="https://XMTam.github.io/hello-gridea/">
+              <a href="https://XMTam.github.io/19. 删除链表的倒数第N个节点/">
                 <h3 class="post-title">
-                  Hello Gridea
+                  19. 删除链表的倒数第N个节点
                   <i class="ri-arrow-right-line"></i>
                 </h3>
               </a>
