@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://XMTam.github.io</id>
     <title>Alvin</title>
-    <updated>2020-03-27T23:10:46.659Z</updated>
+    <updated>2020-03-28T01:21:01.203Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://XMTam.github.io"/>
     <link rel="self" href="https://XMTam.github.io/atom.xml"/>
@@ -10,6 +10,36 @@
     <logo>https://XMTam.github.io/images/avatar.png</logo>
     <icon>https://XMTam.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Alvin</rights>
+    <entry>
+        <title type="html"><![CDATA[19. 删除链表的倒数第N个节点]]></title>
+        <id>https://XMTam.github.io/19. 删除链表的倒数第N个节点/</id>
+        <link href="https://XMTam.github.io/19. 删除链表的倒数第N个节点/">
+        </link>
+        <updated>2020-03-27T23:12:08.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="一-题目">一、题目</h1>
+<p>给定一个链表，删除链表的倒数第 n 个节点，并且返回链表的头结点。</p>
+<p><strong>示例：</strong></p>
+<pre><code>给定一个链表: 1-&gt;2-&gt;3-&gt;4-&gt;5, 和 n = 2.
+当删除了倒数第二个节点后，链表变为 1-&gt;2-&gt;3-&gt;5.
+</code></pre>
+<p>**说明：**给定的 n 保证是有效的。</p>
+<p>**进阶：**你能尝试使用一趟扫描实现吗？</p>
+<hr>
+<h1 id="二-解决方法">二、解决方法</h1>
+<h2 id="方法一两次遍历算法">方法一：两次遍历算法</h2>
+<p><strong>思路：</strong> 注意到这个问题可以容易地简化成另一个问题：删除从列表开头数起的第 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mi>L</mi><mo>−</mo><mi>n</mi><mo>+</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">(L - n + 1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">L</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span></span></span></span> 个结点，其中 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>L</mi></mrow><annotation encoding="application/x-tex">L</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">L</span></span></span></span> 是列表的长度。只要我们找到列表的长度 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>L</mi></mrow><annotation encoding="application/x-tex">L</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">L</span></span></span></span>，这个问题就很容易解决。<br>
+<strong>算法：</strong> 首先我们添加一个哑结点作为辅助结点，该结点位于列表头部。哑结点用来简化某些极端情况，例如列表中只含有一个结点，或需要删除列表的头部。在第一次遍历中，我们找出列表的长度 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>L</mi></mrow><annotation encoding="application/x-tex">L</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">L</span></span></span></span>。然后设置一个指向哑结点的指针，并移动它遍历列表，直至它到达第 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mi>L</mi><mo>−</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">(L - n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">L</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span> 个结点那里。我们把第 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mi>L</mi><mo>−</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">(L - n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">L</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span> 个结点的 next 指针重新链接至第 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mi>L</mi><mo>−</mo><mi>n</mi><mo>+</mo><mn>2</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">(L - n + 2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">L</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">2</span><span class="mclose">)</span></span></span></span> 个结点，完成这个算法。变化过程如下图所示：<br>
+<img src="https://XMTam.github.io/post-images/1585351209535.png" alt="" loading="lazy"></p>
+<p><strong>代码如下</strong>：</p>
+<pre><code>
+</code></pre>
+<p><strong>复杂度分析</strong>：</p>
+<ul>
+<li>时间复杂度：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>L</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(L)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">L</span><span class="mclose">)</span></span></span></span>，该算法对列表进行了两次遍历，首先计算了列表的长度 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>L</mi></mrow><annotation encoding="application/x-tex">L</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">L</span></span></span></span> ，其次找到第 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mi>L</mi><mo>−</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">(L - n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">L</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span> 个结点。 操作执行了 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>2</mn><mi>L</mi><mo>−</mo><mi>n</mi></mrow><annotation encoding="application/x-tex">2L-n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord">2</span><span class="mord mathdefault">L</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 步，时间复杂度为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>L</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(L)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">L</span><span class="mclose">)</span></span></span></span>。</li>
+<li>空间复杂度：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span>，我们只用了常量级的额外空间。</li>
+</ul>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[237. 删除链表中的节点]]></title>
         <id>https://XMTam.github.io/237. 删除链表中的节点/</id>
@@ -875,93 +905,6 @@ bool isAnagram(char* s, char* t)
 <li>时间复杂度：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>。时间复杂度为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span> 因为访问计数器表是一个固定的时间操作。</li>
 <li>空间复杂度：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span>。尽管我们使用了额外的空间，但是空间的复杂性是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span>，因为无论 N 有多大，表的大小都保持不变。</li>
 </ul>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[387. 字符串中的第一个唯一字符]]></title>
-        <id>https://XMTam.github.io/387-zi-fu-chuan-zhong-de-di-yi-ge-wei-yi-zi-fu/</id>
-        <link href="https://XMTam.github.io/387-zi-fu-chuan-zhong-de-di-yi-ge-wei-yi-zi-fu/">
-        </link>
-        <updated>2020-03-13T22:38:11.000Z</updated>
-        <content type="html"><![CDATA[<h1 id="一-题目">一、题目</h1>
-<p>给定一个字符串，找到它的第一个不重复的字符，并返回它的索引。如果不存在，则返回 -1。</p>
-<p><strong>案例:</strong></p>
-<pre><code>s = &quot;leetcode&quot;
-返回 0.
-
-s = &quot;loveleetcode&quot;,
-返回 2.
-</code></pre>
-<p><strong>注意事项</strong>：您可以假定该字符串只包含小写字母。</p>
-<h1 id="二-解决方法">二、解决方法</h1>
-<h2 id="方法一-我的笨方法">方法一、我的笨方法</h2>
-<p>首先将字符串转换为字符数组，然后通过两个for循环遍历查找解决。<br>
-<strong>代码如下（通过）</strong>：</p>
-<pre><code>int firstUniqChar(char* s) {
-    int len = strlen(s);
-    char* str = (char*)malloc(sizeof(char) * (len + 1));
-    for (int i = 0; i &lt; len; i++)
-    {
-        str[i] = *s;
-        s++;
-    }
-    
-    int cnt;
-    int pos = -1;
-    for (int i = 0; i &lt; len; i++)
-    {
-        cnt = 0;
-        for (int j = 0; j &lt;= len - 1; j++)
-        {
-            if (i == j)
-                j++;
-            if (str[i] == str[j])
-            {
-                cnt++;
-                break;
-            }                
-        }
-        if (cnt == 0)
-        {
-            pos = i;
-            break;
-        }               
-    }
-    if (pos == -1)
-        return -1;
-    else
-        return pos;
-}
-</code></pre>
-<p>之间遇到的问题：AddressSanitizer: heap- buffer- overflow……如下图所示。<br>
-<img src="https://XMTam.github.io/post-images/1584227414920.png" alt="" loading="lazy"><br>
-<strong>原因</strong>：leetcode使用AddressSanitizer检查内存是否存在非法访问。报此错，主要是访问了非法内容。<br>
-<strong>解决办法</strong>：排查代码，发现数组访问越越，导致此错，将申请的数组空间加大（这里只加1），问题解决。</p>
-<hr>
-<h2 id="方法二线性时间复杂度解法最优解法">方法二：线性时间复杂度解法（最优解法）</h2>
-<p>这道题最优的解法就是线性复杂度了，为了保证每个元素是唯一的，至少得把每个字符都遍历一遍。</p>
-<p>算法的思路就是遍历一遍字符串，然后把字符串中每个字符出现的次数保存在一个散列表中。这个过程的时间复杂度为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>N</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(N)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mclose">)</span></span></span></span>，其中 N 为字符串的长度。</p>
-<p>接下来需要再遍历一次字符串，这一次利用散列表来检查遍历的每个字符是不是唯一的。如果当前字符唯一，直接返回当前下标就可以了。第二次遍历的时间复杂度也是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>N</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(N)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mclose">)</span></span></span></span>。</p>
-<p><strong>伪hash实现代码如下</strong>：</p>
-<pre><code>int firstUniqChar(char* s)
-{   
-    int mark[26]; // 标记数组
-    memset(mark, 0, sizeof(mark));
-    int length = strlen(s);
-    for (int i = 0; i &lt; length; i++)
-        mark[s[i] - 'a']++; // 纪录每个字母个数
-    int pos = -1;
-    for (int i = 0; i &lt; length; i++)
-    {
-        if (mark[s[i] - 'a'] == 1)
-        {
-            pos = i;
-            break;
-        }
-    }
-    return pos;
-}
-</code></pre>
 ]]></content>
     </entry>
 </feed>
