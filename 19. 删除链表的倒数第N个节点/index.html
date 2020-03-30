@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Alvin</title>
 <meta name="description" content="A = X + Y + Z" />
-<link rel="shortcut icon" href="https://XMTam.github.io/favicon.ico?v=1585529929429">
+<link rel="shortcut icon" href="https://XMTam.github.io/favicon.ico?v=1585610336857">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
@@ -23,7 +23,7 @@
       <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
         <i class="ri-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
         <a href="https://XMTam.github.io">
-          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://XMTam.github.io/images/avatar.png?v=1585529929429" alt="">
+          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://XMTam.github.io/images/avatar.png?v=1585610336857" alt="">
         </a>
         <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">Alvin</h1>
       </div>
@@ -38,7 +38,7 @@
 <li><a href="#%E4%BA%8C-%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95">二、解决方法</a>
 <ul>
 <li><a href="#%E6%96%B9%E6%B3%95%E4%B8%80%E4%B8%A4%E6%AC%A1%E9%81%8D%E5%8E%86%E7%AE%97%E6%B3%95">方法一：两次遍历算法</a></li>
-<li><a href="#%E6%96%B9%E6%B3%95%E4%BA%8C">方法二：</a></li>
+<li><a href="#%E6%96%B9%E6%B3%95%E4%BA%8C%E4%B8%80%E6%AC%A1%E9%81%8D%E5%8E%86%E7%AE%97%E6%B3%95">方法二：一次遍历算法</a></li>
 </ul>
 </li>
 </ul>
@@ -89,7 +89,7 @@
       <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
         <h1 class="text-3xl font-bold lg:mt-16">19. *删除链表的倒数第N个节点</h1>
         <div class="text-sm text-gray-700 lg:my-8">
-          2020-03-28 / 3 min read
+          2020-03-28 / 4 min read
         </div>
         
           <img class="post-feature-image rounded-lg mx-auto my-4" src="https://XMTam.github.io/post-images/19. 删除链表的倒数第N个节点.png" alt="">
@@ -137,7 +137,50 @@
 <li>时间复杂度：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>L</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(L)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">L</span><span class="mclose">)</span></span></span></span>，该算法对列表进行了两次遍历，首先计算了列表的长度 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>L</mi></mrow><annotation encoding="application/x-tex">L</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">L</span></span></span></span> ，其次找到第 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mi>L</mi><mo>−</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">(L - n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">L</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span> 个结点。 操作执行了 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>2</mn><mi>L</mi><mo>−</mo><mi>n</mi></mrow><annotation encoding="application/x-tex">2L-n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord">2</span><span class="mord mathdefault">L</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 步，时间复杂度为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>L</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(L)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">L</span><span class="mclose">)</span></span></span></span>。</li>
 <li>空间复杂度：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span>，我们只用了常量级的额外空间。</li>
 </ul>
-<h2 id="方法二">方法二：</h2>
+<h2 id="方法二一次遍历算法">方法二：一次遍历算法</h2>
+<p><strong>思路</strong>：可以设想假设设定了双指针 p 和 q 的话，当 q 指向末尾的 NULL，p 与 q 之间相隔的元素个数为 n 时，那么删除掉 p 的下一个指针就完成了要求。</p>
+<ul>
+<li>设置虚拟节点 dummyHead 指向 head</li>
+<li>设定双指针 p 和 q，初始都指向虚拟节点 dummyHead</li>
+<li>移动 q，直到 p 与 q 之间相隔的元素个数为 n</li>
+<li>同时移动 p 与 q，直到 q 指向的为 NULL</li>
+<li>将 p 的下一个节点指向下下个节点</li>
+</ul>
+<p>动画描述如下图所示：<br>
+<img src="https://XMTam.github.io/post-images/1585608644919.gif" alt="" loading="lazy"><br>
+代码实现(accepted)：</p>
+<pre><code>struct ListNode* removeNthFromEnd(struct ListNode* head, int n) 
+{
+    struct ListNode* dummyHead = (struct ListNode*)malloc(sizeof(struct ListNode));
+    dummyHead-&gt;next = head;
+
+    struct ListNode* p = dummyHead;
+    struct ListNode* q = dummyHead;
+    for (int i = 0; i &lt; n + 1; i++)
+    {
+        q = q-&gt;next;
+    }
+    while (q)
+    {
+        p = p-&gt;next;
+        q = q-&gt;next;
+    }
+
+    struct ListNode* delNode = p-&gt;next;
+    p-&gt;next = delNode-&gt;next;
+    free(delNode);
+
+    struct ListNode* retNode = dummyHead-&gt;next;
+    free(dummyHead);
+
+    return retNode;
+}
+</code></pre>
+<p><strong>复杂度分析</strong>:</p>
+<ul>
+<li>时间复杂度：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>L</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(L)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">L</span><span class="mclose">)</span></span></span></span>，该算法对含有 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>L</mi></mrow><annotation encoding="application/x-tex">L</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">L</span></span></span></span> 个结点的列表进行了一次遍历。因此时间复杂度为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>L</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(L)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">L</span><span class="mclose">)</span></span></span></span>。</li>
+<li>空间复杂度：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span>，我们只用了常量级的额外空间。</li>
+</ul>
 
         </div>
 
