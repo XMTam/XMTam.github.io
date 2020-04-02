@@ -30,30 +30,14 @@
       
         <div class="animated fadeInLeft" style="animation-delay: 0.4s">
           <p class="my-4 text-gray-600 font-light hidden lg:block">
-            温故而知新
+            文章目录
           </p>
-          <div class="animated fadeInLeft social-container hidden lg:block" style="animation-delay: 0.6s">
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
+          <div class="toc-container hidden lg:block">
+            <ul class="markdownIt-TOC">
+<li><a href="#%E4%B8%80-%E9%A2%98%E7%9B%AE">一、题目</a></li>
+<li><a href="#%E4%BA%8C-%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95">二、解决方法</a></li>
+</ul>
+
           </div>
         </div>
       
@@ -97,38 +81,144 @@
 </div>
 <div class="mask" onclick="closeMenu()">
 </div>
-      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4">
-        <h2 class="text-lg text-gray-700 mb-8">
-          <i class="ri-bookmark-2-line"></i> 标签云
-        </h2>
-        <div class="tags-container">
+      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
+        <h1 class="text-3xl font-bold lg:mt-16">38. 外观数列</h1>
+        <div class="text-sm text-gray-700 lg:my-8">
+          2020-03-25 / 2 min read
+        </div>
+        
+          <img class="post-feature-image rounded-lg mx-auto my-4" src="https://XMTam.github.io/post-images/38-外观数列.png" alt="">
+        
+        <div class="post-content yue">
+          <h1 id="一-题目">一、题目</h1>
+<p>「外观数列」是一个整数序列，从数字 1 开始，序列中的每一项都是对前一项的描述。前五项如下：</p>
+<pre><code>1.     1
+2.     11
+3.     21
+4.     1211
+5.     111221
+</code></pre>
+<p>1 被读作  &quot;one 1&quot;  (&quot;一个一&quot;) , 即 11。<br>
+11 被读作 &quot;two 1s&quot; (&quot;两个一&quot;）, 即 21。<br>
+21 被读作 &quot;one 2&quot;,  &quot;one 1&quot; （&quot;一个二&quot; ,  &quot;一个一&quot;) , 即 1211。</p>
+<p>给定一个正整数 n（1 ≤ n ≤ 30），输出外观数列的第 n 项。</p>
+<p>注意：整数序列中的每一项将表示为一个字符串。</p>
+<p><strong>示例 1</strong>:</p>
+<pre><code>输入: 1
+输出: &quot;1&quot;
+解释：这是一个基本样例。
+</code></pre>
+<p><strong>示例 2</strong>:</p>
+<pre><code>输入: 4
+输出: &quot;1211&quot;
+解释：当 n = 3 时，序列是 &quot;21&quot;，其中我们有 &quot;2&quot; 和 &quot;1&quot; 两组，&quot;2&quot; 可以读作 &quot;12&quot;，也就是出现频次 = 1 而 值 = 2；类似 &quot;1&quot; 可以读作 &quot;11&quot;。所以答案是 &quot;12&quot; 和 &quot;11&quot; 组合在一起，也就是 &quot;1211&quot;。
+</code></pre>
+<hr>
+<h1 id="二-解决方法">二、解决方法</h1>
+<p>废话不多说，先上代码：</p>
+<pre><code>char* countAndSay(int n) {
+    char* rest = (char*)malloc(sizeof(char) * 5000);
+    char* temp = (char*)malloc(sizeof(char) * 5000);
+    rest[0] = '1';
+    rest[1] = '\0'; // the end symbol of the string
+    char key;
+    char* p;
+    int i, j, cnt;
+    for (i = 1; i &lt; n; i++) // times of the iteration
+    {
+        j = 0;
+        key = rest[0];
+        p = rest;
+        cnt = 0;
+        while (*p)
+        {
+            if (*p == key) // count the same char's number
+                cnt++;
+            else
+            {
+                temp[j++] = cnt + '0';  // save the counter first
+                cnt = 1;
+                temp[j++] = key;    // and then save the key char 
+                key = *p;
+            }
+            p++;
+        }
+        temp[j++] = cnt + '0';  // save the counter first
+        temp[j++] = key;    // and then save the key char 
+        temp[j] = '\0';
+        strcpy(rest, temp);
+    }
+    return rest;
+}
+</code></pre>
+<p>执行用时图如下：<br>
+<img src="https://XMTam.github.io/post-images/1585182293749.png" alt="" loading="lazy"></p>
+
+        </div>
+
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://XMTam.github.io/tag/IbJfDqfWt/">
+            <span class="flex-auto">LeetCode</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://XMTam.github.io/tag/mdTywhGOSm/">
+            <span class="flex-auto">C</span>
+          </a>
+        
+
+
+        <div class="flex justify-between py-8">
           
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://XMTam.github.io/tag/IbJfDqfWt/" :style="{ 'animation-delay': `${0 * 0.2}s` }">
-              <span class="flex-auto">LeetCode</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">23</span>
-            </a>
+            <div class="prev-post">
+              <a href="https://XMTam.github.io/post/14-最长公共前缀/">
+                <h3 class="post-title">
+                  <i class="ri-arrow-left-line"></i>
+                  14. 最长公共前缀*
+                </h3>
+              </a>
+            </div>
           
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://XMTam.github.io/tag/mdTywhGOSm/" :style="{ 'animation-delay': `${1 * 0.2}s` }">
-              <span class="flex-auto">C</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">25</span>
-            </a>
+
           
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://XMTam.github.io/tag/kqw_ljbz5c/" :style="{ 'animation-delay': `${2 * 0.2}s` }">
-              <span class="flex-auto">Algorithm</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">1</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://XMTam.github.io/tag/mWsn6ucckW/" :style="{ 'animation-delay': `${3 * 0.2}s` }">
-              <span class="flex-auto">Method</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">1</span>
-            </a>
-          
-            <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://XMTam.github.io/tag/UMEbJWoMt/" :style="{ 'animation-delay': `${4 * 0.2}s` }">
-              <span class="flex-auto">Gridea</span>
-              <span class="flex rounded-full bg-gray-200 px-2 py-1 text-xs ml-1">1</span>
-            </a>
+            <div class="next-post">
+              <a href="https://XMTam.github.io/post/28-实现strstr()/">
+                <h3 class="post-title">
+                  28. 实现 strStr()
+                  <i class="ri-arrow-right-line"></i>
+                </h3>
+              </a>
+            </div>
           
         </div>
+
+        
+          
+            <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+
+<script>
+
+  var gitalk = new Gitalk({
+    clientID: 'b3d959b44c66103ef289',
+    clientSecret: '510446b8a79cc1b1d29e9fb60522c7148ee83542',
+    repo: 'XMTam.github.io',
+    owner: 'XMTam',
+    admin: ['XMTam'],
+    id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+
+</script>
+
+          
+
+          
+        
+
       </div>
     </div>
 

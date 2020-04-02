@@ -1,0 +1,376 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Gridea</title>
+<meta name="description" content="温故而知新" />
+<link rel="shortcut icon" href="https://XMTam.github.io/favicon.ico?v=1585791164030">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+
+<link rel="stylesheet" href="https://XMTam.github.io/styles/main.css">
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main px-4 flex flex-col lg:flex-row">
+      <div id="sidebar" class="sidebar-wrapper lg:static lg:w-1/4">
+  <div class="lg:sticky top-0">
+    <div class="sidebar-content">
+      <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
+        <i class="ri-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
+        <a href="https://XMTam.github.io">
+          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://XMTam.github.io/images/avatar.png?v=1585791164030" alt="">
+        </a>
+        <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">Gridea</h1>
+      </div>
+      
+        <div class="animated fadeInLeft" style="animation-delay: 0.4s">
+          <p class="my-4 text-gray-600 font-light hidden lg:block">
+            文章目录
+          </p>
+          <div class="toc-container hidden lg:block">
+            <ul class="markdownIt-TOC">
+<li><a href="#%E4%B8%80-%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86">一、实现原理</a>
+<ul>
+<li><a href="#1-%E7%AE%97%E6%B3%95%E5%9F%BA%E6%9C%AC%E6%80%9D%E8%B7%AF">1、算法基本思路</a>
+<ul>
+<li><a href="#1%E5%90%88%E5%B9%B6%E8%BF%87%E7%A8%8B">（1）合并过程</a></li>
+<li><a href="#2%E5%8A%A8%E6%80%81%E7%94%B3%E8%AF%B7r1">（2）动态申请R1</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E4%BA%8C-2%E7%A7%8D%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%95">二、2种实现方法</a>
+<ul>
+<li><a href="#1-%E8%87%AA%E5%BA%95%E5%90%91%E4%B8%8A%E6%96%B9%E6%B3%95%E8%99%BD%E7%84%B6%E6%95%88%E7%8E%87%E8%BE%83%E9%AB%98%E4%BD%86%E5%8F%AF%E8%AF%BB%E6%80%A7%E8%BE%83%E5%B7%AE">1. 自底向上方法（虽然效率较高，但可读性较差）</a>
+<ul>
+<li><a href="#1-%E8%87%AA%E5%BA%95%E5%90%91%E4%B8%8A%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%80%9D%E6%83%B3">（1） 自底向上的基本思想</a></li>
+<li><a href="#2-%E4%B8%80%E8%B6%9F%E5%BD%92%E5%B9%B6%E7%AE%97%E6%B3%95">（2） 一趟归并算法</a></li>
+</ul>
+</li>
+<li><a href="#2-%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E7%9A%84%E6%96%B9%E6%B3%95">2. 自顶向下的方法</a>
+<ul>
+<li><a href="#1%E5%88%86%E6%B2%BB%E6%B3%95%E7%9A%84%E4%B8%89%E4%B8%AA%E6%AD%A5%E9%AA%A4">（1）分治法的三个步骤</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E4%B8%89-%E5%88%86%E6%9E%90">三、分析</a></li>
+</ul>
+
+          </div>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="menu-container">
+  <i class="ri-arrow-left-line text-2xl cursor-pointer animated fadeIn close-menu-btn" onclick="closeMenu()"></i>
+  <div>
+    
+      
+        <a href="/" class="menu" style="animation-delay: 0s">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu" style="animation-delay: 0.2s">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu" style="animation-delay: 0.4s">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu" style="animation-delay: 0.6000000000000001s">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="site-footer">
+    <div class="py-4 text-gray-700">Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a></div>
+    <a class="rss" href="https://XMTam.github.io/atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+<div class="mask" onclick="closeMenu()">
+</div>
+      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
+        <h1 class="text-3xl font-bold lg:mt-16">C语言排序算法之归并排序</h1>
+        <div class="text-sm text-gray-700 lg:my-8">
+          2020-03-19 / 6 min read
+        </div>
+        
+          <img class="post-feature-image rounded-lg mx-auto my-4" src="https://XMTam.github.io/post-images/C-merge_sort.png" alt="">
+        
+        <div class="post-content yue">
+          <p>排序算法中的归并排序(Merge Sort)是利用&quot;归并&quot;技术来进行排序。归并是指将若干个已排序的子文件合并成一个有序的文件。</p>
+<h1 id="一-实现原理">一、实现原理</h1>
+<h2 id="1-算法基本思路">1、算法基本思路</h2>
+<p>设两个有序的子文件(相当于输入堆)放在同一向量中相邻的位置上：R[low..m]，R[m+1..high]，先将它们合并到一个局部的暂存向量R1(相当于输出堆)中，待合并完成后将R1复制回R[low..high]中。</p>
+<h3 id="1合并过程">（1）合并过程</h3>
+<p>合并过程中，设置i，j和p三个指针，其初值分别指向这三个记录区的起始位置。合并时依次比较R[i]和R[j]的关键字，取关键字较小的记录复制到R1[p]中，然后将被复制记录的指针i或j加1，以及指向复制位置的指针p加1。<br>
+重复这一过程直至两个输入的子文件有一个已全部复制完毕(不妨称其为空)，此时将另一非空的子文件中剩余记录依次复制到R1中即可。<br>
+最后，将结果赋值到R[]中。</p>
+<h3 id="2动态申请r1">（2）动态申请R1</h3>
+<p>实现时，R1是动态申请的，因为申请的空间可能很大，故须加入申请空间是否成功的处理。</p>
+<h1 id="二-2种实现方法">二、2种实现方法</h1>
+<p><strong>自底向上</strong>和<strong>自顶向下</strong>方法。</p>
+<h2 id="1-自底向上方法虽然效率较高但可读性较差">1. 自底向上方法（虽然效率较高，但可读性较差）</h2>
+<h3 id="1-自底向上的基本思想">（1） 自底向上的基本思想</h3>
+<p>自底向上的基本思想是：第1趟归并排序时，将待排序的文件R[1..n]看作是n个长度为1的有序子文件，将这些子文件两两归并，若n为偶数，则得到 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mi mathvariant="normal">/</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">n/2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">n</span><span class="mord">/</span><span class="mord">2</span></span></span></span> 个长度为2的有序子文件；若n为奇数，则最后一个子文件轮空(不参与归并)。故本趟归并完成后，前 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>l</mi><mi>o</mi><mi>g</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">log(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span> 个有序子文件长度为2，但最后一个子文件长度仍为1；第2趟归并则是将第1趟归并所得到的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>l</mi><mi>o</mi><mi>g</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">log(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span> 个有序的子文件两两归并，如此反复，直到最后得到一个长度为n的有序文件为止。<br>
+上述的每次归并操作，均是将两个有序的子文件合并成一个有序的子文件，故称其为&quot;二路归并排序&quot;。类似地有 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi><mo>(</mo><mi>k</mi><mo>&gt;</mo><mn>2</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">k(k&gt;2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">2</span><span class="mclose">)</span></span></span></span> 路归并排序。</p>
+<h3 id="2-一趟归并算法">（2） 一趟归并算法</h3>
+<p><strong>分析</strong>：在某趟归并中，设各子文件长度为length(最后一个子文件的长度可能小于length)，则归并前R[1..n]中共有 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mi mathvariant="normal">/</mi><mi>l</mi><mi>e</mi><mi>n</mi><mi>g</mi><mi>t</mi><mi>h</mi></mrow><annotation encoding="application/x-tex">n/length</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">n</span><span class="mord">/</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">e</span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault">t</span><span class="mord mathdefault">h</span></span></span></span> 个有序的子文件：R[1..length]，R[length+1..2length]，…</p>
+<p><strong>注意</strong>：调用归并操作将相邻的一对子文件进行归并时，必须对子文件的个数可能是奇数、以及最后一个子文件的长度小于length这两种特殊情况进行特殊处理：<br>
+① 若子文件个数为奇数，则最后一个子文件无须和其它子文件归并(即本趟轮空)；<br>
+② 若子文件个数为偶数，则要注意最后一对子文件中后一子文件的区间上界是n。</p>
+<p>举个栗子：对于数组 a[n] = {63, 95, 84, 46, 18, 24, 27, 31, 46}，采用自底向上方法归并排序过程如下图所示。<br>
+<img src="https://XMTam.github.io/post-images/1584572970371.png" alt="" loading="lazy"><br>
+具体实现如下：</p>
+<pre><code>int min(int x, int y) 
+{
+    return x &lt; y ? x : y;
+}
+void merge_sort(int arr[], int len) 
+{
+    int *a = arr;
+    int *b = (int *) malloc(len * sizeof(int));
+    int seg, start;
+    for (seg = 1; seg &lt; len; seg += seg) {
+        for (start = 0; start &lt; len; start += seg * 2) 
+        {
+            int low = start, mid = min(start + seg, len), high = min(start + seg * 2, len);
+            int k = low;
+            int start1 = low, end1 = mid;
+            int start2 = mid, end2 = high;
+            while (start1 &lt; end1 &amp;&amp; start2 &lt; end2)
+                b[k++] = a[start1] &lt; a[start2] ? a[start1++] : a[start2++];
+            while (start1 &lt; end1)
+                b[k++] = a[start1++];
+            while (start2 &lt; end2)
+                b[k++] = a[start2++];
+        }
+        int *temp = a;
+        a = b;
+        b = temp;
+    }
+    if (a != arr) 
+    {
+        for (int i = 0; i &lt; len; i++)
+            b[i] = a[i];
+        b = a;
+    }
+    free(b);
+}
+</code></pre>
+<h2 id="2-自顶向下的方法">2. 自顶向下的方法</h2>
+<p>采用分治法进行自顶向下的算法设计，形式更为简洁。</p>
+<h3 id="1分治法的三个步骤">（1）分治法的三个步骤</h3>
+<p>设归并排序的当前区间是R[low..high]，分治法的三个步骤是：<br>
+①分解：将当前区间一分为二，即求分裂点：mid = (low+high)/2;<br>
+②求解：递归地对两个子区间R[low..mid]和R[mid+1..high]进行归并排序；<br>
+③组合：将已排序的两个子区间R[low..mid]和R[mid+1..high]归并为一个有序的区间R[low..high]<br>
+递归的终结条件：子区间长度为1（一个记录自然是有序的啦）。</p>
+<p>具体实现如下：</p>
+<pre><code>void merge_sort(int arr[], int low, int high)
+{
+    if(low &lt; high)
+    {
+        int mid = (low+high)/2;
+        merge_sort(arr, low, mid);   //左半区排序
+        merge_sort(arr, mid+1, high); //右半区排序
+        merge_sort(arr, low, mid, high);//左右半区合并
+    }
+}
+</code></pre>
+<h1 id="三-分析">三、分析</h1>
+<p>1、稳定性<br>
+归并排序是一种稳定的排序。</p>
+<p>2、存储结构要求<br>
+可用顺序存储结构。也易于在链表上实现。</p>
+<p>3、时间复杂度<br>
+对长度为n的文件，需进行 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>l</mi><mi>o</mi><mi>g</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">log(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span> 趟二路归并，每趟归并的时间为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>，故其时间复杂度无论是在最好情况下还是在最坏情况下均是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mi>l</mi><mi>o</mi><mi>g</mi><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(nlogn)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>。</p>
+<p>4、空间复杂度<br>
+需要一个辅助向量来暂存两有序子文件归并的结果，故其辅助空间复杂度为O(n)，显然它不是就地排序。</p>
+<p><strong>注意</strong>：<br>
+若用单链表做存储结构，很容易给出就地的归并排序。</p>
+
+        </div>
+
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://XMTam.github.io/tag/mdTywhGOSm/">
+            <span class="flex-auto">C</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://XMTam.github.io/tag/kqw_ljbz5c/">
+            <span class="flex-auto">Algorithm</span>
+          </a>
+        
+
+
+        <div class="flex justify-between py-8">
+          
+            <div class="prev-post">
+              <a href="https://XMTam.github.io/post/the-20-rules-of-formulating-knowledge-in-learning/">
+                <h3 class="post-title">
+                  <i class="ri-arrow-left-line"></i>
+                  The 20 rules of formulating knowledge in learning
+                </h3>
+              </a>
+            </div>
+          
+
+          
+            <div class="next-post">
+              <a href="https://XMTam.github.io/post/242-you-xiao-de-zi-mu-yi-wei-ci/">
+                <h3 class="post-title">
+                  242. 有效的字母异位词
+                  <i class="ri-arrow-right-line"></i>
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+
+        
+          
+            <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+
+<script>
+
+  var gitalk = new Gitalk({
+    clientID: 'b3d959b44c66103ef289',
+    clientSecret: '510446b8a79cc1b1d29e9fb60522c7148ee83542',
+    repo: 'XMTam.github.io',
+    owner: 'XMTam',
+    admin: ['XMTam'],
+    id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+
+</script>
+
+          
+
+          
+        
+
+      </div>
+    </div>
+
+    <script src="https://XMTam.github.io/media/prism.js"></script>  
+<script>
+
+Prism.highlightAll()
+let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+// This should probably be throttled.
+// Especially because it triggers during smooth scrolling.
+// https://lodash.com/docs/4.17.10#throttle
+// You could do like...
+// window.addEventListener("scroll", () => {
+//    _.throttle(doThatStuff, 100);
+// });
+// Only not doing it here to keep this Pen dependency-free.
+
+window.addEventListener("scroll", event => {
+  let fromTop = window.scrollY;
+
+  mainNavLinks.forEach((link, index) => {
+    let section = document.getElementById(decodeURI(link.hash).substring(1));
+    let nextSection = null
+    if (mainNavLinks[index + 1]) {
+      nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+    }
+    if (section.offsetTop <= fromTop) {
+      if (nextSection) {
+        if (nextSection.offsetTop > fromTop) {
+          link.classList.add("current");
+        } else {
+          link.classList.remove("current");    
+        }
+      } else {
+        link.classList.add("current");
+      }
+    } else {
+      link.classList.remove("current");
+    }
+  });
+});
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  var lazyImages = [].slice.call(document.querySelectorAll(".post-feature-image.lazy"));
+
+  if ("IntersectionObserver" in window) {
+    let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          let lazyImage = entry.target
+          lazyImage.style.backgroundImage = `url(${lazyImage.dataset.bg})`
+          lazyImage.classList.remove("lazy")
+          lazyImageObserver.unobserve(lazyImage)
+        }
+      });
+    });
+
+    lazyImages.forEach(function(lazyImage) {
+      lazyImageObserver.observe(lazyImage)
+    })
+  } else {
+    // Possibly fall back to a more compatible method here
+  }
+});
+
+const menuContainer = document.querySelector('.menu-container')
+const menus = document.querySelectorAll('.menu-container .menu')
+const mask = document.querySelector('.mask')
+const contentWrapper = document.querySelector('.content-wrapper')
+const latestArticle = document.querySelector('.latest-article')
+const readMore = document.querySelector('.read-more')
+const indexPage = document.querySelector('.index-page')
+
+const isHome = location.pathname === '/'
+if (latestArticle) {
+  latestArticle.style.display = isHome ? 'block' : 'none'
+  readMore.style.display = isHome ? 'block' : 'none'
+  indexPage.style.display = isHome ? 'none' : 'block'
+}
+
+const openMenu = () => {
+  menuContainer.classList.add('open')
+  menus.forEach(menu => {
+    menu.classList.add('animated', 'fadeInLeft')
+  })
+  mask.classList.add('open')
+  contentWrapper.classList.add('is-second')
+}
+
+const closeMenu = () => {
+  menuContainer.classList.remove('open')
+  menus.forEach(menu => {
+    menu.classList.remove('animated', 'fadeInLeft')
+  })
+  mask.classList.remove('open')
+  contentWrapper.classList.remove('is-second')
+}
+</script>
+  
+  </body>
+</html>

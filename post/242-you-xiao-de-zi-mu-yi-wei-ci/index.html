@@ -1,0 +1,422 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Gridea</title>
+<meta name="description" content="温故而知新" />
+<link rel="shortcut icon" href="https://XMTam.github.io/favicon.ico?v=1585791164030">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+
+<link rel="stylesheet" href="https://XMTam.github.io/styles/main.css">
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main px-4 flex flex-col lg:flex-row">
+      <div id="sidebar" class="sidebar-wrapper lg:static lg:w-1/4">
+  <div class="lg:sticky top-0">
+    <div class="sidebar-content">
+      <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
+        <i class="ri-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
+        <a href="https://XMTam.github.io">
+          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://XMTam.github.io/images/avatar.png?v=1585791164030" alt="">
+        </a>
+        <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">Gridea</h1>
+      </div>
+      
+        <div class="animated fadeInLeft" style="animation-delay: 0.4s">
+          <p class="my-4 text-gray-600 font-light hidden lg:block">
+            文章目录
+          </p>
+          <div class="toc-container hidden lg:block">
+            <ul class="markdownIt-TOC">
+<li><a href="#%E4%B8%80-%E9%A2%98%E7%9B%AE">一、题目</a></li>
+<li><a href="#%E4%BA%8C-%E8%A7%A3%E6%B3%95">二、解法</a>
+<ul>
+<li><a href="#%E6%96%B9%E6%B3%951%E6%8E%92%E5%BA%8F">方法1：排序</a></li>
+<li><a href="#%E6%96%B9%E6%B3%952%E5%93%88%E5%B8%8C%E8%A1%A8%E6%A8%A1%E6%8B%9F%E5%AE%9E%E7%8E%B0">方法2：哈希表(模拟实现)</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="menu-container">
+  <i class="ri-arrow-left-line text-2xl cursor-pointer animated fadeIn close-menu-btn" onclick="closeMenu()"></i>
+  <div>
+    
+      
+        <a href="/" class="menu" style="animation-delay: 0s">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu" style="animation-delay: 0.2s">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu" style="animation-delay: 0.4s">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu" style="animation-delay: 0.6000000000000001s">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="site-footer">
+    <div class="py-4 text-gray-700">Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a></div>
+    <a class="rss" href="https://XMTam.github.io/atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+<div class="mask" onclick="closeMenu()">
+</div>
+      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
+        <h1 class="text-3xl font-bold lg:mt-16">242. 有效的字母异位词</h1>
+        <div class="text-sm text-gray-700 lg:my-8">
+          2020-03-16 / 5 min read
+        </div>
+        
+          <img class="post-feature-image rounded-lg mx-auto my-4" src="https://XMTam.github.io/post-images/242-you-xiao-de-zi-mu-yi-wei-ci.png" alt="">
+        
+        <div class="post-content yue">
+          <h1 id="一-题目">一、题目</h1>
+<p>给定两个字符串 s 和 t ，编写一个函数来判断 t 是否是 s 的字母异位词。</p>
+<p><strong>示例 1</strong>:</p>
+<pre><code>输入: s = &quot;anagram&quot;, t = &quot;nagaram&quot;
+输出: true
+</code></pre>
+<p><strong>示例 2</strong>:</p>
+<pre><code>输入: s = &quot;rat&quot;, t = &quot;car&quot;
+输出: false
+</code></pre>
+<p><strong>说明</strong>：你可以假设字符串只包含小写字母。</p>
+<p><strong>进阶</strong>：如果输入字符串包含 unicode 字符怎么办？你能否调整你的解法来应对这种情况？</p>
+<hr>
+<h1 id="二-解法">二、解法</h1>
+<h2 id="方法1排序">方法1：排序</h2>
+<p><strong>算法</strong>：通过将 s 的字母重新排列成 t 来生成变位词。因此，如果 T 是 S 的变位词，对两个字符串进行排序将产生两个相同的字符串。此外，如果 s 和 t 的长度不同，t 不能是 s 的变位词，我们可以提前返回。<br>
+<strong>代码如下</strong>：</p>
+<pre><code>void swap(char* a, char* b)
+{
+    char tmp;
+    tmp = *a;
+    *a = *b;
+    *b = tmp;
+}
+
+void strSort(char* str)
+{
+    int len = strlen(str);
+    char* pf = str;
+
+    for (int i = 0; i &lt; len - 1; i++)
+    {
+        for (int j = 0; j &lt; len - i - 1; j++)
+        {
+            if (*(pf+j) &gt; *(pf+j+1))            
+                swap(pf + j, pf + j + 1);           
+        }        
+    }
+    puts(str);
+}
+
+bool isAnagram(char* s, char* t)
+{
+    int s_len = strlen(s);
+    int t_len = strlen(t);
+    if (s_len != t_len)
+        return false;
+    strSort(s);
+    strSort(t);
+    if (strcmp(s, t) == 0)
+        return true;
+    else
+        return false;
+}
+</code></pre>
+<p>上述代码是没有问题的，但是提交时却给出了“超出时间限制”错误提示，如下图所示。<br>
+<img src="https://XMTam.github.io/post-images/1584400829748.png" alt="" loading="lazy"><br>
+确实，上述算法本身没问题，出问题的应该是排序算法，由于使用的冒泡排序，使得时间复杂度达到<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><msup><mi>n</mi><mn>2</mn></msup><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>，因此考虑采用效率更高的归并排序。为什么选用归并而不是选择排序呢？因为归并排序的性能不受输入数据的影响，并且表现比选择排序好的多，因为归并始终都是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mi>l</mi><mi>o</mi><mi>g</mi><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(nlogn)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span> 的时间复杂度。而代价则是需要额外的内存空间。（<em>注：关于归并排序算法的相关介绍，请出门左转看我下篇论述</em>）<br>
+采用归并排序后的代码如下（<strong>通过</strong>）：</p>
+<pre><code>int min(int a, int b)
+{
+    return a &lt; b ? a : b;
+}
+
+void merge_sort(char* str)
+{
+    int len = strlen(str);
+    char* ptr = str;
+    char* newStr = (char*)malloc(len * sizeof(char));
+
+    for (int seg = 1; seg &lt; len; seg += seg)
+    {
+        for (int start = 0; start &lt; len; start += seg * 2)
+        {
+            int low = start, mid = min(start + seg, len), high = min(start + seg * 2, len);
+            int k = low;
+            int start1 = low, end1 = mid;
+            int start2 = mid, end2 = high;
+            while (start1 &lt; end1 &amp;&amp; start2 &lt; end2)            
+                newStr[k++] = (ptr[start1] &lt; ptr[start2]) ? ptr[start1++] : ptr[start2++];       
+            
+            while (start1 &lt; end1)
+                newStr[k++] = ptr[start1++];
+
+            while (start2 &lt; end2)
+                newStr[k++] = ptr[start2++];
+        }
+        char* temp = ptr;
+        ptr = newStr;
+        newStr = temp;
+    }
+    if (ptr != str)
+    {
+        for (int i = 0; i &lt; len; i++)
+            newStr[i] = ptr[i];
+        newStr = ptr;
+    }
+    free(newStr);
+}
+
+bool isAnagram(char* s, char* t)
+{
+    int s_len = strlen(s);
+    int t_len = strlen(t);
+    if (s_len != t_len)
+        return false;
+    merge_sort(s);
+    // puts(s);
+    merge_sort(t);
+    if (strcmp(s, t) == 0)
+        return true;
+    else
+        return false;
+}
+</code></pre>
+<p>emmm……虽然通过了，但是结果好像并不感人啊<br>
+<img src="https://XMTam.github.io/post-images/1584487610101.png" alt="" loading="lazy"><br>
+尤其是内存占用，简直了！<br>
+<img src="https://XMTam.github.io/post-images/1584487652829.png" alt="" loading="lazy"><br>
+没有比这个更糟糕的了。当然了，大家也可以用快排来做，但是结果应该不会很理想。</p>
+<p>那有没有更好地方法呢？<br>
+答案是：有的！</p>
+<h2 id="方法2哈希表模拟实现">方法2：哈希表(模拟实现)</h2>
+<p><strong>思路</strong></p>
+<ul>
+<li>首先判断两个字符串长度是否相等，不相等则直接返回 false</li>
+<li>若相等，则初始化 26 个字母哈希表，遍历字符串 s 和 t</li>
+<li>s 负责在对应位置增加，t 负责在对应位置减少</li>
+<li>如果哈希表的值都为 0，则二者是字母异位词</li>
+</ul>
+<p>代码如下：</p>
+<pre><code>bool isAnagram(char* s, char* t)
+{
+    int s_len = strlen(s);
+    int t_len = strlen(t);
+    if (s_len != t_len)
+        return false;
+    int alpha[26] = { 0 };
+    for (int i = 0; i &lt; s_len; i++)
+    {
+        alpha[s[i] - 'a']++;
+        alpha[t[i] - 'a']--;
+    }
+    for (int i = 0; i &lt; 26; i++)
+    {
+        if (alpha[i] != 0)
+            return false;
+    }
+    return true;
+}
+</code></pre>
+<p><strong>复杂度分析</strong></p>
+<ul>
+<li>时间复杂度：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>。时间复杂度为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span> 因为访问计数器表是一个固定的时间操作。</li>
+<li>空间复杂度：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span>。尽管我们使用了额外的空间，但是空间的复杂性是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span>，因为无论 N 有多大，表的大小都保持不变。</li>
+</ul>
+
+        </div>
+
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://XMTam.github.io/tag/IbJfDqfWt/">
+            <span class="flex-auto">LeetCode</span>
+          </a>
+        
+          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://XMTam.github.io/tag/mdTywhGOSm/">
+            <span class="flex-auto">C</span>
+          </a>
+        
+
+
+        <div class="flex justify-between py-8">
+          
+            <div class="prev-post">
+              <a href="https://XMTam.github.io/post/C-merge_sort/">
+                <h3 class="post-title">
+                  <i class="ri-arrow-left-line"></i>
+                  C语言排序算法之归并排序
+                </h3>
+              </a>
+            </div>
+          
+
+          
+            <div class="next-post">
+              <a href="https://XMTam.github.io/post/387-zi-fu-chuan-zhong-de-di-yi-ge-wei-yi-zi-fu/">
+                <h3 class="post-title">
+                  387. 字符串中的第一个唯一字符
+                  <i class="ri-arrow-right-line"></i>
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+
+        
+          
+            <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+
+<script>
+
+  var gitalk = new Gitalk({
+    clientID: 'b3d959b44c66103ef289',
+    clientSecret: '510446b8a79cc1b1d29e9fb60522c7148ee83542',
+    repo: 'XMTam.github.io',
+    owner: 'XMTam',
+    admin: ['XMTam'],
+    id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+
+</script>
+
+          
+
+          
+        
+
+      </div>
+    </div>
+
+    <script src="https://XMTam.github.io/media/prism.js"></script>  
+<script>
+
+Prism.highlightAll()
+let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+// This should probably be throttled.
+// Especially because it triggers during smooth scrolling.
+// https://lodash.com/docs/4.17.10#throttle
+// You could do like...
+// window.addEventListener("scroll", () => {
+//    _.throttle(doThatStuff, 100);
+// });
+// Only not doing it here to keep this Pen dependency-free.
+
+window.addEventListener("scroll", event => {
+  let fromTop = window.scrollY;
+
+  mainNavLinks.forEach((link, index) => {
+    let section = document.getElementById(decodeURI(link.hash).substring(1));
+    let nextSection = null
+    if (mainNavLinks[index + 1]) {
+      nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+    }
+    if (section.offsetTop <= fromTop) {
+      if (nextSection) {
+        if (nextSection.offsetTop > fromTop) {
+          link.classList.add("current");
+        } else {
+          link.classList.remove("current");    
+        }
+      } else {
+        link.classList.add("current");
+      }
+    } else {
+      link.classList.remove("current");
+    }
+  });
+});
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  var lazyImages = [].slice.call(document.querySelectorAll(".post-feature-image.lazy"));
+
+  if ("IntersectionObserver" in window) {
+    let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          let lazyImage = entry.target
+          lazyImage.style.backgroundImage = `url(${lazyImage.dataset.bg})`
+          lazyImage.classList.remove("lazy")
+          lazyImageObserver.unobserve(lazyImage)
+        }
+      });
+    });
+
+    lazyImages.forEach(function(lazyImage) {
+      lazyImageObserver.observe(lazyImage)
+    })
+  } else {
+    // Possibly fall back to a more compatible method here
+  }
+});
+
+const menuContainer = document.querySelector('.menu-container')
+const menus = document.querySelectorAll('.menu-container .menu')
+const mask = document.querySelector('.mask')
+const contentWrapper = document.querySelector('.content-wrapper')
+const latestArticle = document.querySelector('.latest-article')
+const readMore = document.querySelector('.read-more')
+const indexPage = document.querySelector('.index-page')
+
+const isHome = location.pathname === '/'
+if (latestArticle) {
+  latestArticle.style.display = isHome ? 'block' : 'none'
+  readMore.style.display = isHome ? 'block' : 'none'
+  indexPage.style.display = isHome ? 'none' : 'block'
+}
+
+const openMenu = () => {
+  menuContainer.classList.add('open')
+  menus.forEach(menu => {
+    menu.classList.add('animated', 'fadeInLeft')
+  })
+  mask.classList.add('open')
+  contentWrapper.classList.add('is-second')
+}
+
+const closeMenu = () => {
+  menuContainer.classList.remove('open')
+  menus.forEach(menu => {
+    menu.classList.remove('animated', 'fadeInLeft')
+  })
+  mask.classList.remove('open')
+  contentWrapper.classList.remove('is-second')
+}
+</script>
+  
+  </body>
+</html>
