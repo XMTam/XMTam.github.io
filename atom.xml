@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://XMTam.github.io</id>
     <title>Alvin</title>
-    <updated>2020-04-02T02:21:50.129Z</updated>
+    <updated>2020-04-02T03:35:18.943Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://XMTam.github.io"/>
     <link rel="self" href="https://XMTam.github.io/atom.xml"/>
@@ -23,6 +23,36 @@
 输出：1-&gt;1-&gt;2-&gt;3-&gt;4-&gt;4
 </code></pre>
 <h1 id="二-解决方法">二、解决方法</h1>
+<p><strong>思路</strong>：首先，我们设定一个哨兵节点 &quot;head&quot; ，这个设定可以在最后让我们比较容易地返回合并后的链表。定义一个 pNew 指针指向哨兵节点 &quot;head&quot; ，我们需要做的是调整它的 next 指针。然后，我们重复以下过程，直到 l1 或者 l2 指向了 null ：如果 l1 当前位置的值小于等于 l2 ，我们就把 l1 的值接在 prev 节点的后面同时将 l1 指针往后移一个。否则，我们对 l2 做同样的操作。不管我们将哪一个元素接在了后面，我们都把 prev 向后移一个元素。在循环终止的时候， l1 和 l2 至多有一个是非空的。由于输入的两个链表都是有序的，所以不管哪个链表是非空的，它包含的所有元素都比前面已经合并链表中的所有元素都要大。这意味着我们只需要简单地将非空链表接在合并链表的后面，并返回合并后链表。</p>
+<p><strong>代码</strong>：</p>
+<pre><code>struct ListNode* mergeTwoLists(struct ListNode* l1, struct ListNode* l2)
+{
+    struct ListNode* head = (struct ListNode*)malloc(sizeof(struct ListNode));
+    struct ListNode* pNew = head;
+    while (l1 != NULL &amp;&amp; l2 != NULL)
+    {
+        if (l1-&gt;val &lt;= l2-&gt;val)
+        {
+            pNew-&gt;next = l1;
+            l1 = l1-&gt;next;
+        }
+        else
+        {
+            pNew-&gt;next = l2;
+            l2 = l2-&gt;next;
+        }
+        pNew = pNew-&gt;next;
+    }
+    pNew-&gt;next = l1 == NULL ? l2 : l1;
+
+    return head-&gt;next;
+}
+</code></pre>
+<p><strong>复杂度分析</strong>：</p>
+<ul>
+<li>时间复杂度：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mo>+</mo><mi>m</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n + m)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">m</span><span class="mclose">)</span></span></span></span> 。因为每次循环迭代中，l1 和 l2 只有一个元素会被放进合并链表中， while 循环的次数等于两个链表的总长度。所有其他工作都是常数级别的，所以总的时间复杂度是线性的</li>
+<li>空间复杂度：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span> 。迭代的过程只会产生几个指针，所以它所需要的空间是常数级别的</li>
+</ul>
 ]]></content>
     </entry>
     <entry>
