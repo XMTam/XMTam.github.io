@@ -35,7 +35,7 @@
           <div class="toc-container hidden lg:block">
             <ul class="markdownIt-TOC">
 <li><a href="#%E4%B8%80-%E9%A2%98%E7%9B%AE">一、题目</a></li>
-<li><a href="#%E4%BA%8C-%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88">二、解决方案</a></li>
+<li><a href="#%E4%BA%8C-%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95">二、解决方法</a></li>
 </ul>
 
           </div>
@@ -82,45 +82,19 @@
 <div class="mask" onclick="closeMenu()">
 </div>
       <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
-        <h1 class="text-3xl font-bold lg:mt-16">283. 移动零</h1>
+        <h1 class="text-3xl font-bold lg:mt-16">21. 合并两个有序链表</h1>
         <div class="text-sm text-gray-700 lg:my-8">
-          2020-03-08 / 1 min read
+          2020-04-02 / 1 min read
         </div>
         
         <div class="post-content yue">
           <h1 id="一-题目">一、题目</h1>
-<p>给定一个数组 nums，编写一个函数将所有 0 移动到数组的末尾，同时保持非零元素的相对顺序。</p>
-<p><strong>示例:</strong></p>
-<pre><code>输入: [0,1,0,3,12]
-输出: [1,3,12,0,0]
+<p>将两个升序链表合并为一个新的升序链表并返回。新链表是通过拼接给定的两个链表的所有节点组成的。</p>
+<p><strong>示例</strong>：</p>
+<pre><code>输入：1-&gt;2-&gt;4, 1-&gt;3-&gt;4
+输出：1-&gt;1-&gt;2-&gt;3-&gt;4-&gt;4
 </code></pre>
-<p><strong>说明:</strong></p>
-<ul>
-<li>必须在原数组上操作，不能拷贝额外的数组。</li>
-<li>尽量减少操作次数。</li>
-</ul>
-<hr>
-<h1 id="二-解决方案">二、解决方案</h1>
-<p><strong>思路：</strong></p>
-<ul>
-<li>遍历数组，不为0的元素移动数组前方，并用 cnt 纪录不为零的元素个数</li>
-<li>遍历结束，对 cnt 值后的元素统一设为0</li>
-</ul>
-<p><strong>代码如下：</strong></p>
-<pre><code>void moveZeroes(int* nums, int numsSize)
-{
-    int cnt = 0;
-    for (int i = 0; i &lt; numsSize; i++)
-    {
-        if (nums[i] != 0)
-            nums[cnt++] = nums[i];
-    }
-    for (int i = cnt; i &lt; numsSize; i++)
-    {
-        nums[i] = 0;
-    }
-}
-</code></pre>
+<h1 id="二-解决方法">二、解决方法</h1>
 
         </div>
 
@@ -137,21 +111,12 @@
 
         <div class="flex justify-between py-8">
           
-            <div class="prev-post">
-              <a href="https://XMTam.github.io/post/1-liang-shu-zhi-he/">
-                <h3 class="post-title">
-                  <i class="ri-arrow-left-line"></i>
-                  1. 两数之和*
-                </h3>
-              </a>
-            </div>
-          
 
           
             <div class="next-post">
-              <a href="https://XMTam.github.io/post/66-jia-yi/">
+              <a href="https://XMTam.github.io/post/206-反转链表/">
                 <h3 class="post-title">
-                  66. 加一
+                  206. 反转链表
                   <i class="ri-arrow-right-line"></i>
                 </h3>
               </a>

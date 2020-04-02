@@ -35,7 +35,7 @@
           <div class="toc-container hidden lg:block">
             <ul class="markdownIt-TOC">
 <li><a href="#%E4%B8%80-%E9%A2%98%E7%9B%AE">一、题目</a></li>
-<li><a href="#%E4%BA%8C-%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88">二、解决方案</a></li>
+<li><a href="#%E4%BA%8C-%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95">二、解决方法</a></li>
 </ul>
 
           </div>
@@ -82,45 +82,75 @@
 <div class="mask" onclick="closeMenu()">
 </div>
       <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
-        <h1 class="text-3xl font-bold lg:mt-16">283. 移动零</h1>
+        <h1 class="text-3xl font-bold lg:mt-16">38. 外观数列*</h1>
         <div class="text-sm text-gray-700 lg:my-8">
-          2020-03-08 / 1 min read
+          2020-03-25 / 2 min read
         </div>
         
         <div class="post-content yue">
           <h1 id="一-题目">一、题目</h1>
-<p>给定一个数组 nums，编写一个函数将所有 0 移动到数组的末尾，同时保持非零元素的相对顺序。</p>
-<p><strong>示例:</strong></p>
-<pre><code>输入: [0,1,0,3,12]
-输出: [1,3,12,0,0]
+<p>「外观数列」是一个整数序列，从数字 1 开始，序列中的每一项都是对前一项的描述。前五项如下：</p>
+<pre><code>1.     1
+2.     11
+3.     21
+4.     1211
+5.     111221
 </code></pre>
-<p><strong>说明:</strong></p>
-<ul>
-<li>必须在原数组上操作，不能拷贝额外的数组。</li>
-<li>尽量减少操作次数。</li>
-</ul>
+<p>1 被读作  &quot;one 1&quot;  (&quot;一个一&quot;) , 即 11。<br>
+11 被读作 &quot;two 1s&quot; (&quot;两个一&quot;）, 即 21。<br>
+21 被读作 &quot;one 2&quot;,  &quot;one 1&quot; （&quot;一个二&quot; ,  &quot;一个一&quot;) , 即 1211。</p>
+<p>给定一个正整数 n（1 ≤ n ≤ 30），输出外观数列的第 n 项。</p>
+<p>注意：整数序列中的每一项将表示为一个字符串。</p>
+<p><strong>示例 1</strong>:</p>
+<pre><code>输入: 1
+输出: &quot;1&quot;
+解释：这是一个基本样例。
+</code></pre>
+<p><strong>示例 2</strong>:</p>
+<pre><code>输入: 4
+输出: &quot;1211&quot;
+解释：当 n = 3 时，序列是 &quot;21&quot;，其中我们有 &quot;2&quot; 和 &quot;1&quot; 两组，&quot;2&quot; 可以读作 &quot;12&quot;，也就是出现频次 = 1 而 值 = 2；类似 &quot;1&quot; 可以读作 &quot;11&quot;。所以答案是 &quot;12&quot; 和 &quot;11&quot; 组合在一起，也就是 &quot;1211&quot;。
+</code></pre>
 <hr>
-<h1 id="二-解决方案">二、解决方案</h1>
-<p><strong>思路：</strong></p>
-<ul>
-<li>遍历数组，不为0的元素移动数组前方，并用 cnt 纪录不为零的元素个数</li>
-<li>遍历结束，对 cnt 值后的元素统一设为0</li>
-</ul>
-<p><strong>代码如下：</strong></p>
-<pre><code>void moveZeroes(int* nums, int numsSize)
-{
-    int cnt = 0;
-    for (int i = 0; i &lt; numsSize; i++)
+<h1 id="二-解决方法">二、解决方法</h1>
+<p>废话不多说，先上代码：</p>
+<pre><code>char* countAndSay(int n) {
+    char* rest = (char*)malloc(sizeof(char) * 5000);
+    char* temp = (char*)malloc(sizeof(char) * 5000);
+    rest[0] = '1';
+    rest[1] = '\0'; // the end symbol of the string
+    char key;
+    char* p;
+    int i, j, cnt;
+    for (i = 1; i &lt; n; i++) // times of the iteration
     {
-        if (nums[i] != 0)
-            nums[cnt++] = nums[i];
+        j = 0;
+        key = rest[0];
+        p = rest;
+        cnt = 0;
+        while (*p)
+        {
+            if (*p == key) // count the same char's number
+                cnt++;
+            else
+            {
+                temp[j++] = cnt + '0';  // save the counter first
+                cnt = 1;
+                temp[j++] = key;    // and then save the key char 
+                key = *p;
+            }
+            p++;
+        }
+        temp[j++] = cnt + '0';  // save the counter first
+        temp[j++] = key;    // and then save the key char 
+        temp[j] = '\0';
+        strcpy(rest, temp);
     }
-    for (int i = cnt; i &lt; numsSize; i++)
-    {
-        nums[i] = 0;
-    }
+    return rest;
 }
 </code></pre>
+<p>执行用时图如下：<br>
+<img src="https://XMTam.github.io/post-images/1585182293749.png" alt="" loading="lazy"></p>
 
         </div>
 
@@ -138,10 +168,10 @@
         <div class="flex justify-between py-8">
           
             <div class="prev-post">
-              <a href="https://XMTam.github.io/post/1-liang-shu-zhi-he/">
+              <a href="https://XMTam.github.io/post/14-zui-chang-gong-gong-qian-zhui/">
                 <h3 class="post-title">
                   <i class="ri-arrow-left-line"></i>
-                  1. 两数之和*
+                  14. 最长公共前缀*
                 </h3>
               </a>
             </div>
@@ -149,9 +179,9 @@
 
           
             <div class="next-post">
-              <a href="https://XMTam.github.io/post/66-jia-yi/">
+              <a href="https://XMTam.github.io/post/28-实现strstr()/">
                 <h3 class="post-title">
-                  66. 加一
+                  28. 实现 strStr()
                   <i class="ri-arrow-right-line"></i>
                 </h3>
               </a>
