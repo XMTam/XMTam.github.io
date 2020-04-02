@@ -1,21 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://XMTam.github.io</id>
-    <title>Gridea</title>
-    <updated>2020-04-02T01:32:48.838Z</updated>
+    <title>Alvin</title>
+    <updated>2020-04-02T01:39:22.183Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://XMTam.github.io"/>
     <link rel="self" href="https://XMTam.github.io/atom.xml"/>
-    <subtitle>温故而知新</subtitle>
+    <subtitle>A = X + Y + ZZ</subtitle>
     <logo>https://XMTam.github.io/images/avatar.png</logo>
     <icon>https://XMTam.github.io/favicon.ico</icon>
-    <rights>All rights reserved 2020, Gridea</rights>
+    <rights>All rights reserved 2020, Alvin</rights>
     <entry>
         <title type="html"><![CDATA[206. 反转链表]]></title>
         <id>https://XMTam.github.io/post/206-反转链表/</id>
         <link href="https://XMTam.github.io/post/206-反转链表/">
         </link>
         <updated>2020-03-30T23:31:10.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="一-题目">一、题目</h1>
+<p>反转一个单链表。</p>
+<p>示例:</p>
+<pre><code>输入: 1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL
+输出: 5-&gt;4-&gt;3-&gt;2-&gt;1-&gt;NULL
+</code></pre>
+<p><strong>进阶</strong>: 你可以迭代或递归地反转链表。你能否用两种方法解决这道题？</p>
+<hr>
+<h1 id="二-解决方法">二、解决方法</h1>
+<h2 id="方法一双指针迭代">方法一：双指针迭代</h2>
+<p><strong>思路</strong>：可以申请两个指针，第一个指针叫 prev，最初是指向 null 的。第二个指针 curr 指向 head，然后不断遍历 curr。每次迭代到 curr，都将 curr 的 next 指向 prev，然后 prev 和 curr 前进一位。都迭代完了(curr 变成 null 了)，prev 就是最后一个节点了。<br>
+<strong>动画演示</strong>如下：<br>
+<img src="https://XMTam.github.io/post-images/1585612911890.gif" alt="" loading="lazy"><br>
+<strong>代码</strong>如下(<strong>accepted</strong>):</p>
+<pre><code>/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     struct ListNode *next;
+ * };
+ */
+
+struct ListNode* reverseList(struct ListNode* head) 
+{
+    struct ListNode* prev = NULL;
+    struct ListNode* curr = head;
+    while (curr != NULL)
+    {
+        struct ListNode* nextTemp = curr-&gt;next;
+        curr-&gt;next = prev;
+        prev = curr;
+        curr = nextTemp;
+    }
+    return prev;
+}
+</code></pre>
+<p><strong>复杂度分析</strong>:</p>
+<ul>
+<li>时间复杂度：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>，假设 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 是列表的长度，时间复杂度是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>。</li>
+<li>空间复杂度：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span>。</li>
+</ul>
+<h2 id="方法二递归实现">方法二：递归实现</h2>
+<p><strong>思路</strong>：递归的两个条件：</p>
+<ul>
+<li>终止条件是当前节点或者下一个节点等于null</li>
+<li>在函数内部，改变节点的指向，也就是 head 的下一个节点指向 head 递归函数那句<br>
+<code>head.next.next = head</code><br>
+很不好理解，其实就是 head 的下一个节点指向head。<br>
+递归函数中每次返回的 cur 其实只最后一个节点，在递归函数内部，改变的是当前节点的指向。</li>
+</ul>
+<p><strong>动画演示</strong>如下图所示：<br>
+<img src="https://XMTam.github.io/post-images/1585695958744.gif" alt="" loading="lazy"></p>
+<p><strong>代码</strong>如下：</p>
+<pre><code>struct ListNode* reverseList(struct ListNode* head) 
+{
+    // 递归终止条件是当前节点为空，或下一个节点为空
+    if (head == NULL || head-&gt;next == NULL)
+        return head;
+    // 这里的cur就是最后一个节点
+    struct ListNode* cur = reverseList(head-&gt;next);
+    /*
+     这里请配合动画演示理解，如果链表是 1-&gt;2-&gt;3-&gt;4-&gt;5，
+     那么此时的 cur 就是5，而 head 是4，head 的下一个是5，
+     下下一个是空，所以 head.next.next 就是5-&gt;4
+    */
+    head-&gt;next-&gt;next = head;
+    // 防止链表循环，需要将 head.next 设置为空
+    head-&gt;next = NULL;
+    // 每层递归函数都返回 cur，也就是最后一个节点
+    return cur;
+}
+</code></pre>
+<p><strong>复杂度分析</strong>：</p>
+<ul>
+<li>时间复杂度：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>，假设 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 是列表的长度，那么时间复杂度为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>。</li>
+<li>空间复杂度：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>，由于使用递归，将会使用隐式栈空间。递归深度可能会达到 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 层。</li>
+</ul>
+]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[Create a Linked-List by C]]></title>
@@ -23,6 +101,61 @@
         <link href="https://XMTam.github.io/post/create-a-linked-list-in-c/">
         </link>
         <updated>2020-03-28T23:31:16.000Z</updated>
+        <content type="html"><![CDATA[<p>Code as following:</p>
+<pre><code>#include&lt;stdio.h&gt;
+#include&lt;stdlib.h&gt;
+#include&lt;malloc.h&gt;
+typedef struct LNode{
+    int          data;
+    struct LNode *next;
+}LNode,*LinkList;
+ 
+LinkList CreateList(int n);
+void print(LinkList h);
+int main()
+{
+    LinkList Head=NULL;
+    int n;
+    
+    scanf(&quot;%d&quot;,&amp;n);
+    Head=CreateList(n);
+    
+    printf(&quot;刚刚建立的各个链表元素的值为：\n&quot;);
+    print(Head);
+    
+    printf(&quot;\n\n&quot;);
+    system(&quot;pause&quot;);
+    return 0;
+}
+LinkList CreateList(int n)
+{
+    LinkList L,p,q;
+    int i;
+    L=(LNode*)malloc(sizeof(LNode));
+    if(!L)return 0;
+    L-&gt;next=NULL;
+    q=L;
+    for(i=1;i&lt;=n;i++)
+    {
+        p=(LinkList)malloc(sizeof(LNode));
+        printf(&quot;请输入第%d个元素的值:&quot;,i);
+        scanf(&quot;%d&quot;,&amp;(p-&gt;data));
+        p-&gt;next=NULL;
+        q-&gt;next=p;
+        q=p;
+    }
+    return L;
+}
+void print(LinkList h)
+{
+    LinkList p=h-&gt;next;
+    while(p!=NULL){
+        printf(&quot;%d &quot;,p-&gt;data);
+        p=p-&gt;next;
+    }
+}
+</code></pre>
+]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[19. *删除链表的倒数第N个节点]]></title>
@@ -30,6 +163,93 @@
         <link href="https://XMTam.github.io/post/19. 删除链表的倒数第N个节点/">
         </link>
         <updated>2020-03-27T23:12:08.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="一-题目">一、题目</h1>
+<p>给定一个链表，删除链表的倒数第 n 个节点，并且返回链表的头结点。</p>
+<p><strong>示例：</strong></p>
+<pre><code>给定一个链表: 1-&gt;2-&gt;3-&gt;4-&gt;5, 和 n = 2.
+当删除了倒数第二个节点后，链表变为 1-&gt;2-&gt;3-&gt;5.
+</code></pre>
+<p>**说明：**给定的 n 保证是有效的。</p>
+<p>**进阶：**你能尝试使用一趟扫描实现吗？</p>
+<hr>
+<h1 id="二-解决方法">二、解决方法</h1>
+<h2 id="方法一两次遍历算法">方法一：两次遍历算法</h2>
+<p><strong>思路：</strong> 注意到这个问题可以容易地简化成另一个问题：删除从列表开头数起的第 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mi>L</mi><mo>−</mo><mi>n</mi><mo>+</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">(L - n + 1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">L</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span></span></span></span> 个结点，其中 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>L</mi></mrow><annotation encoding="application/x-tex">L</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">L</span></span></span></span> 是列表的长度。只要我们找到列表的长度 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>L</mi></mrow><annotation encoding="application/x-tex">L</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">L</span></span></span></span>，这个问题就很容易解决。<br>
+<strong>算法：</strong> 首先我们添加一个哑结点作为辅助结点，该结点位于列表头部。哑结点用来简化某些极端情况，例如列表中只含有一个结点，或需要删除列表的头部。在第一次遍历中，我们找出列表的长度 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>L</mi></mrow><annotation encoding="application/x-tex">L</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">L</span></span></span></span>。然后设置一个指向哑结点的指针，并移动它遍历列表，直至它到达第 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mi>L</mi><mo>−</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">(L - n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">L</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span> 个结点那里。我们把第 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mi>L</mi><mo>−</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">(L - n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">L</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span> 个结点的 next 指针重新链接至第 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mi>L</mi><mo>−</mo><mi>n</mi><mo>+</mo><mn>2</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">(L - n + 2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">L</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">2</span><span class="mclose">)</span></span></span></span> 个结点，完成这个算法。变化过程如下图所示：<br>
+<img src="https://XMTam.github.io/post-images/1585351209535.png" alt="" loading="lazy"></p>
+<p><strong>代码如下(通过)</strong>：</p>
+<pre><code>struct ListNode* removeNthFromEnd(struct ListNode* head, int n) 
+{
+    struct ListNode* dummy = head;
+    struct ListNode* first = head;
+    int length = 1;    
+    while (first-&gt;next != NULL) // calculate the length of the linked list
+    {
+        length++;
+        first = first-&gt;next;
+    }
+    if (n == length)
+        return head-&gt;next;
+    int index = length - n - 1;
+    while (index &gt; 0)
+    {
+        index--;
+        dummy = dummy-&gt;next;
+    }
+    dummy-&gt;next = dummy-&gt;next-&gt;next;
+    return head;
+}
+</code></pre>
+<p><strong>复杂度分析</strong>：</p>
+<ul>
+<li>时间复杂度：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>L</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(L)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">L</span><span class="mclose">)</span></span></span></span>，该算法对列表进行了两次遍历，首先计算了列表的长度 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>L</mi></mrow><annotation encoding="application/x-tex">L</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">L</span></span></span></span> ，其次找到第 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mi>L</mi><mo>−</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">(L - n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">L</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span> 个结点。 操作执行了 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>2</mn><mi>L</mi><mo>−</mo><mi>n</mi></mrow><annotation encoding="application/x-tex">2L-n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord">2</span><span class="mord mathdefault">L</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 步，时间复杂度为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>L</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(L)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">L</span><span class="mclose">)</span></span></span></span>。</li>
+<li>空间复杂度：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span>，我们只用了常量级的额外空间。</li>
+</ul>
+<h2 id="方法二一次遍历算法">方法二：一次遍历算法</h2>
+<p><strong>思路</strong>：可以设想假设设定了双指针 p 和 q 的话，当 q 指向末尾的 NULL，p 与 q 之间相隔的元素个数为 n 时，那么删除掉 p 的下一个指针就完成了要求。</p>
+<ul>
+<li>设置虚拟节点 dummyHead 指向 head</li>
+<li>设定双指针 p 和 q，初始都指向虚拟节点 dummyHead</li>
+<li>移动 q，直到 p 与 q 之间相隔的元素个数为 n</li>
+<li>同时移动 p 与 q，直到 q 指向的为 NULL</li>
+<li>将 p 的下一个节点指向下下个节点</li>
+</ul>
+<p>动画描述如下图所示：<br>
+<img src="https://XMTam.github.io/post-images/1585608644919.gif" alt="" loading="lazy"><br>
+代码实现(accepted)：</p>
+<pre><code>struct ListNode* removeNthFromEnd(struct ListNode* head, int n) 
+{
+    struct ListNode* dummyHead = (struct ListNode*)malloc(sizeof(struct ListNode));
+    dummyHead-&gt;next = head;
+
+    struct ListNode* p = dummyHead;
+    struct ListNode* q = dummyHead;
+    for (int i = 0; i &lt; n + 1; i++)
+    {
+        q = q-&gt;next;
+    }
+    while (q)
+    {
+        p = p-&gt;next;
+        q = q-&gt;next;
+    }
+
+    struct ListNode* delNode = p-&gt;next;
+    p-&gt;next = delNode-&gt;next;
+    free(delNode);
+
+    struct ListNode* retNode = dummyHead-&gt;next;
+    free(dummyHead);
+
+    return retNode;
+}
+</code></pre>
+<p><strong>复杂度分析</strong>:</p>
+<ul>
+<li>时间复杂度：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>L</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(L)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">L</span><span class="mclose">)</span></span></span></span>，该算法对含有 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>L</mi></mrow><annotation encoding="application/x-tex">L</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">L</span></span></span></span> 个结点的列表进行了一次遍历。因此时间复杂度为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>L</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(L)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">L</span><span class="mclose">)</span></span></span></span>。</li>
+<li>空间复杂度：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span>，我们只用了常量级的额外空间。</li>
+</ul>
+]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[237. 删除链表中的节点]]></title>
@@ -37,6 +257,44 @@
         <link href="https://XMTam.github.io/post/237. 删除链表中的节点/">
         </link>
         <updated>2020-03-27T22:54:25.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="一-题目">一、题目</h1>
+<p>请编写一个函数，使其可以删除某个链表中给定的（非末尾）节点，你将只被给定要求被删除的节点。<br>
+现有一个链表 -- head = [4,5,1,9]，它可以表示为:<br>
+<img src="https://XMTam.github.io/post-images/1585349850747.png" alt="" loading="lazy"><br>
+<strong>示例 1:</strong></p>
+<pre><code>输入: head = [4,5,1,9], node = 5
+输出: [4,1,9]
+解释: 给定你链表中值为 5 的第二个节点，那么在调用了你的函数之后，该链表应变为 4 -&gt; 1 -&gt; 9.
+</code></pre>
+<p><strong>示例 2:</strong></p>
+<pre><code>输入: head = [4,5,1,9], node = 1
+输出: [4,5,9]
+解释: 给定你链表中值为 1 的第三个节点，那么在调用了你的函数之后，该链表应变为 4 -&gt; 5 -&gt; 9.
+</code></pre>
+<p><strong>说明:</strong></p>
+<ul>
+<li>链表至少包含两个节点。</li>
+<li>链表中所有节点的值都是唯一的。</li>
+<li>给定的节点为非末尾节点并且一定是链表中的一个有效节点。</li>
+<li>不要从你的函数中返回任何结果。</li>
+</ul>
+<hr>
+<h1 id="二-解决方法">二、解决方法</h1>
+<h2 id="方法与下一个节点交换">方法：与下一个节点交换</h2>
+<p>**思路：**从链表里删除一个节点 node 的最常见方法是修改之前节点的 next 指针，使其指向之后的节点。如下图所示：<br>
+<img src="https://XMTam.github.io/post-images/1585350271764.png" alt="" loading="lazy"><br>
+由于我们无法访问我们想要删除的节点 之前 的节点，我们始终不能修改该节点的 next 指针。相反，我们必须将想要删除的节点的值替换为它后面节点中的值，然后删除它之后的节点。变换如下图所示：<br>
+<img src="https://XMTam.github.io/post-images/1585350407916.png" alt="" loading="lazy"><br>
+<img src="https://XMTam.github.io/post-images/1585350370179.png" alt="" loading="lazy"><br>
+<img src="https://XMTam.github.io/post-images/1585350429769.png" alt="" loading="lazy"><br>
+<strong>代码如下：</strong></p>
+<pre><code>void deleteNode(struct ListNode* node) {
+    node-&gt;val = node-&gt;next-&gt;val;
+    node-&gt;next = node-&gt;next-&gt;next;
+}
+</code></pre>
+<p>**复杂度分析：**时间和空间复杂度都是：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span>。</p>
+]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[14. 最长公共前缀*]]></title>
@@ -44,6 +302,68 @@
         <link href="https://XMTam.github.io/post/14-最长公共前缀/">
         </link>
         <updated>2020-03-26T22:38:53.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="一-题目">一、题目</h1>
+<p>编写一个函数来查找字符串数组中的最长公共前缀。如果不存在公共前缀，返回空字符串 &quot;&quot;。</p>
+<p><strong>示例 1:</strong></p>
+<pre><code>输入: [&quot;flower&quot;,&quot;flow&quot;,&quot;flight&quot;]
+输出: &quot;fl&quot;
+</code></pre>
+<p><strong>示例 2:</strong></p>
+<pre><code>输入: [&quot;dog&quot;,&quot;racecar&quot;,&quot;car&quot;]
+输出: &quot;&quot;
+解释: 输入不存在公共前缀。
+</code></pre>
+<p>说明: 所有输入只包含小写字母 a-z 。</p>
+<hr>
+<h1 id="二-解决方法">二、解决方法</h1>
+<h2 id="方法一水平扫描逐个字符串进行比较">方法一：水平扫描（逐个字符串进行比较）</h2>
+<p><strong>思路</strong>：首先将第一个字符串作为ans，然后依次与后面的每一个字符串比较并更新ans，若某一趟途中ans为空，即没有公共前缀，直接返回。这样，最后得到的ans即为所求。<br>
+<strong>代码如下</strong>：</p>
+<pre><code>char* longestCommonPrefix(char** strs, int strsSize) 
+{
+    if (strsSize == 0)
+        return &quot;&quot;;
+    char* ans = strs[0];
+    int i, j;
+    for (i = 1; i &lt; strsSize; i++)
+    {
+        j = 0;
+        for ( ; ans[j] != '\0' &amp;&amp; strs[i][j] != '\0'; j++)
+        {
+            if (ans[j] != strs[i][j])
+                break;
+        }
+        ans[j] = '\0';
+        if (ans == NULL)
+        {
+            return &quot;&quot;;
+        }
+    }
+    return ans;
+}
+</code></pre>
+<h2 id="方法二水平扫描对字符串中的每一列字符进行比较">方法二：水平扫描（对字符串中的每一列字符进行比较）</h2>
+<p><strong>思路</strong>：以第一个字符串为基准，分别将后面每一个字符串中的每一列与第一个字符串对应列位置的字符进行比较，如果都相等，则对后面对应列的字符进行比较；反之，设置第一个字符串该列所在位置字符为结束字符并退出循环返回第一个字符串。<br>
+<strong>代码如下</strong>：</p>
+<pre><code>char* longestCommonPrefix(char** strs, int strsSize) 
+{
+    if (strsSize == 0)
+        return &quot;&quot;;
+    for (int i = 0; i &lt; strlen(strs[0]); i++)
+    {
+        for (int j = 0; j &lt; strsSize; j++)
+        {
+            if (strs[0][i] != strs[j][i])
+            {
+                strs[0][i] = '\0';
+                break;
+            }
+        }
+    }
+    return strs[0];
+}
+</code></pre>
+]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[38. 外观数列]]></title>
@@ -51,6 +371,70 @@
         <link href="https://XMTam.github.io/post/38-外观数列/">
         </link>
         <updated>2020-03-24T22:48:00.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="一-题目">一、题目</h1>
+<p>「外观数列」是一个整数序列，从数字 1 开始，序列中的每一项都是对前一项的描述。前五项如下：</p>
+<pre><code>1.     1
+2.     11
+3.     21
+4.     1211
+5.     111221
+</code></pre>
+<p>1 被读作  &quot;one 1&quot;  (&quot;一个一&quot;) , 即 11。<br>
+11 被读作 &quot;two 1s&quot; (&quot;两个一&quot;）, 即 21。<br>
+21 被读作 &quot;one 2&quot;,  &quot;one 1&quot; （&quot;一个二&quot; ,  &quot;一个一&quot;) , 即 1211。</p>
+<p>给定一个正整数 n（1 ≤ n ≤ 30），输出外观数列的第 n 项。</p>
+<p>注意：整数序列中的每一项将表示为一个字符串。</p>
+<p><strong>示例 1</strong>:</p>
+<pre><code>输入: 1
+输出: &quot;1&quot;
+解释：这是一个基本样例。
+</code></pre>
+<p><strong>示例 2</strong>:</p>
+<pre><code>输入: 4
+输出: &quot;1211&quot;
+解释：当 n = 3 时，序列是 &quot;21&quot;，其中我们有 &quot;2&quot; 和 &quot;1&quot; 两组，&quot;2&quot; 可以读作 &quot;12&quot;，也就是出现频次 = 1 而 值 = 2；类似 &quot;1&quot; 可以读作 &quot;11&quot;。所以答案是 &quot;12&quot; 和 &quot;11&quot; 组合在一起，也就是 &quot;1211&quot;。
+</code></pre>
+<hr>
+<h1 id="二-解决方法">二、解决方法</h1>
+<p>废话不多说，先上代码：</p>
+<pre><code>char* countAndSay(int n) {
+    char* rest = (char*)malloc(sizeof(char) * 5000);
+    char* temp = (char*)malloc(sizeof(char) * 5000);
+    rest[0] = '1';
+    rest[1] = '\0'; // the end symbol of the string
+    char key;
+    char* p;
+    int i, j, cnt;
+    for (i = 1; i &lt; n; i++) // times of the iteration
+    {
+        j = 0;
+        key = rest[0];
+        p = rest;
+        cnt = 0;
+        while (*p)
+        {
+            if (*p == key) // count the same char's number
+                cnt++;
+            else
+            {
+                temp[j++] = cnt + '0';  // save the counter first
+                cnt = 1;
+                temp[j++] = key;    // and then save the key char 
+                key = *p;
+            }
+            p++;
+        }
+        temp[j++] = cnt + '0';  // save the counter first
+        temp[j++] = key;    // and then save the key char 
+        temp[j] = '\0';
+        strcpy(rest, temp);
+    }
+    return rest;
+}
+</code></pre>
+<p>执行用时图如下：<br>
+<img src="https://XMTam.github.io/post-images/1585182293749.png" alt="" loading="lazy"></p>
+]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[28. 实现 strStr()]]></title>
@@ -58,6 +442,214 @@
         <link href="https://XMTam.github.io/post/28-实现strstr()/">
         </link>
         <updated>2020-03-21T22:58:28.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="一-题目">一、题目</h1>
+<p>实现 strStr() 函数。<br>
+给定一个 haystack 字符串和一个 needle 字符串，在 haystack 字符串中找出 needle 字符串出现的第一个位置 (从0开始)。如果不存在，则返回  -1。</p>
+<p><strong>示例 1</strong>:</p>
+<pre><code>输入: haystack = &quot;hello&quot;, needle = &quot;ll&quot;
+输出: 2
+</code></pre>
+<p><strong>示例 2</strong>:</p>
+<pre><code>输入: haystack = &quot;aaaaa&quot;, needle = &quot;bba&quot;
+输出: -1
+</code></pre>
+<p><strong>说明</strong>: 当 needle 是空字符串时，我们应当返回什么值呢？这是一个在面试中很好的问题。<br>
+对于本题而言，当 needle 是空字符串时我们应当返回 0 。这与C语言的 strstr() 以及 Java的 indexOf() 定义相符。</p>
+<hr>
+<h1 id="二-解决方法">二、解决方法</h1>
+<h2 id="方法一暴力搜索">方法一：暴力搜索</h2>
+<h3 id="1-代码">1. 代码</h3>
+<p>废话不多说，先上代码。<br>
+最初的实现（通过）：</p>
+<pre><code>int strStr(char* haystack, char* needle) {
+    char* phk = haystack;
+    char* pne = needle;
+    int index = 0;
+    int offset = 0;
+
+    if (*pne == '\0')
+        return 0;
+    while (*phk != '\0')
+    {
+        if (*phk != *pne)
+        {
+            phk++;
+            index++;
+        }
+        else // the cur two pointer's value is equal
+        {
+            phk++;
+            index++;
+            pne++;
+            offset++;
+            if (*pne == '\0' &amp;&amp; *phk == '\0')
+                return 0;
+            while (*pne != '\0' &amp;&amp; *phk != '\0')
+            {
+                if (*pne != *phk)
+                {
+                    phk++;
+                    index++;
+                    phk -= offset;
+                    index -= offset;
+                    pne -= offset;
+                    offset -= offset;
+                    break;
+                }
+                else
+                {
+                    pne++;
+                    offset++;
+                    phk++;
+                    index++;
+                }
+                if (strlen(pne) &gt; strlen(phk))
+                    return -1;
+            }
+            if (*pne == '\0')
+            {
+                if (*phk == '\0')
+                    return index - offset;
+                else
+                    break;
+            }
+        }
+    }
+    if (index == strlen(haystack))
+        return -1;
+    return index - offset;
+}
+</code></pre>
+<p>执行用时图如下：<br>
+<img src="https://XMTam.github.io/post-images/1584838228441.png" alt="" loading="lazy"></p>
+<h3 id="2-思路">2. 思路</h3>
+<p>设置两个指针分别指向两个字符串头部，然后从字符串 haystack 头部往后遍历，去寻找其中与字符串 needle 相同的子串。这个遍历的过程中最要紧的是要<strong>注意回溯</strong>，例如对于字符串<br>
+haystack[] = &quot;aaaba&quot;，needle[] = &quot;aab&quot;，当两个指针都指到字符串中第三个字符时，此时字符a不等于字符b，这时我们不能把指向 haystack 的指针往后移，而是应该将指针回溯到第二个字符，再重新开始比较。由于 offset 纪录了当前字符串 needle 已经匹配了的字符的个数，即偏移量，因此需将字符串 haystack 的指针 phk 后移 offset 个间隔，这样便完成了回溯。<br>
+实现回溯的代码如下：</p>
+<pre><code>if (*pne != *phk)
+{
+    phk++;
+    index++;                    
+    phk -= offset;                    
+    index -= offset;
+    pne -= offset;
+    offset -= offset;
+    break;
+}
+</code></pre>
+<h3 id="3-改进">3. 改进</h3>
+<p>逐个遍历字符串 haystack 前 strlen(haystack) - strlen(needle) 个字符，查找从当前字符开始长度为 strlen(needle) 的子串是否和字符串 needle 相同，如果相同，返回当前字符下标，反之则继续遍历，若没找到则返回 -1。<br>
+<strong>代码如下</strong>：</p>
+<pre><code>int strStr(char* haystack, char* needle) {
+    int M = strlen(haystack);
+    int N = strlen(needle);
+    for (int i = 0; i &lt;= M - N; i++)
+    {
+        int j;
+        for (j = 0; j &lt; N; j++)
+        {
+            if (needle[j] != haystack[i + j])
+                break;
+        }
+        if (j == N)
+            return i;
+    }
+    return -1;
+}
+</code></pre>
+<p>代码执行用时图如下所示：<br>
+<img src="https://XMTam.github.io/post-images/1584919483869.png" alt="" loading="lazy"><br>
+什么？0ms，已经战胜100%的c提交纪录！是的，你没看错，就是100%。一开始我是不相信的，因为这个方法它是暴力搜索呀，但是，我真的提交了好几次，结果都是100%（不信你可以自己试试）。改进后的方法其实本质上和前面是一样的，都是暴力搜索，但是它却比前面的方法暴力搜索的“更聪明”，为什么这么说呢？因为它没有回溯！是的，没有回溯。仅仅因为避免了回溯就将算法的效率提升了许多。其实按照生活常识我们也能理解，比如同样的一段路程，旅行者两次都采用步行的方式，但是第一次它因为迷路所以很多时候不得不重新回到原来走过的地方，而第二次他变聪明了，他直接打开手机的GPS导航，按照给定路线一次就走到终点。虽然都是步行，但是二次花费的时间显然第二次会比第一次少很多。</p>
+<p>改进后算法的时间复杂度分析：两个 <em>for</em> 循环，所以时间复杂度不难算出是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>M</mi><mi>N</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(MN)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mclose">)</span></span></span></span>。</p>
+<p>看到这里，大家可能以为就要结尾了……<br>
+不，离结尾还有很长一段距离，请大家耐心看下去。</p>
+<p>学过数据结构的同仁们可能没人会不知道赫赫有名的 KMP 算法了。是的，这是一道字符串匹配问题，我们当然不能忘记 KMP。可能有同学要问了，我们已经有了“战胜100%纪录”的方法，为什么还要管它喵的 KMP？难道 KMP 还能再提高？是的，KMP 它不可能再提高了，再高也还是100%，但是对于某些情况，KMP 算法仍然可以秒杀改进后的暴力搜索法。例如：对于字符串 txt = &quot;aaaaaaab&quot;，pat = &quot;aaab&quot;，碰到这种字符串 haystack 中重复的字符比较多的情况，改进后的暴力搜索法就显得很笨。<br>
+<img src="https://XMTam.github.io/post-images/1584921512719.gif" alt="" loading="lazy">说明：此图片以及接下来的两张图片均转载自微信公众号labuladong<br>
+而 KMP 碰到这种情况是怎么处理的呢？请看下图：<br>
+<img src="https://XMTam.github.io/post-images/1584922441649.gif" alt="" loading="lazy"><br>
+仔细一看我们就会发现不一样。很明显，pat 中根本没有字符 c，根本没必要回退指针 i，暴力解法明显多做了很多不必要的操作。KMP 算法的不同之处在于，它会花费空间来记录一些信息，在上述情况中就会显得很聪明。再比如类似的 txt = &quot;aaaaaaab&quot; pat = &quot;aaab&quot;，暴力解法还会和上面那个例子一样蠢蠢地回退指针 i，而 KMP 算法又会耍聪明：<br>
+<img src="https://XMTam.github.io/post-images/1585004121171.gif" alt="" loading="lazy"><br>
+因为 KMP 算法知道字符 b 之前的字符 a 都是匹配的，所以每次只需要比较字符 b 是否被匹配就行了。这就是KMP算法真的魅力所在，KMP绝对不存在回溯的可能。<br>
+打个比方：前面改进的暴力搜索法虽然有手机GPS导航，但旅行者还是免不了会不停的看手机导航信息，以免走错，这就是所谓了“走一步看一步”，而有了KMP，你的大脑就像信鸽的脑子一样（虽然没有那么小，但同样有辨识方向的能力），可以毫不思索的直奔目的地。<br>
+PS：这样说，暴力搜索法并不是最优的方法，但是其执行用时却是0ms，这引起了我的注意，于是我想有没有可能是LeetCode的代码测试器的问题呢？于是我尝试隔了一段时间后再次重新提交了解答（代码原封不动），结果得到执行用时图：<br>
+<img src="https://XMTam.github.io/post-images/1585009236639.png" alt="" loading="lazy"><br>
+对了嘛，这执行用时才算合理。于是我积极投入到采用 KMP 来解决此问题的行动中，让我们一起来看看 KMP 算法的效率吧！</p>
+<hr>
+<h2 id="方法二kmp算法">方法二：KMP算法</h2>
+<p>代码实现：</p>
+<pre><code>void getNextVal(char* p, int* next)
+{
+    int pLen = strlen(p);
+    next[0] = -1;
+    int k = -1;
+    int j = 0;
+    while (j &lt; pLen - 1)
+    {
+        // p[k]表示前缀，p[j]表示后缀
+        if (k == -1 || p[j] == p[k])
+        {
+            ++j;
+            ++k;
+            // 较之前next数组求法，改动在下面4行
+            if (p[j] != p[k])
+            {
+                next[j] = k;
+            }
+            else
+            {
+                next[j] = next[k];
+            }
+        }
+        else
+        {
+            k = next[k];
+        }
+    }
+}
+
+int kmpSearch(char* s, char* p)
+{
+    int i = 0;
+    int j = 0;
+    int sLen = strlen(s);
+    int pLen = strlen(p);
+    int* next = (int*)malloc(sizeof(int) * (pLen + 1));
+    getNextVal(p, next);
+    while (i &lt; sLen &amp;&amp; j &lt; pLen)
+    {
+        // ①如果j = -1，或者当前字符匹配成功（即S[i] == P[j]），都令i++，j++
+        if (j == -1 || s[i] == p[j])
+        {
+            i++;
+            j++;
+        }
+        else
+        {
+            // ②如果j != -1，且当前字符匹配失败（即S[i] != P[j]），则令 i 不变，j = next[j]
+            // next[j]即为j所对应的next值
+            j = next[j];
+        }
+    }
+    if (j == pLen)
+    {
+        free(next);
+        return i - j;
+    }
+    else
+    {
+        free(next);
+        return -1;
+    }
+}
+int strStr(char* haystack, char* needle) {
+    if (needle == NULL)
+        return 0;
+    return kmpSearch(haystack, needle);
+}
+</code></pre>
+<p>代码执行用时图如下，0ms妥妥的：<br>
+<img src="https://XMTam.github.io/post-images/1585008139698.png" alt="" loading="lazy"></p>
+]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[ 8. 字符串转换整数 (atoi)]]></title>
@@ -65,6 +657,85 @@
         <link href="https://XMTam.github.io/post/8-字符串转换整数 (atoi)/">
         </link>
         <updated>2020-03-20T22:43:41.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="一-题目">一、题目</h1>
+<p>请你来实现一个 atoi 函数，使其能将字符串转换成整数。<br>
+首先，该函数会根据需要丢弃无用的开头空格字符，直到寻找到第一个非空格的字符为止。<br>
+当我们寻找到的第一个非空字符为正或者负号时，则将该符号与之后面尽可能多的连续数字组合起来，作为该整数的正负号；假如第一个非空字符是数字，则直接将其与之后连续的数字字符组合起来，形成整数。<br>
+该字符串除了有效的整数部分之后也可能会存在多余的字符，这些字符可以被忽略，它们对于函数不应该造成影响。</p>
+<p><strong>注意</strong>：假如该字符串中的第一个非空格字符不是一个有效整数字符、字符串为空或字符串仅包含空白字符时，则你的函数不需要进行转换。</p>
+<p>在任何情况下，若函数不能进行有效的转换时，请返回 0。</p>
+<p><strong>说明</strong>：假设我们的环境只能存储 32 位大小的有符号整数，那么其数值范围为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>[</mo><mi mathvariant="normal">−</mi><msup><mn>2</mn><mn>31</mn></msup><mo separator="true">,</mo><msup><mn>2</mn><mn>31</mn></msup><mi mathvariant="normal">−</mi><mn>1</mn><mo>]</mo></mrow><annotation encoding="application/x-tex">[−2^{31},  2^{31} − 1]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">−</span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">3</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">3</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span><span class="mord">−</span><span class="mord">1</span><span class="mclose">]</span></span></span></span>。如果数值超过这个范围，请返回  INT_MAX <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><msup><mn>2</mn><mn>31</mn></msup><mi mathvariant="normal">−</mi><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">(2^{31} − 1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">3</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span><span class="mord">−</span><span class="mord">1</span><span class="mclose">)</span></span></span></span> 或 INT_MIN <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mi mathvariant="normal">−</mi><msup><mn>2</mn><mn>31</mn></msup><mo>)</mo></mrow><annotation encoding="application/x-tex">(−2^{31})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">−</span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">3</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>。</p>
+<p>示例 1:</p>
+<pre><code>输入: &quot;42&quot;
+输出: 42
+</code></pre>
+<p>示例 2:</p>
+<pre><code>输入: &quot;   -42&quot;
+输出: -42
+</code></pre>
+<p><strong>解释</strong>: 第一个非空白字符为 '-', 它是一个负号。我们尽可能将负号与后面所有连续出现的数字组合起来，最后得到 -42 。</p>
+<p>示例 3:</p>
+<pre><code>输入: &quot;4193 with words&quot;
+输出: 4193
+</code></pre>
+<p><strong>解释</strong>: 转换截止于数字 '3' ，因为它的下一个字符不为数字。</p>
+<p>示例 4:</p>
+<pre><code>输入: &quot;words and 987&quot;
+输出: 0
+</code></pre>
+<p><strong>解释</strong>: 第一个非空字符是 'w', 但它不是数字或正、负号。因此无法执行有效的转换。</p>
+<p>示例 5:</p>
+<pre><code>输入: &quot;-91283472332&quot;
+输出: -2147483648
+</code></pre>
+<p><strong>解释</strong>: 数字 &quot;-91283472332&quot; 超过 32 位有符号整数范围。因此返回 INT_MIN (−231) 。</p>
+<hr>
+<h1 id="二-解决方法">二、解决方法</h1>
+<p><strong>思路</strong>：借助变量index纪录当前遍历位置，一次遍历即可完成转换。<br>
+代码如下：</p>
+<pre><code>int myAtoi(char* str) {
+    int length = strlen(str); 
+    int ret = 0;
+    int index = 0;
+
+    while (*str != '\0') // delete the front blanks
+    {
+        if (str[index] != ' ')
+            break;
+        index++;
+    }
+    if (index == length)
+        return 0;
+
+    int sign = 1; // 1 represent a positive number and -1 otherwise
+    if (str[index] == '-')
+    {
+        sign = -1;
+        index++;
+    }             
+    else if (str[index] == '+')
+        index++;
+    while (index &lt; length)
+    {
+        int curNum = str[index] - '0'; // change the current alph to num
+        if (curNum &lt; 0 || curNum &gt; 9)
+            break;
+        if (ret &gt; INT_MAX / 10 || (ret == INT_MAX / 10 &amp;&amp; (curNum &gt; INT_MAX % 10)))
+            return INT_MAX;
+        if (ret &lt; INT_MIN / 10 || (ret == INT_MIN / 10 &amp;&amp; (curNum &gt; -(INT_MIN % 10))))
+            return INT_MIN;
+        ret = ret * 10 + sign * curNum;
+        index++;
+    }
+    return ret;
+}
+</code></pre>
+<p><strong>复杂度分析</strong>：</p>
+<ul>
+<li>时间复杂度：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>N</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(N)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mclose">)</span></span></span></span>，这里 N 为字符串的长度</li>
+<li>空间复杂度：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span>。</li>
+</ul>
+]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[125. 验证回文字符串]]></title>
@@ -72,6 +743,87 @@
         <link href="https://XMTam.github.io/post/125- 验证回文字符串/">
         </link>
         <updated>2020-03-19T22:39:18.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="一-题目">一、 题目</h1>
+<p>给定一个字符串，验证它是否是回文串，只考虑字母和数字字符，可以忽略字母的大小写。</p>
+<p>说明：本题中，我们将空字符串定义为有效的回文串。</p>
+<p>示例 1:</p>
+<pre><code>输入: &quot;A man, a plan, a canal: Panama&quot;
+输出: true
+</code></pre>
+<p>示例 2:</p>
+<pre><code>输入: &quot;race a car&quot;
+输出: false
+</code></pre>
+<hr>
+<h1 id="二-解决方法">二、解决方法</h1>
+<h2 id="双指针法">双指针法</h2>
+<p><strong>思路</strong>：</p>
+<ol>
+<li>先将字符串中的大写字母全部转换为小写字母；</li>
+<li>设置头尾双指针，两个指针分别从字符串头部和尾部开始遍历字符串；
+<ul>
+<li>若当前指针所指元素不是字母或者数字，则该指针后移（头指针）或者前移（尾指针）</li>
+<li>如果当前两个指针所指元素相等，则头指针后移并且尾指针前移；如果不相等，则直接退出循环并返回false</li>
+<li>当头指针大于尾指针时退出循环</li>
+</ul>
+</li>
+</ol>
+<p>代码如下（0ms通过）：</p>
+<pre><code>void alphToLower(char* s)
+{
+    int len = strlen(s);
+    for (int i = 0; i &lt; len; i++)
+    {
+        if ('A' &lt;= s[i] &lt;= 'Z')
+            s[i] = tolower(s[i]);
+    }
+}
+
+bool isPalindrome(char* s) {
+    int len = strlen(s);
+    // set a front pointer which point at the beginning of the string
+    char* pf = s;
+    // set a tail pointer
+    char* pt = s + len - 1;
+    bool ret = true;
+    alphToLower(s);
+    puts(s);
+    while (pf &lt; pt)
+    {
+        if (('a' &lt;= *pf &amp;&amp; *pf &lt;= 'z') || ('0' &lt;= *pf &amp;&amp; *pf &lt;= '9'))
+        {
+            if (('a' &lt;= *pt &amp;&amp; *pt &lt;= 'z') || ('0' &lt;= *pt &amp;&amp; *pt &lt;= '9'))
+            {
+                if (*pf == *pt)
+                {
+                    pf++;
+                    pt--;
+                    continue;
+                }
+                else
+                {
+                    ret = false;
+                    break;
+                }
+            }
+            else
+            {
+                pt--;
+                continue;
+            }
+        }
+        else
+            pf++;
+    }
+    return ret;
+}
+</code></pre>
+<p><strong>复杂度分析</strong>：</p>
+<ul>
+<li>时间复杂度：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>N</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(N)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mclose">)</span></span></span></span>。因为只遍历字符串一次。</li>
+<li>空间复杂度：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span>。没有额外空间申请。</li>
+</ul>
+]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[The 20 rules of formulating knowledge in learning]]></title>
@@ -79,5 +831,28 @@
         <link href="https://XMTam.github.io/post/the-20-rules-of-formulating-knowledge-in-learning/">
         </link>
         <updated>2020-03-19T01:29:02.000Z</updated>
+        <content type="html"><![CDATA[<ol>
+<li><strong>Do not learn if you do not understand</strong></li>
+<li><strong>Learn before you memorize</strong> - build the picture of the whole before you dismember it into simple items in SuperMemo. If the whole shows holes, review it again!</li>
+<li><strong>Build upon the basics</strong> - never jump both feet into a complex manual because you may never see the end. Well remembered basics will help the remaining knowledge easily fit in</li>
+<li><strong>Stick to the minimum information principle</strong> - if you continue forgetting an item, try to make it as simple as possible. If it does not help, see the remaining rules (cloze deletion, graphics, mnemonic techniques, converting sets into enumerations, etc.)</li>
+<li><strong>Cloze deletion is easy and effective</strong> - completing a deleted word or phrase is not only an effective way of learning. Most of all, it greatly speeds up formulating knowledge and is highly recommended for beginners</li>
+<li><strong>Use imagery</strong> - a picture is worth a thousand words</li>
+<li><strong>Use mnemonic techniques</strong> - read about peg lists and mind maps. Study the books by Tony Buzan. Learn how to convert memories into funny pictures. You won't have problems with phone numbers and complex figures</li>
+<li><strong>Graphic deletion is as good as cloze deletion</strong> - obstructing parts of a picture is great for learning anatomy, geography and more</li>
+<li><strong>Avoid sets</strong> - larger sets are virtually un-memorizable unless you convert them into enumerations!</li>
+<li><strong>Avoid enumerations</strong> - enumerations are also hard to remember but can be dealt with using cloze deletion</li>
+<li><strong>Combat interference</strong> - even the simplest items can be completely intractable if they are similar to other items. Use examples, context cues, vivid illustrations, refer to emotions, and to your personal life</li>
+<li><strong>Optimize wording</strong> - like you reduce mathematical equations, you can reduce complex sentences into smart, compact and enjoyable maxims</li>
+<li><strong>Refer to other memories</strong> - building memories on other memories generates a coherent and hermetic structure that forgetting is less likely to affect. Build upon the basics and use planned redundancy to fill in the gaps</li>
+<li><strong>Personalize and provide examples</strong> - personalization might be the most effective way of building upon other memories. Your personal life is a gold mine of facts and events to refer to. As long as you build a collection for yourself, use personalization richly to build upon well established memories</li>
+<li><strong>Rely on emotional states</strong> - emotions are related to memories. If you learn a fact in the sate of sadness, you are more likely to recall it if when you are sad. Some memories can induce emotions and help you employ this property of the brain in remembering</li>
+<li><strong>Context cues simplify wording</strong> - providing context is a way of simplifying memories, building upon earlier knowledge and avoiding interference</li>
+<li><strong>Redundancy does not contradict minimum information principle</strong> - some forms of redundancy are welcome. There is little harm in memorizing the same fact as viewed from different angles. Passive and active approach is particularly practicable in learning word-pairs. Memorizing derivation steps in problem solving is a way towards boosting your intellectual powers!</li>
+<li><strong>Provide sources</strong> - sources help you manage the learning process, updating your knowledge, judging its reliability, or importance</li>
+<li><strong>Provide date stamping</strong> - time stamping is useful for volatile knowledge that changes in time</li>
+<li><strong>Prioritize</strong> - effective learning is all about prioritizing. In incremental reading you can start from badly formulated knowledge and improve its shape as you proceed with learning (in proportion to the cost of inappropriate formulation). If need be, you can review pieces of knowledge again, split it into parts, reformulate, reprioritize, or delete. See also: Incremental reading, Devouring knowledge, Flow of knowledge, Using tasklists</li>
+</ol>
+]]></content>
     </entry>
 </feed>
