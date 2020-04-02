@@ -1,120 +1,112 @@
+<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Alvin</title>
-<meta name="description" content="A = X + Y + Z" />
-<link rel="shortcut icon" href="https://XMTam.github.io/favicon.ico?v=1585791614917">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
-<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+    <meta charset="utf-8" >
 
+<title>C语言排序算法之归并排序 | Alvin</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://XMTam.github.io/favicon.ico?v=1585791699432">
 <link rel="stylesheet" href="https://XMTam.github.io/styles/main.css">
 
 
+  
+    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
+  
 
+  
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
+
+    <meta name="description" content="排序算法中的归并排序(Merge Sort)是利用&quot;归并&quot;技术来进行排序。归并是指将若干个已排序的子文件合并成一个有序的文件。
+一、实现原理
+1、算法基本思路
+设两个有序的子文件(相当于输入堆)放在同一向量中相邻的位置上..." />
+    <meta name="keywords" content="C,Algorithm" />
   </head>
   <body>
-    <div id="app" class="main px-4 flex flex-col lg:flex-row">
-      <div id="sidebar" class="sidebar-wrapper lg:static lg:w-1/4">
-  <div class="lg:sticky top-0">
-    <div class="sidebar-content">
-      <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
-        <i class="ri-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
-        <a href="https://XMTam.github.io">
-          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://XMTam.github.io/images/avatar.png?v=1585791614917" alt="">
-        </a>
-        <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">Alvin</h1>
-      </div>
-      
-        <div class="animated fadeInLeft" style="animation-delay: 0.4s">
-          <p class="my-4 text-gray-600 font-light hidden lg:block">
-            文章目录
-          </p>
-          <div class="toc-container hidden lg:block">
-            <ul class="markdownIt-TOC">
-<li><a href="#%E4%B8%80-%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86">一、实现原理</a>
-<ul>
-<li><a href="#1-%E7%AE%97%E6%B3%95%E5%9F%BA%E6%9C%AC%E6%80%9D%E8%B7%AF">1、算法基本思路</a>
-<ul>
-<li><a href="#1%E5%90%88%E5%B9%B6%E8%BF%87%E7%A8%8B">（1）合并过程</a></li>
-<li><a href="#2%E5%8A%A8%E6%80%81%E7%94%B3%E8%AF%B7r1">（2）动态申请R1</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#%E4%BA%8C-2%E7%A7%8D%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%95">二、2种实现方法</a>
-<ul>
-<li><a href="#1-%E8%87%AA%E5%BA%95%E5%90%91%E4%B8%8A%E6%96%B9%E6%B3%95%E8%99%BD%E7%84%B6%E6%95%88%E7%8E%87%E8%BE%83%E9%AB%98%E4%BD%86%E5%8F%AF%E8%AF%BB%E6%80%A7%E8%BE%83%E5%B7%AE">1. 自底向上方法（虽然效率较高，但可读性较差）</a>
-<ul>
-<li><a href="#1-%E8%87%AA%E5%BA%95%E5%90%91%E4%B8%8A%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%80%9D%E6%83%B3">（1） 自底向上的基本思想</a></li>
-<li><a href="#2-%E4%B8%80%E8%B6%9F%E5%BD%92%E5%B9%B6%E7%AE%97%E6%B3%95">（2） 一趟归并算法</a></li>
-</ul>
-</li>
-<li><a href="#2-%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E7%9A%84%E6%96%B9%E6%B3%95">2. 自顶向下的方法</a>
-<ul>
-<li><a href="#1%E5%88%86%E6%B2%BB%E6%B3%95%E7%9A%84%E4%B8%89%E4%B8%AA%E6%AD%A5%E9%AA%A4">（1）分治法的三个步骤</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#%E4%B8%89-%E5%88%86%E6%9E%90">三、分析</a></li>
-</ul>
+    <div id="app" class="main">
 
-          </div>
-        </div>
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://XMTam.github.io">
+        <img src="https://XMTam.github.io/images/avatar.png?v=1585791699432" class="site-logo">
+        <h1 class="site-title">Alvin</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
       
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      A = X + Y + Z
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://XMTam.github.io/atom.xml" target="_blank">RSS</a>
     </div>
   </div>
 </div>
 
-<div class="menu-container">
-  <i class="ri-arrow-left-line text-2xl cursor-pointer animated fadeIn close-menu-btn" onclick="closeMenu()"></i>
-  <div>
-    
-      
-        <a href="/" class="menu" style="animation-delay: 0s">
-          首页
-        </a>
-      
-    
-      
-        <a href="/archives" class="menu" style="animation-delay: 0.2s">
-          归档
-        </a>
-      
-    
-      
-        <a href="/tags" class="menu" style="animation-delay: 0.4s">
-          标签
-        </a>
-      
-    
-      
-        <a href="/post/about" class="menu" style="animation-delay: 0.6000000000000001s">
-          关于
-        </a>
-      
-    
-  </div>
-  <div class="site-footer">
-    <div class="py-4 text-gray-700">Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a></div>
-    <a class="rss" href="https://XMTam.github.io/atom.xml" target="_blank">RSS</a>
-  </div>
-</div>
-<div class="mask" onclick="closeMenu()">
-</div>
-      <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
-        <h1 class="text-3xl font-bold lg:mt-16">C语言排序算法之归并排序</h1>
-        <div class="text-sm text-gray-700 lg:my-8">
-          2020-03-19 / 6 min read
-        </div>
-        
-          <img class="post-feature-image rounded-lg mx-auto my-4" src="https://XMTam.github.io/post-images/C-merge_sort.png" alt="">
-        
-        <div class="post-content yue">
-          <p>排序算法中的归并排序(Merge Sort)是利用&quot;归并&quot;技术来进行排序。归并是指将若干个已排序的子文件合并成一个有序的文件。</p>
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">C语言排序算法之归并排序</h2>
+            <div class="post-date">2020-03-19</div>
+            
+              <div class="feature-container" style="background-image: url('https://XMTam.github.io/post-images/C-merge_sort.png')">
+              </div>
+            
+            <div class="post-content" v-pre>
+              <p>排序算法中的归并排序(Merge Sort)是利用&quot;归并&quot;技术来进行排序。归并是指将若干个已排序的子文件合并成一个有序的文件。</p>
 <h1 id="一-实现原理">一、实现原理</h1>
 <h2 id="1-算法基本思路">1、算法基本思路</h2>
 <p>设两个有序的子文件(相当于输入堆)放在同一向量中相邻的位置上：R[low..m]，R[m+1..high]，先将它们合并到一个局部的暂存向量R1(相当于输出堆)中，待合并完成后将R1复制回R[low..high]中。</p>
@@ -206,171 +198,86 @@ void merge_sort(int arr[], int len)
 <p><strong>注意</strong>：<br>
 若用单链表做存储结构，很容易给出就地的归并排序。</p>
 
-        </div>
-
-        
-          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://XMTam.github.io/tag/mdTywhGOSm/">
-            <span class="flex-auto">C</span>
-          </a>
-        
-          <a class="animated fadeInUp p-2 items-center text-sm text-gray-700 border hover:bg-gray-300 leading-none rounded-full flex lg:inline-flex m-4 " href="https://XMTam.github.io/tag/kqw_ljbz5c/">
-            <span class="flex-auto">Algorithm</span>
-          </a>
-        
-
-
-        <div class="flex justify-between py-8">
-          
-            <div class="prev-post">
-              <a href="https://XMTam.github.io/post/the-20-rules-of-formulating-knowledge-in-learning/">
-                <h3 class="post-title">
-                  <i class="ri-arrow-left-line"></i>
-                  The 20 rules of formulating knowledge in learning
-                </h3>
-              </a>
             </div>
-          
+            
+              <div class="tag-container">
+                
+                  <a href="https://XMTam.github.io/tag/mdTywhGOSm/" class="tag">
+                    C
+                  </a>
+                
+                  <a href="https://XMTam.github.io/tag/kqw_ljbz5c/" class="tag">
+                    Algorithm
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://XMTam.github.io/post/242-you-xiao-de-zi-mu-yi-wei-ci/">
+                  <h3 class="post-title">
+                    242. 有效的字母异位词
+                  </h3>
+                </a>
+              </div>
+            
 
-          
-            <div class="next-post">
-              <a href="https://XMTam.github.io/post/242-you-xiao-de-zi-mu-yi-wei-ci/">
-                <h3 class="post-title">
-                  242. 有效的字母异位词
-                  <i class="ri-arrow-right-line"></i>
-                </h3>
-              </a>
-            </div>
-          
+            
+              
+                <div id="gitalk-container" data-aos="fade-in"></div>
+              
+
+              
+            
+
+          </div>
+
         </div>
-
-        
-          
-            <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
-<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-
-<div id="gitalk-container"></div>
-
-<script>
-
-  var gitalk = new Gitalk({
-    clientID: 'b3d959b44c66103ef289',
-    clientSecret: '510446b8a79cc1b1d29e9fb60522c7148ee83542',
-    repo: 'XMTam.github.io',
-    owner: 'XMTam',
-    admin: ['XMTam'],
-    id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
-    distractionFreeMode: false  // Facebook-like distraction free mode
-  })
-
-  gitalk.render('gitalk-container')
-
-</script>
-
-          
-
-          
-        
-
       </div>
     </div>
 
-    <script src="https://XMTam.github.io/media/prism.js"></script>  
-<script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
 
-Prism.highlightAll()
-let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+AOS.init();
 
-// This should probably be throttled.
-// Especially because it triggers during smooth scrolling.
-// https://lodash.com/docs/4.17.10#throttle
-// You could do like...
-// window.addEventListener("scroll", () => {
-//    _.throttle(doThatStuff, 100);
-// });
-// Only not doing it here to keep this Pen dependency-free.
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
 
-window.addEventListener("scroll", event => {
-  let fromTop = window.scrollY;
-
-  mainNavLinks.forEach((link, index) => {
-    let section = document.getElementById(decodeURI(link.hash).substring(1));
-    let nextSection = null
-    if (mainNavLinks[index + 1]) {
-      nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
-    }
-    if (section.offsetTop <= fromTop) {
-      if (nextSection) {
-        if (nextSection.offsetTop > fromTop) {
-          link.classList.add("current");
-        } else {
-          link.classList.remove("current");    
-        }
-      } else {
-        link.classList.add("current");
-      }
-    } else {
-      link.classList.remove("current");
-    }
-  });
-});
-
-
-document.addEventListener("DOMContentLoaded", function() {
-  var lazyImages = [].slice.call(document.querySelectorAll(".post-feature-image.lazy"));
-
-  if ("IntersectionObserver" in window) {
-    let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting) {
-          let lazyImage = entry.target
-          lazyImage.style.backgroundImage = `url(${lazyImage.dataset.bg})`
-          lazyImage.classList.remove("lazy")
-          lazyImageObserver.unobserve(lazyImage)
-        }
-      });
-    });
-
-    lazyImages.forEach(function(lazyImage) {
-      lazyImageObserver.observe(lazyImage)
-    })
-  } else {
-    // Possibly fall back to a more compatible method here
-  }
-});
-
-const menuContainer = document.querySelector('.menu-container')
-const menus = document.querySelectorAll('.menu-container .menu')
-const mask = document.querySelector('.mask')
-const contentWrapper = document.querySelector('.content-wrapper')
-const latestArticle = document.querySelector('.latest-article')
-const readMore = document.querySelector('.read-more')
-const indexPage = document.querySelector('.index-page')
-
-const isHome = location.pathname === '/'
-if (latestArticle) {
-  latestArticle.style.display = isHome ? 'block' : 'none'
-  readMore.style.display = isHome ? 'block' : 'none'
-  indexPage.style.display = isHome ? 'none' : 'block'
-}
-
-const openMenu = () => {
-  menuContainer.classList.add('open')
-  menus.forEach(menu => {
-    menu.classList.add('animated', 'fadeInLeft')
-  })
-  mask.classList.add('open')
-  contentWrapper.classList.add('is-second')
-}
-
-const closeMenu = () => {
-  menuContainer.classList.remove('open')
-  menus.forEach(menu => {
-    menu.classList.remove('animated', 'fadeInLeft')
-  })
-  mask.classList.remove('open')
-  contentWrapper.classList.remove('is-second')
-}
 </script>
+
+
+
+
+
   
+    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+    <script>
+
+      var gitalk = new Gitalk({
+        clientID: 'b3d959b44c66103ef289',
+        clientSecret: '510446b8a79cc1b1d29e9fb60522c7148ee83542',
+        repo: 'XMTam.github.io',
+        owner: 'XMTam',
+        admin: ['XMTam'],
+        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false  // Facebook-like distraction free mode
+      })
+
+      gitalk.render('gitalk-container')
+
+    </script>
+  
+
+  
+
+
+
+
   </body>
 </html>
