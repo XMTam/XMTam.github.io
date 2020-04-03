@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Alvin</title>
 <meta name="description" content="A = X + Y + Z" />
-<link rel="shortcut icon" href="https://XMTam.github.io/favicon.ico?v=1585800484365">
+<link rel="shortcut icon" href="https://XMTam.github.io/favicon.ico?v=1585919295476">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
@@ -23,7 +23,7 @@
       <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
         <i class="ri-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
         <a href="https://XMTam.github.io">
-          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://XMTam.github.io/images/avatar.png?v=1585800484365" alt="">
+          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://XMTam.github.io/images/avatar.png?v=1585919295476" alt="">
         </a>
         <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">Alvin</h1>
       </div>
@@ -37,8 +37,7 @@
 <li><a href="#%E4%B8%80-%E9%A2%98%E7%9B%AE">一、题目</a></li>
 <li><a href="#%E4%BA%8C-%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95">二、解决方法</a>
 <ul>
-<li><a href="#%E6%96%B9%E6%B3%95%E4%B8%80%E5%8F%8C%E6%8C%87%E9%92%88%E6%B3%95">方法一：双指针法</a></li>
-<li><a href="#%E6%96%B9%E6%B3%95%E4%BA%8C%E5%93%88%E5%B8%8C%E8%A1%A8">方法二：哈希表</a></li>
+<li><a href="#%E6%96%B9%E6%B3%95%E5%8F%8C%E6%8C%87%E9%92%88%E6%B3%95">方法：双指针法</a></li>
 </ul>
 </li>
 </ul>
@@ -89,7 +88,7 @@
       <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
         <h1 class="text-3xl font-bold lg:mt-16">141. 环形链表</h1>
         <div class="text-sm text-gray-700 lg:my-8">
-          2020-04-02 / 2 min read
+          2020-04-02 / 4 min read
         </div>
         
         <div class="post-content yue">
@@ -116,7 +115,7 @@
 <p><strong>进阶</strong>：你能用 O(1)（即，常量）内存解决此问题吗？</p>
 <hr>
 <h1 id="二-解决方法">二、解决方法</h1>
-<h2 id="方法一双指针法">方法一：双指针法</h2>
+<h2 id="方法双指针法">方法：双指针法</h2>
 <p><strong>思路</strong>：想象一下，两名运动员以不同的速度在环形赛道上跑步会发生什么？<br>
 通过使用具有 <em>不同速度</em> 的快、慢两个指针遍历链表，空间复杂度可以被降低至 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span>。慢指针每次移动一步，而快指针每次移动两步。</p>
 <p>如果列表中不存在环，最终快指针将会最先到达尾部，此时我们可以返回 false。</p>
@@ -142,7 +141,25 @@
     return true;
 }
 </code></pre>
-<h2 id="方法二哈希表">方法二：哈希表</h2>
+<p><strong>复杂度分析</strong>：</p>
+<ul>
+<li>时间复杂度：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>，让我们将 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 设为链表中结点的总数。为了分析时间复杂度，我们分别考虑下面两种情况。
+<ul>
+<li>链表中不存在环：快指针将会首先到达尾部，其时间取决于列表的长度，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">也</mi><mi mathvariant="normal">就</mi><mi mathvariant="normal">是</mi><mi>O</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">也就是 O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord cjk_fallback">也</span><span class="mord cjk_fallback">就</span><span class="mord cjk_fallback">是</span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>。</li>
+<li>链表中存在环：慢指针的移动过程划分为两个阶段：非环部分与环形部分：
+<ul>
+<li>慢指针在走完非环部分阶段后将进入环形部分：此时，快指针已经进入环中<br>
+<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtext>迭代次数</mtext><mo>=</mo><mtext>非环部分长度</mtext><mo>=</mo><mi>N</mi></mrow><annotation encoding="application/x-tex">\text{迭代次数} = \text{非环部分长度} = N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord text"><span class="mord cjk_fallback">迭代次数</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord text"><span class="mord cjk_fallback">非环部分长度</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span></span></span></span></li>
+<li>两个指针都在环形区域中：考虑两个在环形赛道上的运动员 - 快跑者每次移动两步而慢跑者每次只移动一步。其速度的差值为 1，因此需要经过 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mfrac><mtext>二者之间距离</mtext><mtext>速度差值</mtext></mfrac></mrow><annotation encoding="application/x-tex">\dfrac{\text{二者之间距离}}{\text{速度差值}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:2.04633em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.36033em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord text"><span class="mord cjk_fallback">速度差值</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord text"><span class="mord cjk_fallback">二者之间距离</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span> 次循环后，快跑者可以追上慢跑者。这个距离几乎就是 <code>环形部分长度 K</code> 且速度差值为 1，我们得出这样的结论 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtext>迭代次数</mtext><mo>=</mo><mtext>近似于</mtext></mrow><annotation encoding="application/x-tex">\text{迭代次数} = \text{近似于}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord text"><span class="mord cjk_fallback">迭代次数</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord text"><span class="mord cjk_fallback">近似于</span></span></span></span></span> <code>环形部分长度 K</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>因此，在最糟糕的情形下，时间复杂度为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>N</mi><mo>+</mo><mi>K</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(N+K)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">K</span><span class="mclose">)</span></span></span></span>，也就是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>。</p>
+<ul>
+<li>空间复杂度：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span>，我们只使用了慢指针和快指针两个结点，所以空间复杂度为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span>。</li>
+</ul>
 
         </div>
 
@@ -158,6 +175,15 @@
 
 
         <div class="flex justify-between py-8">
+          
+            <div class="prev-post">
+              <a href="https://XMTam.github.io/post/234-hui-wen-lian-biao/">
+                <h3 class="post-title">
+                  <i class="ri-arrow-left-line"></i>
+                  234. 回文链表
+                </h3>
+              </a>
+            </div>
           
 
           

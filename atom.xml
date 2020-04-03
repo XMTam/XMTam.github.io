@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://XMTam.github.io</id>
     <title>Alvin</title>
-    <updated>2020-04-02T04:08:12.724Z</updated>
+    <updated>2020-04-03T13:08:23.159Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://XMTam.github.io"/>
     <link rel="self" href="https://XMTam.github.io/atom.xml"/>
@@ -10,6 +10,28 @@
     <logo>https://XMTam.github.io/images/avatar.png</logo>
     <icon>https://XMTam.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Alvin</rights>
+    <entry>
+        <title type="html"><![CDATA[234. 回文链表]]></title>
+        <id>https://XMTam.github.io/post/234-hui-wen-lian-biao/</id>
+        <link href="https://XMTam.github.io/post/234-hui-wen-lian-biao/">
+        </link>
+        <updated>2020-04-02T06:32:40.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="一-题目">一、题目</h1>
+<p>请判断一个链表是否为回文链表。</p>
+<p><strong>示例 1</strong>:</p>
+<pre><code>输入: 1-&gt;2
+输出: false
+</code></pre>
+<p><strong>示例 2</strong>:</p>
+<pre><code>输入: 1-&gt;2-&gt;2-&gt;1
+输出: true
+</code></pre>
+<p><strong>进阶</strong>：<br>
+你能否用 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span> 时间复杂度和 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span> 空间复杂度解决此题？</p>
+<hr>
+<h1 id="二-解决方法">二、解决方法</h1>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[141. 环形链表]]></title>
         <id>https://XMTam.github.io/post/141-huan-xing-lian-biao/</id>
@@ -39,7 +61,7 @@
 <p><strong>进阶</strong>：你能用 O(1)（即，常量）内存解决此问题吗？</p>
 <hr>
 <h1 id="二-解决方法">二、解决方法</h1>
-<h2 id="方法一双指针法">方法一：双指针法</h2>
+<h2 id="方法双指针法">方法：双指针法</h2>
 <p><strong>思路</strong>：想象一下，两名运动员以不同的速度在环形赛道上跑步会发生什么？<br>
 通过使用具有 <em>不同速度</em> 的快、慢两个指针遍历链表，空间复杂度可以被降低至 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span>。慢指针每次移动一步，而快指针每次移动两步。</p>
 <p>如果列表中不存在环，最终快指针将会最先到达尾部，此时我们可以返回 false。</p>
@@ -65,7 +87,25 @@
     return true;
 }
 </code></pre>
-<h2 id="方法二哈希表">方法二：哈希表</h2>
+<p><strong>复杂度分析</strong>：</p>
+<ul>
+<li>时间复杂度：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>，让我们将 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 设为链表中结点的总数。为了分析时间复杂度，我们分别考虑下面两种情况。
+<ul>
+<li>链表中不存在环：快指针将会首先到达尾部，其时间取决于列表的长度，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">也</mi><mi mathvariant="normal">就</mi><mi mathvariant="normal">是</mi><mi>O</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">也就是 O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord cjk_fallback">也</span><span class="mord cjk_fallback">就</span><span class="mord cjk_fallback">是</span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>。</li>
+<li>链表中存在环：慢指针的移动过程划分为两个阶段：非环部分与环形部分：
+<ul>
+<li>慢指针在走完非环部分阶段后将进入环形部分：此时，快指针已经进入环中<br>
+<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtext>迭代次数</mtext><mo>=</mo><mtext>非环部分长度</mtext><mo>=</mo><mi>N</mi></mrow><annotation encoding="application/x-tex">\text{迭代次数} = \text{非环部分长度} = N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord text"><span class="mord cjk_fallback">迭代次数</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord text"><span class="mord cjk_fallback">非环部分长度</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span></span></span></span></li>
+<li>两个指针都在环形区域中：考虑两个在环形赛道上的运动员 - 快跑者每次移动两步而慢跑者每次只移动一步。其速度的差值为 1，因此需要经过 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mfrac><mtext>二者之间距离</mtext><mtext>速度差值</mtext></mfrac></mrow><annotation encoding="application/x-tex">\dfrac{\text{二者之间距离}}{\text{速度差值}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:2.04633em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.36033em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord text"><span class="mord cjk_fallback">速度差值</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord text"><span class="mord cjk_fallback">二者之间距离</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span> 次循环后，快跑者可以追上慢跑者。这个距离几乎就是 <code>环形部分长度 K</code> 且速度差值为 1，我们得出这样的结论 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtext>迭代次数</mtext><mo>=</mo><mtext>近似于</mtext></mrow><annotation encoding="application/x-tex">\text{迭代次数} = \text{近似于}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord text"><span class="mord cjk_fallback">迭代次数</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord text"><span class="mord cjk_fallback">近似于</span></span></span></span></span> <code>环形部分长度 K</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>因此，在最糟糕的情形下，时间复杂度为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>N</mi><mo>+</mo><mi>K</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(N+K)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">K</span><span class="mclose">)</span></span></span></span>，也就是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>。</p>
+<ul>
+<li>空间复杂度：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span>，我们只使用了慢指针和快指针两个结点，所以空间复杂度为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span>。</li>
+</ul>
 ]]></content>
     </entry>
     <entry>
@@ -753,92 +793,6 @@ int strStr(char* haystack, char* needle) {
 </code></pre>
 <p>代码执行用时图如下，0ms妥妥的：<br>
 <img src="https://XMTam.github.io/post-images/1585008139698.png" alt="" loading="lazy"></p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[ 8. 字符串转换整数 (atoi)]]></title>
-        <id>https://XMTam.github.io/post/8-字符串转换整数 (atoi)/</id>
-        <link href="https://XMTam.github.io/post/8-字符串转换整数 (atoi)/">
-        </link>
-        <updated>2020-03-20T22:43:41.000Z</updated>
-        <content type="html"><![CDATA[<h1 id="一-题目">一、题目</h1>
-<p>请你来实现一个 atoi 函数，使其能将字符串转换成整数。<br>
-首先，该函数会根据需要丢弃无用的开头空格字符，直到寻找到第一个非空格的字符为止。<br>
-当我们寻找到的第一个非空字符为正或者负号时，则将该符号与之后面尽可能多的连续数字组合起来，作为该整数的正负号；假如第一个非空字符是数字，则直接将其与之后连续的数字字符组合起来，形成整数。<br>
-该字符串除了有效的整数部分之后也可能会存在多余的字符，这些字符可以被忽略，它们对于函数不应该造成影响。</p>
-<p><strong>注意</strong>：假如该字符串中的第一个非空格字符不是一个有效整数字符、字符串为空或字符串仅包含空白字符时，则你的函数不需要进行转换。</p>
-<p>在任何情况下，若函数不能进行有效的转换时，请返回 0。</p>
-<p><strong>说明</strong>：假设我们的环境只能存储 32 位大小的有符号整数，那么其数值范围为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>[</mo><mi mathvariant="normal">−</mi><msup><mn>2</mn><mn>31</mn></msup><mo separator="true">,</mo><msup><mn>2</mn><mn>31</mn></msup><mi mathvariant="normal">−</mi><mn>1</mn><mo>]</mo></mrow><annotation encoding="application/x-tex">[−2^{31},  2^{31} − 1]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mopen">[</span><span class="mord">−</span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">3</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">3</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span><span class="mord">−</span><span class="mord">1</span><span class="mclose">]</span></span></span></span>。如果数值超过这个范围，请返回  INT_MAX <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><msup><mn>2</mn><mn>31</mn></msup><mi mathvariant="normal">−</mi><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">(2^{31} − 1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">3</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span><span class="mord">−</span><span class="mord">1</span><span class="mclose">)</span></span></span></span> 或 INT_MIN <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mi mathvariant="normal">−</mi><msup><mn>2</mn><mn>31</mn></msup><mo>)</mo></mrow><annotation encoding="application/x-tex">(−2^{31})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">−</span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">3</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>。</p>
-<p>示例 1:</p>
-<pre><code>输入: &quot;42&quot;
-输出: 42
-</code></pre>
-<p>示例 2:</p>
-<pre><code>输入: &quot;   -42&quot;
-输出: -42
-</code></pre>
-<p><strong>解释</strong>: 第一个非空白字符为 '-', 它是一个负号。我们尽可能将负号与后面所有连续出现的数字组合起来，最后得到 -42 。</p>
-<p>示例 3:</p>
-<pre><code>输入: &quot;4193 with words&quot;
-输出: 4193
-</code></pre>
-<p><strong>解释</strong>: 转换截止于数字 '3' ，因为它的下一个字符不为数字。</p>
-<p>示例 4:</p>
-<pre><code>输入: &quot;words and 987&quot;
-输出: 0
-</code></pre>
-<p><strong>解释</strong>: 第一个非空字符是 'w', 但它不是数字或正、负号。因此无法执行有效的转换。</p>
-<p>示例 5:</p>
-<pre><code>输入: &quot;-91283472332&quot;
-输出: -2147483648
-</code></pre>
-<p><strong>解释</strong>: 数字 &quot;-91283472332&quot; 超过 32 位有符号整数范围。因此返回 INT_MIN (−231) 。</p>
-<hr>
-<h1 id="二-解决方法">二、解决方法</h1>
-<p><strong>思路</strong>：借助变量index纪录当前遍历位置，一次遍历即可完成转换。<br>
-代码如下：</p>
-<pre><code>int myAtoi(char* str) {
-    int length = strlen(str); 
-    int ret = 0;
-    int index = 0;
-
-    while (*str != '\0') // delete the front blanks
-    {
-        if (str[index] != ' ')
-            break;
-        index++;
-    }
-    if (index == length)
-        return 0;
-
-    int sign = 1; // 1 represent a positive number and -1 otherwise
-    if (str[index] == '-')
-    {
-        sign = -1;
-        index++;
-    }             
-    else if (str[index] == '+')
-        index++;
-    while (index &lt; length)
-    {
-        int curNum = str[index] - '0'; // change the current alph to num
-        if (curNum &lt; 0 || curNum &gt; 9)
-            break;
-        if (ret &gt; INT_MAX / 10 || (ret == INT_MAX / 10 &amp;&amp; (curNum &gt; INT_MAX % 10)))
-            return INT_MAX;
-        if (ret &lt; INT_MIN / 10 || (ret == INT_MIN / 10 &amp;&amp; (curNum &gt; -(INT_MIN % 10))))
-            return INT_MIN;
-        ret = ret * 10 + sign * curNum;
-        index++;
-    }
-    return ret;
-}
-</code></pre>
-<p><strong>复杂度分析</strong>：</p>
-<ul>
-<li>时间复杂度：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>N</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(N)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mclose">)</span></span></span></span>，这里 N 为字符串的长度</li>
-<li>空间复杂度：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span>。</li>
-</ul>
 ]]></content>
     </entry>
 </feed>
