@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://XMTam.github.io</id>
     <title>Alvin</title>
-    <updated>2020-04-03T13:19:43.545Z</updated>
+    <updated>2020-04-04T03:39:46.678Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://XMTam.github.io"/>
     <link rel="self" href="https://XMTam.github.io/atom.xml"/>
@@ -62,6 +62,103 @@ Just keep doing it and you WILL get there. Believe me.</p>
 你能否用 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span> 时间复杂度和 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span> 空间复杂度解决此题？</p>
 <hr>
 <h1 id="二-解决方法">二、解决方法</h1>
+<h2 id="方法一双指针法借用数组">方法一：双指针法——借用数组</h2>
+<p><strong>思路</strong>：先将链表的值存储在数组中，然后双指针法遍历数组，逐个比对头指针和尾指针所指的元素的值，如果当前两个值不同，返回 false；如果全部遍历之后没有不同的元素，则返回 true。</p>
+<p><strong>代码</strong>如下：</p>
+<pre><code>bool isPalindrome(struct ListNode* head) 
+{
+    struct ListNode* p = head;
+    int len = 0;
+    while (p)
+    {
+        len += 1;
+        p = p-&gt;next;
+    }
+    if(len == 0 || len == 1)
+        return true;
+    int* arr = (int*)malloc(sizeof(int) * len);
+    for (int i = 0; i &lt; len; i++)
+    {
+        arr[i] = head-&gt;val;
+        head = head-&gt;next;
+    }
+    int* pf = arr;
+    int* pt = arr + len - 1;
+    while (pf &lt; pt)
+    {
+        if (*pf != *pt)
+            return false;
+        pf++;
+        pt--;
+    }
+    return true;
+}
+</code></pre>
+<p>代码执行用时图如下所示：<br>
+<img src="https://XMTam.github.io/post-images/1585957426409.png" alt="" loading="lazy"></p>
+<p><strong>复杂度分析</strong>：</p>
+<ul>
+<li>时间复杂度：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>，遍历链表次数 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span>，转换为数组遍历次数 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span>，双指针判断是否为回文数遍历次数 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mi mathvariant="normal">/</mi><mn>2</mn></mrow><annotation encoding="application/x-tex">n/2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">n</span><span class="mord">/</span><span class="mord">2</span></span></span></span>。所以总的时间复杂度为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>。</li>
+<li>空间复杂度：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>，申请了空间大小为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 的数组。</li>
+</ul>
+<h2 id="方法二双指针反转">方法二：双指针——反转</h2>
+<p><strong>思路</strong>：首先做以下两个操作：</p>
+<ul>
+<li>找到链表的中间节点</li>
+<li>反转链表<br>
+通过这两个操作之后，原链表就以中间节点被一分为二。前半部分一个链表，后半部分(被反转了)为一个链表，然后遍历这两个链表，如果遍历过程中发现两个链表节点不同，说明不是回文链表，直接返回 false 即可；如果链表遍历完了，说明是回文链表。</li>
+</ul>
+<p>注意一个小细节，如果链表长度是偶数的话，前半部分和后半部分长度是一样的；如果链表长度是奇数，那么前半部分的长度比后半部分长度多1个。所以最后迭代链表的时候，以后半部分为准就可以了，当链表总长为奇数时，前半部分的最后一个节点就不会被遍历到了。</p>
+<p><strong>代码</strong>：</p>
+<pre><code>struct ListNode* reverseList(struct ListNode* pHead)
+{
+    struct ListNode* rHead = (struct ListNode*)malloc(sizeof(struct ListNode));
+    rHead-&gt;next = NULL;
+    while (pHead)
+    {
+        struct ListNode* tmp = pHead-&gt;next;
+        pHead-&gt;next = rHead-&gt;next;
+        rHead-&gt;next = pHead;
+        pHead = tmp;
+    }
+    return rHead-&gt;next;
+}
+
+bool isPalindrome(struct ListNode* head) 
+{
+    struct ListNode* fast = head;
+    struct ListNode* slow = head;
+    struct ListNode* mid = NULL;
+    struct ListNode* pHead = head;
+    if (head == NULL || head-&gt;next == NULL)
+        return true;
+
+    // 找到链表中间结点
+    while (fast-&gt;next &amp;&amp; fast-&gt;next-&gt;next)
+    {
+        fast = fast-&gt;next-&gt;next;
+        slow = slow-&gt;next;
+    }
+    mid = slow-&gt;next;
+    slow-&gt;next = NULL;
+    mid = reverseList(mid);
+    while (pHead &amp;&amp; mid)
+    {
+        if (pHead-&gt;val != mid-&gt;val)
+            return false;
+        pHead = pHead-&gt;next;
+        mid = mid-&gt;next;
+    }
+    return true;
+}
+</code></pre>
+<p>代码执行用时图：<br>
+<img src="https://XMTam.github.io/post-images/1585960258639.png" alt="" loading="lazy"></p>
+<p><strong>复杂度分析</strong>：</p>
+<ul>
+<li>时间复杂度：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>，其中 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 指的是链表的大小。</li>
+<li>空间复杂度：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span>，没有借助额外空间。</li>
+</ul>
 ]]></content>
     </entry>
     <entry>
