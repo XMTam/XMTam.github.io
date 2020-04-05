@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://XMTam.github.io</id>
     <title>Alvin</title>
-    <updated>2020-04-04T03:55:41.842Z</updated>
+    <updated>2020-04-05T09:04:30.437Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://XMTam.github.io"/>
     <link rel="self" href="https://XMTam.github.io/atom.xml"/>
@@ -10,6 +10,33 @@
     <logo>https://XMTam.github.io/images/avatar.png</logo>
     <icon>https://XMTam.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Alvin</rights>
+    <entry>
+        <title type="html"><![CDATA[104. 二叉树的最大深度]]></title>
+        <id>https://XMTam.github.io/post/104-er-cha-shu-de-zui-da-shen-du/</id>
+        <link href="https://XMTam.github.io/post/104-er-cha-shu-de-zui-da-shen-du/">
+        </link>
+        <updated>2020-04-04T23:00:09.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="一-题目">一、题目</h1>
+<p>给定一个二叉树，找出其最大深度。</p>
+<p>二叉树的深度为根节点到最远叶子节点的最长路径上的节点数。</p>
+<p>说明: 叶子节点是指没有子节点的节点。</p>
+<p><strong>示例</strong>：<br>
+给定二叉树 [3,9,20,null,null,15,7]，</p>
+<pre><code>     3
+   /   \
+ 9   20
+     /    \
+  15      7
+</code></pre>
+<p>返回它的最大深度3。</p>
+<hr>
+<h1 id="二-解决方法">二、解决方法</h1>
+<h2 id="方法一递归">方法一：递归</h2>
+<p><strong>代码</strong>：</p>
+<pre><code>
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[How do I develop problem solving skills?]]></title>
         <id>https://XMTam.github.io/post/how-do-i-develop-problem-solving-skills/</id>
@@ -636,77 +663,6 @@ void print(LinkList h)
     return strs[0];
 }
 </code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[38. 外观数列*]]></title>
-        <id>https://XMTam.github.io/post/38-wai-guan-shu-lie/</id>
-        <link href="https://XMTam.github.io/post/38-wai-guan-shu-lie/">
-        </link>
-        <updated>2020-03-24T22:48:00.000Z</updated>
-        <content type="html"><![CDATA[<h1 id="一-题目">一、题目</h1>
-<p>「外观数列」是一个整数序列，从数字 1 开始，序列中的每一项都是对前一项的描述。前五项如下：</p>
-<pre><code>1.     1
-2.     11
-3.     21
-4.     1211
-5.     111221
-</code></pre>
-<p>1 被读作  &quot;one 1&quot;  (&quot;一个一&quot;) , 即 11。<br>
-11 被读作 &quot;two 1s&quot; (&quot;两个一&quot;）, 即 21。<br>
-21 被读作 &quot;one 2&quot;,  &quot;one 1&quot; （&quot;一个二&quot; ,  &quot;一个一&quot;) , 即 1211。</p>
-<p>给定一个正整数 n（1 ≤ n ≤ 30），输出外观数列的第 n 项。</p>
-<p>注意：整数序列中的每一项将表示为一个字符串。</p>
-<p><strong>示例 1</strong>:</p>
-<pre><code>输入: 1
-输出: &quot;1&quot;
-解释：这是一个基本样例。
-</code></pre>
-<p><strong>示例 2</strong>:</p>
-<pre><code>输入: 4
-输出: &quot;1211&quot;
-解释：当 n = 3 时，序列是 &quot;21&quot;，其中我们有 &quot;2&quot; 和 &quot;1&quot; 两组，&quot;2&quot; 可以读作 &quot;12&quot;，也就是出现频次 = 1 而 值 = 2；类似 &quot;1&quot; 可以读作 &quot;11&quot;。所以答案是 &quot;12&quot; 和 &quot;11&quot; 组合在一起，也就是 &quot;1211&quot;。
-</code></pre>
-<hr>
-<h1 id="二-解决方法">二、解决方法</h1>
-<p>废话不多说，先上代码：</p>
-<pre><code>char* countAndSay(int n) {
-    char* rest = (char*)malloc(sizeof(char) * 5000);
-    char* temp = (char*)malloc(sizeof(char) * 5000);
-    rest[0] = '1';
-    rest[1] = '\0'; // the end symbol of the string
-    char key;
-    char* p;
-    int i, j, cnt;
-    for (i = 1; i &lt; n; i++) // times of the iteration
-    {
-        j = 0;
-        key = rest[0];
-        p = rest;
-        cnt = 0;
-        while (*p)
-        {
-            if (*p == key) // count the same char's number
-                cnt++;
-            else
-            {
-                temp[j++] = cnt + '0';  // save the counter first
-                cnt = 1;
-                temp[j++] = key;    // and then save the key char 
-                key = *p;
-            }
-            p++;
-        }
-        temp[j++] = cnt + '0';  // save the counter first
-        temp[j++] = key;    // and then save the key char 
-        temp[j] = '\0';
-        strcpy(rest, temp);
-    }
-    return rest;
-}
-</code></pre>
-<p>执行用时图如下：<br>
-<img src="https://XMTam.github.io/post-images/1585182293749.png" alt="" loading="lazy"></p>
 ]]></content>
     </entry>
 </feed>
