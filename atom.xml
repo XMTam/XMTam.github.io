@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://XMTam.github.io</id>
     <title>Alvin</title>
-    <updated>2020-04-08T00:24:43.047Z</updated>
+    <updated>2020-04-08T23:33:56.186Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://XMTam.github.io"/>
     <link rel="self" href="https://XMTam.github.io/atom.xml"/>
@@ -10,6 +10,67 @@
     <logo>https://XMTam.github.io/images/avatar.png</logo>
     <icon>https://XMTam.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Alvin</rights>
+    <entry>
+        <title type="html"><![CDATA[101. 对称二叉树]]></title>
+        <id>https://XMTam.github.io/post/101-dui-cheng-er-cha-shu/</id>
+        <link href="https://XMTam.github.io/post/101-dui-cheng-er-cha-shu/">
+        </link>
+        <updated>2020-04-08T23:02:10.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="一-题目">一、题目</h1>
+<p>给定一个二叉树，检查它是否是镜像对称的。</p>
+<p>例如，二叉树 [1,2,2,3,4,4,3] 是对称的。</p>
+<pre><code>    1
+   / \
+  2   2
+ / \ / \
+3  4 4  3
+</code></pre>
+<p>但是下面这个 [1,2,2,null,3,null,3] 则不是镜像对称的:</p>
+<pre><code>    1
+   / \
+  2   2
+   \   \
+   3    3
+</code></pre>
+<p>说明: 如果你可以运用递归和迭代两种方法解决这个问题，会很加分。</p>
+<hr>
+<h1 id="二-解决方法">二、解决方法</h1>
+<h2 id="方法一递归">方法一：递归</h2>
+<p><strong>思路分析</strong>：递归的难点在于：找到可以递归的点 为什么很多人觉得递归一看就会，一写就废。 或者说是自己写无法写出来，关键就是你对递归理解的深不深。</p>
+<p>对于此题： 递归的点怎么找？从拿到题的第一时间开始，思路如下：</p>
+<ol>
+<li>怎么判断一棵树是不是对称二叉树？<br>
+答案：如果所给根节点，为空，那么是对称。如果不为空的话，当他的左子树与右子树对称时，他对称</li>
+<li>那么怎么知道左子树与右子树对不对称呢？<br>
+答案：如果左子树的左孩子与右子树的右孩子对称，左子树的右孩子与右子树的左孩子对称，那么这个左子树和右子树就对称。</li>
+</ol>
+<p>仔细读这句话，是不是有点绕？怎么感觉有一个功能A我想实现，但我去实现A的时候又要用到A实现后的功能呢？</p>
+<p>当你思考到这里的时候，递归点已经出现了：<br>
+<strong>递归点</strong>：在尝试判断左子树与右子树对称的条件时，发现其跟两树的孩子的对称情况有关系。</p>
+<p>想到这里，你不必有太多疑问，上手去按思路写代码，函数A（左子树，右子树）；功能是返回是否对称</p>
+<p>def 函数A（左子树，右子树）： 左子树节点值等于右子树节点值 且 函数A（左子树的左子树，右子树的右子树），函数A（左子树的右子树，右子树的左子树）均为真 才返回真</p>
+<p>到此递归实现完毕。。。</p>
+<p><strong>代码</strong>如下：</p>
+<pre><code>bool isMirror(struct TreeNode* t1, struct TreeNode* t2)
+{
+    if (t1 == NULL &amp;&amp; t2 == NULL)
+        return true;
+    if (t1 == NULL || t2 == NULL)
+        return false;
+    return (t1-&gt;val == t2-&gt;val) &amp;&amp; isMirror(t1-&gt;left, t2-&gt;right) &amp;&amp; isMirror(t1-&gt;right, t2-&gt;left);
+}
+
+bool isSymmetric(struct TreeNode* root) {
+    return isMirror(root, root);
+}
+</code></pre>
+<p><strong>复杂度分析</strong>：</p>
+<ul>
+<li>时间复杂度：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>，因为我们遍历整个输入树一次，所以总的运行时间为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>，其中 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 是树中结点的总数。</li>
+<li>空间复杂度：递归调用的次数受树的高度限制。在最糟糕情况下，树是线性的，其高度为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>。因此，在最糟糕的情况下，由栈上的递归调用造成的空间复杂度为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>。</li>
+</ul>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[98. 验证二叉搜索树]]></title>
         <id>https://XMTam.github.io/post/98-yan-zheng-er-cha-sou-suo-shu/</id>
@@ -637,51 +698,6 @@ void print(LinkList h)
 <li>时间复杂度：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>L</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(L)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">L</span><span class="mclose">)</span></span></span></span>，该算法对含有 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>L</mi></mrow><annotation encoding="application/x-tex">L</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">L</span></span></span></span> 个结点的列表进行了一次遍历。因此时间复杂度为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>L</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(L)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">L</span><span class="mclose">)</span></span></span></span>。</li>
 <li>空间复杂度：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span>，我们只用了常量级的额外空间。</li>
 </ul>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[237. 删除链表中的节点]]></title>
-        <id>https://XMTam.github.io/post/237. 删除链表中的节点/</id>
-        <link href="https://XMTam.github.io/post/237. 删除链表中的节点/">
-        </link>
-        <updated>2020-03-27T22:54:25.000Z</updated>
-        <content type="html"><![CDATA[<h1 id="一-题目">一、题目</h1>
-<p>请编写一个函数，使其可以删除某个链表中给定的（非末尾）节点，你将只被给定要求被删除的节点。<br>
-现有一个链表 -- head = [4,5,1,9]，它可以表示为:<br>
-<img src="https://XMTam.github.io/post-images/1585349850747.png" alt="" loading="lazy"><br>
-<strong>示例 1:</strong></p>
-<pre><code>输入: head = [4,5,1,9], node = 5
-输出: [4,1,9]
-解释: 给定你链表中值为 5 的第二个节点，那么在调用了你的函数之后，该链表应变为 4 -&gt; 1 -&gt; 9.
-</code></pre>
-<p><strong>示例 2:</strong></p>
-<pre><code>输入: head = [4,5,1,9], node = 1
-输出: [4,5,9]
-解释: 给定你链表中值为 1 的第三个节点，那么在调用了你的函数之后，该链表应变为 4 -&gt; 5 -&gt; 9.
-</code></pre>
-<p><strong>说明:</strong></p>
-<ul>
-<li>链表至少包含两个节点。</li>
-<li>链表中所有节点的值都是唯一的。</li>
-<li>给定的节点为非末尾节点并且一定是链表中的一个有效节点。</li>
-<li>不要从你的函数中返回任何结果。</li>
-</ul>
-<hr>
-<h1 id="二-解决方法">二、解决方法</h1>
-<h2 id="方法与下一个节点交换">方法：与下一个节点交换</h2>
-<p>**思路：**从链表里删除一个节点 node 的最常见方法是修改之前节点的 next 指针，使其指向之后的节点。如下图所示：<br>
-<img src="https://XMTam.github.io/post-images/1585350271764.png" alt="" loading="lazy"><br>
-由于我们无法访问我们想要删除的节点 之前 的节点，我们始终不能修改该节点的 next 指针。相反，我们必须将想要删除的节点的值替换为它后面节点中的值，然后删除它之后的节点。变换如下图所示：<br>
-<img src="https://XMTam.github.io/post-images/1585350407916.png" alt="" loading="lazy"><br>
-<img src="https://XMTam.github.io/post-images/1585350370179.png" alt="" loading="lazy"><br>
-<img src="https://XMTam.github.io/post-images/1585350429769.png" alt="" loading="lazy"><br>
-<strong>代码如下：</strong></p>
-<pre><code>void deleteNode(struct ListNode* node) {
-    node-&gt;val = node-&gt;next-&gt;val;
-    node-&gt;next = node-&gt;next-&gt;next;
-}
-</code></pre>
-<p>**复杂度分析：**时间和空间复杂度都是：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mn>1</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span>。</p>
 ]]></content>
     </entry>
 </feed>
