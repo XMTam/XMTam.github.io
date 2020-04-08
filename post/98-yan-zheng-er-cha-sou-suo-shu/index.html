@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Alvin</title>
 <meta name="description" content="A = X + Y + Z" />
-<link rel="shortcut icon" href="https://XMTam.github.io/favicon.ico?v=1586217722708">
+<link rel="shortcut icon" href="https://XMTam.github.io/favicon.ico?v=1586305476604">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
@@ -23,7 +23,7 @@
       <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
         <i class="ri-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
         <a href="https://XMTam.github.io">
-          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://XMTam.github.io/images/avatar.png?v=1586217722708" alt="">
+          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://XMTam.github.io/images/avatar.png?v=1586305476604" alt="">
         </a>
         <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">Alvin</h1>
       </div>
@@ -88,7 +88,7 @@
       <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
         <h1 class="text-3xl font-bold lg:mt-16">98. 验证二叉搜索树</h1>
         <div class="text-sm text-gray-700 lg:my-8">
-          2020-04-07 / 1 min read
+          2020-04-07 / 2 min read
         </div>
         
         <div class="post-content yue">
@@ -120,8 +120,13 @@
 </code></pre>
 <hr>
 <h1 id="二-解决方法">二、解决方法</h1>
+<p><strong>分析</strong>：乍一看，这是一个平凡的问题。只需要遍历整棵树，检查 <code>node.right.val &gt; node.val</code> 和 <code>node.left.val &lt; node.val</code> 对每个结点是否成立。<br>
+<img src="https://XMTam.github.io/post-images/1586301311303.png" alt="" loading="lazy"><br>
+问题是，这种方法并不总是正确。不仅右子结点要大于该节点，整个右子树的元素都应该大于该节点。例如:<br>
+<img src="https://XMTam.github.io/post-images/1586301366635.png" alt="" loading="lazy"><br>
+这意味着我们需要在遍历树的同时保留结点的上界与下界，在比较时不仅比较子结点的值，也要与上下界比较。</p>
 <h2 id="方法一递归">方法一：递归</h2>
-<p><strong>思路</strong>：<br>
+<p>上述思路可以用递归法实现。首先将结点的值与上界和下界（如果有）比较。然后，对左子树和右子树递归进行该过程。<br>
 <strong>代码</strong>：</p>
 <pre><code>bool validation(struct TreeNode* root, long lower, long upper)
 {
@@ -137,7 +142,11 @@ bool isValidBST(struct TreeNode* root) {
     return validation(root, LONG_MIN, LONG_MAX);
 }
 </code></pre>
-<p>复杂度分析：</p>
+<p>复杂度分析</p>
+<ul>
+<li>时间复杂度 : <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>N</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(N)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mclose">)</span></span></span></span>。每个结点访问一次。</li>
+<li>空间复杂度 : <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>N</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(N)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mclose">)</span></span></span></span>。我们跟进了整棵树。</li>
+</ul>
 
         </div>
 
