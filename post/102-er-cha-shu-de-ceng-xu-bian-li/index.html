@@ -4,7 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Alvin</title>
 <meta name="description" content="A = X + Y + Z" />
-<link rel="shortcut icon" href="https://XMTam.github.io/favicon.ico?v=1586390137671">
+<link rel="shortcut icon" href="https://XMTam.github.io/favicon.ico?v=1586480682680">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
@@ -23,7 +23,7 @@
       <div class="flex lg:block p-4 lg:px-0 items-center fixed lg:static lg:block top-0 right-0 left-0 bg-white z-50">
         <i class="ri-menu-2-line lg:mt-4 text-2xl cursor-pointer animated fadeIn" onclick="openMenu()"></i>
         <a href="https://XMTam.github.io">
-          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://XMTam.github.io/images/avatar.png?v=1586390137671" alt="">
+          <img class="animated fadeInLeft avatar rounded-lg mx-4 lg:mt-32 lg:mx-0 mt-0 lg:w-24 lg:h-24 w-12 w-12" src="https://XMTam.github.io/images/avatar.png?v=1586480682680" alt="">
         </a>
         <h1 class="animated fadeInLeft lg:text-4xl font-extrabold lg:mt-8 mt-0 text-xl" style="animation-delay: 0.2s">Alvin</h1>
       </div>
@@ -35,7 +35,11 @@
           <div class="toc-container hidden lg:block">
             <ul class="markdownIt-TOC">
 <li><a href="#%E4%B8%80-%E9%A2%98%E7%9B%AE">一、题目</a></li>
-<li><a href="#%E4%BA%8C-%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95">二、解决方法</a></li>
+<li><a href="#%E4%BA%8C-%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95">二、解决方法</a>
+<ul>
+<li><a href="#%E6%96%B9%E6%B3%95%E4%B8%80%E9%80%92%E5%BD%92">方法一：递归</a></li>
+</ul>
+</li>
 </ul>
 
           </div>
@@ -84,7 +88,7 @@
       <div class="content-wrapper py-32 lg:p-8 lg:w-3/4 post-detail animated fadeIn">
         <h1 class="text-3xl font-bold lg:mt-16">102. 二叉树的层序遍历</h1>
         <div class="text-sm text-gray-700 lg:my-8">
-          2020-04-09 / 1 min read
+          2020-04-09 / 2 min read
         </div>
         
         <div class="post-content yue">
@@ -107,6 +111,38 @@
 </code></pre>
 <hr>
 <h1 id="二-解决方法">二、解决方法</h1>
+<h2 id="方法一递归">方法一：递归</h2>
+<p><strong>代码如下</strong>：</p>
+<pre><code>#define MAXSIZE 1000
+
+void helper(struct TreeNode* root, int** result, int* columnSize, int i, int* maxh)
+{
+    if (root != NULL)
+    {
+        result[i][columnSize[i]] = root-&gt;val;
+        columnSize[i]++;
+        if (i + 1 &gt; * maxh)
+            *maxh = i + 1;
+        helper(root-&gt;left, result, columnSize, i + 1, maxh);
+        helper(root-&gt;right, result, columnSize, i + 1, maxh);
+    }
+}
+
+int** levelOrder(struct TreeNode* root, int* returnSize, int** returnColumnSizes) {
+    int** result = (int**)malloc(sizeof(int*) * MAXSIZE);
+    int i;
+    for (i = 0; i &lt; MAXSIZE; i++)
+    {
+        result[i] = (int*)malloc(sizeof(int) * MAXSIZE);
+    }
+    *returnColumnSizes = (int*)calloc(MAXSIZE, sizeof(int));
+    *returnSize = 0;
+    if (root == NULL)
+        return NULL;
+    helper(root, result, *returnColumnSizes, 0, returnSize);
+    return result;
+}
+</code></pre>
 
         </div>
 

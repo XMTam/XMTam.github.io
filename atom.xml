@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://XMTam.github.io</id>
     <title>Alvin</title>
-    <updated>2020-04-08T23:55:44.769Z</updated>
+    <updated>2020-04-10T01:04:50.008Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://XMTam.github.io"/>
     <link rel="self" href="https://XMTam.github.io/atom.xml"/>
@@ -35,6 +35,38 @@
 </code></pre>
 <hr>
 <h1 id="二-解决方法">二、解决方法</h1>
+<h2 id="方法一递归">方法一：递归</h2>
+<p><strong>代码如下</strong>：</p>
+<pre><code>#define MAXSIZE 1000
+
+void helper(struct TreeNode* root, int** result, int* columnSize, int i, int* maxh)
+{
+    if (root != NULL)
+    {
+        result[i][columnSize[i]] = root-&gt;val;
+        columnSize[i]++;
+        if (i + 1 &gt; * maxh)
+            *maxh = i + 1;
+        helper(root-&gt;left, result, columnSize, i + 1, maxh);
+        helper(root-&gt;right, result, columnSize, i + 1, maxh);
+    }
+}
+
+int** levelOrder(struct TreeNode* root, int* returnSize, int** returnColumnSizes) {
+    int** result = (int**)malloc(sizeof(int*) * MAXSIZE);
+    int i;
+    for (i = 0; i &lt; MAXSIZE; i++)
+    {
+        result[i] = (int*)malloc(sizeof(int) * MAXSIZE);
+    }
+    *returnColumnSizes = (int*)calloc(MAXSIZE, sizeof(int));
+    *returnSize = 0;
+    if (root == NULL)
+        return NULL;
+    helper(root, result, *returnColumnSizes, 0, returnSize);
+    return result;
+}
+</code></pre>
 ]]></content>
     </entry>
     <entry>
