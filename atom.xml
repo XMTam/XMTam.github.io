@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://XMTam.github.io</id>
     <title>Alvin</title>
-    <updated>2020-04-10T23:22:38.964Z</updated>
+    <updated>2020-04-12T23:54:24.541Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://XMTam.github.io"/>
     <link rel="self" href="https://XMTam.github.io/atom.xml"/>
@@ -35,38 +35,123 @@
 </code></pre>
 <hr>
 <h1 id="二-解决方法">二、解决方法</h1>
-<h2 id="方法一递归">方法一：递归</h2>
+<h2 id="方法一迭代bfs">方法一：迭代——BFS</h2>
+<p><strong>思路</strong>：广度优先遍历是按层层推进的方式，遍历每一层的节点。题目要求的是返回每一层的节点值，所以本题用广度优先来做非常合适。广度优先需要用队列作为辅助结构，我们先将根节点放到队列中，然后不断遍历队列。</p>
+<p>对于如下一个二叉树：</p>
+<pre><code>    3
+   / \
+  9  20
+ /   /  \
+8   15   7
+</code></pre>
+<ol>
+<li>首先拿出根节点3，如果当前节点的左子树和右子树不为空，就将他们放入队列中。第一遍处理完后，根节点已经从队列中拿走了，而根节点的两个孩子已放入队列中了，现在队列中就有两个节点9和20。</li>
+<li>第二次处理，会将9和20这两个节点从队列中拿走，然后再将9和20的子节点放入队列中，现在队列中就有三个节点8，15，7。</li>
+<li>我们把每层遍历到的节点都放入到一个结果集中，最后返回这个结果集就可以了。</li>
+</ol>
 <p><strong>代码如下</strong>：</p>
-<pre><code>#define MAXSIZE 1000
+<pre><code>#define MAX_SIZE 1000
 
-void helper(struct TreeNode* root, int** result, int* columnSize, int i, int* maxh)
+typedef struct {
+        int front;
+        int rear;
+        int size;
+        struct TreeNode* data[MAX_SIZE];
+} Queue;
+
+void Init(Queue *q)
 {
-    if (root != NULL)
-    {
-        result[i][columnSize[i]] = root-&gt;val;
-        columnSize[i]++;
-        if (i + 1 &gt; * maxh)
-            *maxh = i + 1;
-        helper(root-&gt;left, result, columnSize, i + 1, maxh);
-        helper(root-&gt;right, result, columnSize, i + 1, maxh);
-    }
+        q-&gt;front = -1;
+        q-&gt;rear = -1;
+        q-&gt;size = 0;
+        memset(q-&gt;data, 0, sizeof(struct TreeNode*) * MAX_SIZE);
 }
 
-int** levelOrder(struct TreeNode* root, int* returnSize, int** returnColumnSizes) {
-    int** result = (int**)malloc(sizeof(int*) * MAXSIZE);
-    int i;
-    for (i = 0; i &lt; MAXSIZE; i++)
-    {
-        result[i] = (int*)malloc(sizeof(int) * MAXSIZE);
-    }
-    *returnColumnSizes = (int*)calloc(MAXSIZE, sizeof(int));
-    *returnSize = 0;
-    if (root == NULL)
-        return NULL;
-    helper(root, result, *returnColumnSizes, 0, returnSize);
-    return result;
+int Push(Queue *q, struct TreeNode* node)
+{
+        assert(q &amp;&amp; node &amp;&amp; q-&gt;size != MAX_SIZE);
+        if (q == NULL || node == NULL || q-&gt;size == MAX_SIZE)
+                return -1;
+
+        q-&gt;rear++;
+        q-&gt;rear %= MAX_SIZE;
+        q-&gt;data[q-&gt;rear] = node;
+        q-&gt;size++;
+        return 0;
+}
+
+int Pop(Queue *q, struct TreeNode** node)
+{
+        assert(q &amp;&amp; node &amp;&amp; q-&gt;size != 0);
+        if (q == NULL || node == NULL || q-&gt;size == 0)
+                return -1;
+        q-&gt;front++;
+        q-&gt;front %= MAX_SIZE;
+        *node = q-&gt;data[q-&gt;front];
+        q-&gt;size--;
+        return 0;
+}
+
+int GetTreeDepth(const struct TreeNode* root)
+{
+        if (root == NULL)
+                return 0;
+
+        int left = GetTreeDepth(root-&gt;left);
+        int right = GetTreeDepth(root-&gt;right);
+
+        return left &gt; right ? left + 1 : right + 1;
+}
+
+int** levelOrder(struct TreeNode* root, int* returnSize, int** returnColumnSizes)
+{
+        if (root == NULL || returnSize == NULL || returnColumnSizes == NULL) {
+            *returnSize = 0;
+            *returnColumnSizes = (int *)malloc(sizeof(int) * 1);
+            (*returnColumnSizes)[0] = 0;                
+            return NULL;
+        }
+            
+        Queue q;
+        Init(&amp;q);
+        Push(&amp;q, root);
+
+        int depth = GetTreeDepth(root);
+        *returnSize = depth;
+        int **matrix = (int **)malloc(sizeof(int *) * depth);
+        *returnColumnSizes = (int *)malloc(sizeof(int) * depth);
+        if (matrix == NULL || returnColumnSizes == NULL)
+                return NULL;
+
+        int cur_depth = 0;
+        while(q.size != 0) {
+                int level_size = q.size;
+                /* create raw */
+                (*returnColumnSizes)[cur_depth] = level_size;
+                matrix[cur_depth] = (int *)malloc(sizeof(int) * level_size);
+                int cur = 0;
+                while (level_size--) {
+                        struct TreeNode* node;
+                        Pop(&amp;q, &amp;node);
+                        /* add node-&gt;val to res */
+                        matrix[cur_depth][cur] = node-&gt;val;
+
+                        if (node-&gt;left)
+                                Push(&amp;q, node-&gt;left);
+                        if (node-&gt;right)
+                                Push(&amp;q, node-&gt;right);
+                        cur++;
+                }
+                cur_depth++;
+        }
+        return matrix;
 }
 </code></pre>
+<p><strong>复杂度分析</strong>：</p>
+<ul>
+<li>时间复杂度：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span></li>
+<li>空间复杂度：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span></li>
+</ul>
 ]]></content>
     </entry>
     <entry>
