@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://XMTam.github.io</id>
     <title>Alvin</title>
-    <updated>2020-04-12T23:54:24.541Z</updated>
+    <updated>2020-04-16T14:09:13.802Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://XMTam.github.io"/>
     <link rel="self" href="https://XMTam.github.io/atom.xml"/>
@@ -10,6 +10,30 @@
     <logo>https://XMTam.github.io/images/avatar.png</logo>
     <icon>https://XMTam.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Alvin</rights>
+    <entry>
+        <title type="html"><![CDATA[108. 将有序数组转换为二叉搜索树]]></title>
+        <id>https://XMTam.github.io/post/108-jiang-you-xu-shu-zu-zhuan-huan-wei-er-cha-sou-suo-shu/</id>
+        <link href="https://XMTam.github.io/post/108-jiang-you-xu-shu-zu-zhuan-huan-wei-er-cha-sou-suo-shu/">
+        </link>
+        <updated>2020-04-16T01:31:06.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="一-题目">一、题目</h1>
+<p>将一个按照升序排列的有序数组，转换为一棵高度平衡二叉搜索树。</p>
+<p>本题中，一个高度平衡二叉树是指一个二叉树每个节点 的左右两个子树的高度差的绝对值不超过 1。</p>
+<p>示例:</p>
+<pre><code>给定有序数组: [-10,-3,0,5,9],
+
+一个可能的答案是：[0,-3,9,-10,null,5]，它可以表示下面这个高度平衡二叉搜索树：
+
+      0
+     / \
+   -3   9
+   /   /
+ -10  5
+</code></pre>
+<hr>
+<h1 id="二-解决方法">二、解决方法</h1>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[102. 二叉树的层序遍历*]]></title>
         <id>https://XMTam.github.io/post/102-er-cha-shu-de-ceng-xu-bian-li/</id>
@@ -686,68 +710,6 @@ struct ListNode* reverseList(struct ListNode* head)
 <li>时间复杂度：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>，假设 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 是列表的长度，那么时间复杂度为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>。</li>
 <li>空间复杂度：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>，由于使用递归，将会使用隐式栈空间。递归深度可能会达到 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 层。</li>
 </ul>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Create a Linked-List by C]]></title>
-        <id>https://XMTam.github.io/post/create-a-linked-list-in-c/</id>
-        <link href="https://XMTam.github.io/post/create-a-linked-list-in-c/">
-        </link>
-        <updated>2020-03-28T23:31:16.000Z</updated>
-        <content type="html"><![CDATA[<p>Code as following:</p>
-<pre><code>#include&lt;stdio.h&gt;
-#include&lt;stdlib.h&gt;
-#include&lt;malloc.h&gt;
-typedef struct LNode{
-    int          data;
-    struct LNode *next;
-}LNode,*LinkList;
- 
-LinkList CreateList(int n);
-void print(LinkList h);
-int main()
-{
-    LinkList Head=NULL;
-    int n;
-    
-    scanf(&quot;%d&quot;,&amp;n);
-    Head=CreateList(n);
-    
-    printf(&quot;刚刚建立的各个链表元素的值为：\n&quot;);
-    print(Head);
-    
-    printf(&quot;\n\n&quot;);
-    system(&quot;pause&quot;);
-    return 0;
-}
-LinkList CreateList(int n)
-{
-    LinkList L,p,q;
-    int i;
-    L=(LNode*)malloc(sizeof(LNode));
-    if(!L)return 0;
-    L-&gt;next=NULL;
-    q=L;
-    for(i=1;i&lt;=n;i++)
-    {
-        p=(LinkList)malloc(sizeof(LNode));
-        printf(&quot;请输入第%d个元素的值:&quot;,i);
-        scanf(&quot;%d&quot;,&amp;(p-&gt;data));
-        p-&gt;next=NULL;
-        q-&gt;next=p;
-        q=p;
-    }
-    return L;
-}
-void print(LinkList h)
-{
-    LinkList p=h-&gt;next;
-    while(p!=NULL){
-        printf(&quot;%d &quot;,p-&gt;data);
-        p=p-&gt;next;
-    }
-}
-</code></pre>
 ]]></content>
     </entry>
 </feed>
